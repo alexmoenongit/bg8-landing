@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BG8 — Concept A: Consumer (B2C)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --aurora-start: #00C2E0;
+    --aurora-end:   #4ADE5C;
+    --blue:         #38BDF8;
+    --blue-dim:     #0EA5D0;
+    --dark:         #0F172A;
+    --body:         #334155;
+    --muted:        #94A3B8;
+    --bg:           #F8FAFC;
+    --white:        #FFFFFF;
+    --card:         #FFFFFF;
+    --border:       #E2E8F0;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Aurora gradient utility ─────────────────────────────────────────────── */
+  .aurora-gradient { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); }
+  .aurora-text {
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(248,250,252,0.90);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-size: 18px; font-weight: 800; letter-spacing: -0.01em;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .nav-link { font-size: 14px; color: var(--body); text-decoration: none; font-weight: 500; }
+  .nav-cta {
+    font-size: 14px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: #0F172A; padding: 9px 22px; border-radius: 100px;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(0,194,224,0.3);
+  }
+  .nav-cta:hover { box-shadow: 0 6px 20px rgba(0,194,224,0.45); transform: translateY(-1px); }
+
+  /* ── HERO ────────────────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 48px 80px;
+    background:
+      radial-gradient(ellipse 55% 50% at 72% 38%, rgba(0,194,224,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(74,222,92,0.06) 0%, transparent 60%),
+      var(--bg);
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue); background: rgba(56,189,248,0.10);
+    border: 1px solid rgba(56,189,248,0.25);
+    padding: 5px 14px; border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 800; line-height: 1.05;
+    color: var(--dark); letter-spacing: -0.025em;
+    margin-bottom: 22px;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--body);
+    line-height: 1.65; margin-bottom: 36px; max-width: 480px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 16px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: #0F172A;
+    padding: 14px 28px; border-radius: 100px;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,194,224,0.35);
+  }
+  .btn-primary:hover { box-shadow: 0 6px 28px rgba(0,194,224,0.5); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 15px; font-weight: 500; color: var(--body);
+    text-decoration: none; padding: 14px 4px;
+  }
+  .btn-ghost .arrow { transition: transform 0.2s; }
+  .btn-ghost:hover .arrow { transform: translateX(4px); }
+
+  /* ── CHAT MOCKUP ─────────────────────────────────────────────────────────── */
+  .chat-mockup {
+    background: var(--white);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 64px rgba(15,23,42,0.10), 0 2px 8px rgba(15,23,42,0.04);
+    overflow: hidden;
+  }
+  .chat-header {
+    padding: 18px 22px;
+    background: #0F172A;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .chat-avatar {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--aurora-start), var(--aurora-end));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 800; color: #0F172A;
+  }
+  .chat-header-info .name { font-size: 14px; font-weight: 600; color: #fff; }
+  .chat-header-info .status { font-size: 12px; color: var(--aurora-start); display: flex; align-items: center; gap: 4px; }
+  .online-dot { width: 6px; height: 6px; background: #4ADE5C; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+  /* Suggestion chips */
+  .chat-chips {
+    padding: 14px 18px 6px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .chip {
+    font-size: 12px; font-weight: 500; color: #0F172A;
+    background: white; border: 1.5px solid transparent;
+    border-radius: 100px; padding: 5px 14px;
+    cursor: pointer;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .chip::before {
+    content: '';
+    position: absolute; inset: -1.5px;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    z-index: -1;
+  }
+
+  .chat-body { padding: 18px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .msg { max-width: 85%; }
+  .msg-user { align-self: flex-end; }
+  .msg-ai { align-self: flex-start; }
+  .bubble { padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.5; }
+  .bubble-user {
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: #0F172A; font-weight: 500;
+    border-bottom-right-radius: 4px;
+  }
+  .bubble-ai {
+    background: var(--bg); color: var(--dark);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+  }
+  .msg-time { font-size: 11px; color: var(--muted); margin-top: 4px; text-align: right; }
+
+  .booking-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.06);
+  }
+  .booking-card .bc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .bc-icon { width: 34px; height: 34px; background: rgba(0,194,224,0.1); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .bc-name { font-size: 14px; font-weight: 600; color: var(--dark); }
+  .bc-rating { font-size: 12px; color: var(--muted); }
+  .bc-details { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .bc-item { font-size: 12px; color: var(--body); }
+  .bc-item span { font-weight: 600; color: var(--dark); }
+  .bc-btn {
+    width: 100%; padding: 11px; border-radius: 10px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: #0F172A; font-size: 13px; font-weight: 700;
+    border: none; cursor: pointer; font-family: 'Outfit', sans-serif;
+  }
+
+  .chat-input {
+    padding: 14px 18px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .chat-input-field {
+    flex: 1; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 100px; padding: 9px 16px;
+    font-size: 13px; color: var(--muted); font-family: 'Outfit', sans-serif;
+  }
+  .chat-send {
+    width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  /* ── PROOF STRIP ─────────────────────────────────────────────────────────── */
+  .proof-strip {
+    padding: 20px 48px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;
+  }
+  .proof-item { display: flex; align-items: center; gap: 8px; }
+  .proof-number {
+    font-size: 21px; font-weight: 800; letter-spacing: -0.02em;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .proof-label { font-size: 13px; color: var(--muted); }
+
+  /* ── SECTION COMMONS ─────────────────────────────────────────────────────── */
+  .section { padding: 96px 48px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 12px;
+  }
+  .section-title { font-size: clamp(28px, 3vw, 40px); font-weight: 700; color: var(--dark); letter-spacing: -0.02em; margin-bottom: 14px; line-height: 1.2; }
+  .section-sub { font-size: 17px; color: var(--body); line-height: 1.6; max-width: 580px; margin-bottom: 56px; }
+
+  /* ── HOW IT WORKS ────────────────────────────────────────────────────────── */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .step-num {
+    width: 34px; height: 34px; border-radius: 50%; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    font-size: 13px; font-weight: 700; color: #0F172A;
+  }
+  .step h3 { font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+  .step p { font-size: 15px; color: var(--body); line-height: 1.6; }
+
+  /* ── CATEGORIES ──────────────────────────────────────────────────────────── */
+  .categories-section { padding: 0 48px 96px; }
+  .cats-inner { max-width: 1100px; margin: 0 auto; }
+  .cat-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cat-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 100px; padding: 10px 18px;
+    font-size: 14px; color: var(--dark); font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .cat-chip:hover { border-color: var(--blue); color: var(--blue); }
+  .cat-chip .cat-icon { font-size: 16px; }
+
+  /* ── VALUE PROPS ─────────────────────────────────────────────────────────── */
+  .value-section { padding: 96px 48px; background: #141C22; }
+  .value-inner { max-width: 1100px; margin: 0 auto; }
+  .value-label { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .value-title { font-size: clamp(28px, 3vw, 40px); font-weight: 700; color: #E8F5F2; letter-spacing: -0.02em; margin-bottom: 56px; line-height: 1.2; }
+  .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .value-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 28px 28px 32px; transition: border-color 0.2s;
+  }
+  .value-card:hover { border-color: rgba(0,194,224,0.3); }
+  .value-icon { font-size: 28px; margin-bottom: 16px; }
+  .value-card h3 { font-size: 17px; font-weight: 600; color: #E8F5F2; margin-bottom: 10px; }
+  .value-card p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ── AURORA DIVIDER ──────────────────────────────────────────────────────── */
+  .aurora-divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    border: none; margin: 0;
+  }
+
+  /* ── TESTIMONIALS ────────────────────────────────────────────────────────── */
+  .testi-section { padding: 96px 48px; background: var(--white); }
+  .testi-inner { max-width: 1100px; margin: 0 auto; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .testi-card { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+  .testi-quote { font-size: 16px; color: var(--dark); line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 10px; }
+  .testi-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--aurora-start), var(--aurora-end));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: #0F172A; flex-shrink: 0;
+  }
+  .testi-name { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .testi-meta { font-size: 12px; color: var(--muted); }
+
+  /* ── CTA SECTION ─────────────────────────────────────────────────────────── */
+  .cta-section {
+    padding: 100px 48px;
+    text-align: center;
+    background: #141C22;
+    position: relative; overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute; width: 700px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,194,224,0.12) 0%, transparent 70%);
+    top: 50%; left: 30%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .cta-glow-2 {
+    position: absolute; width: 500px; height: 400px;
+    background: radial-gradient(ellipse, rgba(74,222,92,0.08) 0%, transparent 70%);
+    top: 50%; right: 10%; transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .cta-inner { max-width: 640px; margin: 0 auto; position: relative; }
+  .cta-section h2 {
+    font-size: clamp(30px, 4vw, 50px); font-weight: 800;
+    color: #E8F5F2; letter-spacing: -0.025em; margin-bottom: 16px; line-height: 1.1;
+  }
+  .cta-section p { font-size: 18px; color: #7BB5A8; line-height: 1.6; margin-bottom: 36px; }
+  .cta-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .btn-cta-primary {
+    font-size: 16px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: #0F172A; padding: 15px 36px; border-radius: 100px;
+    text-decoration: none; box-shadow: 0 4px 24px rgba(0,194,224,0.4); transition: all 0.2s;
+  }
+  .btn-cta-primary:hover { box-shadow: 0 6px 32px rgba(0,194,224,0.55); transform: translateY(-2px); }
+  .btn-cta-ghost {
+    font-size: 15px; font-weight: 500; color: #7BB5A8;
+    border: 1px solid rgba(255,255,255,0.15); padding: 14px 28px;
+    border-radius: 100px; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-cta-ghost:hover { background: rgba(255,255,255,0.07); color: #E8F5F2; }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────────────── */
+  footer {
+    background: #0D1620; padding: 40px 48px 32px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-size: 17px; font-weight: 800;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 4px; }
+  .footer-right { font-size: 13px; color: rgba(255,255,255,0.25); }
+
+  /* ── CONCEPT BADGE ───────────────────────────────────────────────────────── */
+  .concept-badge {
+    position: fixed; bottom: 20px; right: 20px; z-index: 200;
+    background: #141C22; color: #00C2E0;
+    border: 1px solid rgba(0,194,224,0.3); border-radius: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 8px 14px;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .section { padding: 64px 20px; }
+    .steps { grid-template-columns: 1fr; }
+    .value-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">BG8</div>
+  <div class="nav-right">
+    <a href="#" class="nav-link">For Businesses</a>
+    <a href="#" class="nav-link">How It Works</a>
+    <a href="#" class="nav-cta">Get Started Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">✦ Now in Vancouver</div>
+      <h1>Stop searching.<br><span class="aurora-text">Just say it.</span></h1>
+      <p class="hero-sub">
+        Tell BG8 what you need. Your personal AI finds the right local professional, gets you a quote, and books the whole thing — without a single phone call.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">
+          Start chatting free
+          <span>→</span>
+        </a>
+        <a href="#" class="btn-ghost">
+          See how it works <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- CHAT MOCKUP with suggestion chips -->
+    <div class="chat-mockup">
+      <div class="chat-header">
+        <div class="chat-avatar">B</div>
+        <div class="chat-header-info">
+          <div class="name">BG8 AI</div>
+          <div class="status"><span class="online-dot"></span>Always on</div>
+        </div>
+      </div>
+      <!-- Suggestion chips — empty state fix -->
+      <div class="chat-chips">
+        <div class="chip">Find a cleaner near me</div>
+        <div class="chip">I need a plumber</div>
+        <div class="chip">Book a mover Saturday</div>
+        <div class="chip">Dog walker weekdays</div>
+      </div>
+      <div class="chat-body">
+        <div class="msg msg-user">
+          <div class="bubble bubble-user">
+            I need a good house cleaner for next Saturday, 2 bedrooms in Mount Pleasant.
+          </div>
+          <div class="msg-time">Just now</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="bubble bubble-ai">
+            Got it. I found 4 top-rated cleaners in Mount Pleasant available Saturday. Here's the best match:
+          </div>
+        </div>
+        <div class="msg msg-ai" style="max-width:95%">
+          <div class="booking-card">
+            <div class="bc-header">
+              <div class="bc-icon">🧹</div>
+              <div>
+                <div class="bc-name">Sparkle Pro Cleaning</div>
+                <div class="bc-rating">⭐ 4.9 · 214 reviews · verified</div>
+              </div>
+            </div>
+            <div class="bc-details">
+              <div class="bc-item">🕐 <span>Sat, 10 AM–1 PM</span></div>
+              <div class="bc-item">💰 <span>$95 flat</span></div>
+              <div class="bc-item">📍 <span>2.1 km away</span></div>
+            </div>
+            <button class="bc-btn">Confirm Booking</button>
+          </div>
+        </div>
+        <div class="msg msg-user">
+          <div class="bubble bubble-user">Perfect. Book it!</div>
+          <div class="msg-time">Just now</div>
+        </div>
+        <div class="msg msg-ai">
+          <div class="bubble bubble-ai">
+            ✅ Booked. Confirmation sent to your email. Anything else?
+          </div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <div class="chat-input-field">What else can I help with?</div>
+        <button class="chat-send">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M7 1l6 6-6 6" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-item">
+    <div class="proof-number">2,400+</div>
+    <div class="proof-label">bookings completed</div>
+  </div>
+  <div style="width:1px; height:28px; background:#E2E8F0;"></div>
+  <div class="proof-item">
+    <div class="proof-number">190+</div>
+    <div class="proof-label">local service providers</div>
+  </div>
+  <div style="width:1px; height:28px; background:#E2E8F0;"></div>
+  <div class="proof-item">
+    <div class="proof-number">4.8★</div>
+    <div class="proof-label">average booking rating</div>
+  </div>
+  <div style="width:1px; height:28px; background:#E2E8F0;"></div>
+  <div class="proof-item">
+    <div class="proof-number">&lt; 90 sec</div>
+    <div class="proof-label">average time to booking</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Three messages to done.</div>
+    <div class="section-sub">No forms. No phone calls. No comparing 12 websites. Just tell BG8 what you need and it handles the rest.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Describe what you need</h3>
+        <p>Say it naturally. "I need a plumber tomorrow morning" or "find me a dog walker for weekday afternoons." BG8 understands context, not keywords.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Your AI finds the best match</h3>
+        <p>BG8's AI talks directly to vendors' AI agents — getting availability, pricing, and fit in seconds. You see curated results, not a directory.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Confirm and you're done</h3>
+        <p>One tap to confirm. BG8 sends the booking, the confirmation, and a reminder. You don't touch a phone until your service arrives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="aurora-divider">
+
+<!-- CATEGORIES -->
+<section class="categories-section" style="padding-top: 64px;">
+  <div class="cats-inner">
+    <div class="section-label">What you can book</div>
+    <div class="section-title" style="margin-bottom: 32px;">Whatever you need, locally.</div>
+    <div class="cat-grid">
+      <div class="cat-chip"><span class="cat-icon">🧹</span> House Cleaning</div>
+      <div class="cat-chip"><span class="cat-icon">🔧</span> Plumbing</div>
+      <div class="cat-chip"><span class="cat-icon">⚡</span> Electrical</div>
+      <div class="cat-chip"><span class="cat-icon">🐶</span> Dog Walking</div>
+      <div class="cat-chip"><span class="cat-icon">🌿</span> Landscaping</div>
+      <div class="cat-chip"><span class="cat-icon">🎂</span> Catering</div>
+      <div class="cat-chip"><span class="cat-icon">🚗</span> Auto Service</div>
+      <div class="cat-chip"><span class="cat-icon">📸</span> Photography</div>
+      <div class="cat-chip"><span class="cat-icon">💻</span> Tech Support</div>
+      <div class="cat-chip"><span class="cat-icon">🍽️</span> Restaurants</div>
+      <div class="cat-chip"><span class="cat-icon">💆</span> Massage &amp; Spa</div>
+      <div class="cat-chip"><span class="cat-icon">👶</span> Childcare</div>
+      <div class="cat-chip"><span class="cat-icon">🏋️</span> Personal Training</div>
+      <div class="cat-chip"><span class="cat-icon">+</span> Much more...</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section class="value-section">
+  <div class="value-inner">
+    <div class="value-label">Why BG8</div>
+    <div class="value-title">Finally, a local services app<br>that gets it right.</div>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon">💬</div>
+        <h3>Conversational booking</h3>
+        <p>Chat in plain English. BG8 understands what you mean, not just what you type.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>Verified providers only</h3>
+        <p>Every business on BG8 is screened, rated by real customers, and accountable to their AI agent.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <h3>Real-time availability</h3>
+        <p>No "we'll get back to you." BG8 contacts the vendor's AI instantly and gets a real answer in seconds.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔒</div>
+        <h3>Your data stays yours</h3>
+        <p>BG8 only shares what's needed to complete your booking — never sold, never surfaced to third parties.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <h3>AI learns your preferences</h3>
+        <p>Over time, BG8 knows you: your budget range, your favourite vendors, your schedule. Every booking gets better.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌐</div>
+        <h3>Works with your existing AI</h3>
+        <p>Coming soon: connect BG8 to Siri, Google Assistant, or Alexa. Just say "Hey Siri, book a cleaner."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="aurora-divider">
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="testi-inner">
+    <div class="section-label">What people say</div>
+    <div class="section-title">Real bookings. Real results.</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"I booked a plumber in literally 2 minutes. No searching, no comparing, no calling. BG8 found someone, showed me the price, I tapped confirm. Done."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sophie K.</div>
+            <div class="testi-meta">Mount Pleasant, Vancouver</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"I don't have time to Google anything anymore. I use BG8 for everything — cleaner, dog walker, even found a caterer for my daughter's birthday. It just works."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Marcus T.</div>
+            <div class="testi-meta">North Vancouver</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"New to Vancouver so I had no connections. BG8 felt like asking a friend who knows everyone in the city. Every booking has been solid."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <div class="testi-name">Priya R.</div>
+            <div class="testi-meta">Yaletown, Vancouver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-glow-2"></div>
+  <div class="cta-inner">
+    <h2>Your AI is ready.<br>What do you need?</h2>
+    <p>Download BG8 and make your first booking in under 2 minutes. Free forever for consumers.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn-cta-primary">Download the app</a>
+      <a href="#" class="btn-cta-ghost">Try on web →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">BG8</div>
+    <div class="footer-tagline">By VLS Solutions · Vancouver, BC</div>
+  </div>
+  <div class="footer-right">© 2026 VLS AI Corporation. All rights reserved.</div>
+</footer>
+
+<div class="concept-badge">Concept A · B2C Consumer</div>
+
+</body>
+</html>

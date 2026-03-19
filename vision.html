@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BG8 — Concept C: The Vision / Homepage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --aurora-start: #00C2E0;
+    --aurora-end:   #4ADE5C;
+    --teal:   #01EAB2;
+    --teal-d: #00B88B;
+    --dark:   #080C0F;
+    --mid:    #0F1619;
+    --card:   #131A1E;
+    --border: #1C2428;
+    --text:   #EEF4F2;
+    --muted:  #4A6860;
+    --body:   #7AA69C;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── Aurora utility ──────────────────────────────────────────────────────── */
+  .aurora-fill { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); }
+  .aurora-text {
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 56px;
+    background: rgba(8,12,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .nav-logo {
+    font-size: 17px; font-weight: 800; letter-spacing: -0.01em;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .nav-center { display: flex; gap: 32px; }
+  .nav-link { font-size: 13px; color: var(--body); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .nav-link:hover { color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-cta-ghost {
+    font-size: 13px; font-weight: 500; color: var(--body);
+    border: 1px solid var(--border); padding: 8px 18px; border-radius: 6px;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .nav-cta-ghost:hover { border-color: rgba(0,194,224,0.3); color: var(--text); }
+  .nav-cta {
+    font-size: 13px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: var(--dark); padding: 8px 20px; border-radius: 6px;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 0 20px rgba(0,194,224,0.2);
+  }
+  .nav-cta:hover { box-shadow: 0 0 32px rgba(0,194,224,0.35); transform: translateY(-1px); }
+
+  /* ── HERO ────────────────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-backdrop {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,194,224,0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 15% 80%, rgba(74,222,92,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 80%, rgba(0,194,224,0.04) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(0,194,224,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,194,224,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.8) 0%, transparent 70%);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--aurora-start); background: rgba(0,194,224,0.07);
+    border: 1px solid rgba(0,194,224,0.18);
+    padding: 6px 16px; border-radius: 100px;
+    margin-bottom: 36px; position: relative;
+  }
+  .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; animation: pulse 2s infinite;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 900; letter-spacing: -0.04em; line-height: 0.95;
+    margin-bottom: 28px; position: relative;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.8vw, 20px); font-weight: 300;
+    color: var(--body); line-height: 1.6;
+    max-width: 620px; margin: 0 auto 44px; position: relative;
+  }
+  .hero-actions {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    flex-wrap: wrap; position: relative; margin-bottom: 60px;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 15px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: var(--dark); padding: 14px 30px; border-radius: 8px;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 0 36px rgba(0,194,224,0.3), 0 0 0 1px rgba(0,194,224,0.3);
+  }
+  .btn-hero-primary:hover { box-shadow: 0 0 52px rgba(0,194,224,0.45); transform: translateY(-2px); }
+
+  .btn-hero-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 15px; font-weight: 500; color: var(--body);
+    border: 1px solid var(--border); padding: 13px 26px;
+    border-radius: 8px; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-hero-ghost:hover { border-color: rgba(0,194,224,0.3); color: var(--text); }
+
+  /* ── NETWORK VISUAL ──────────────────────────────────────────────────────── */
+  .network-visual {
+    position: relative; width: 100%; max-width: 720px; margin: 0 auto; height: 180px;
+  }
+  .network-inner {
+    display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+  }
+  .net-node { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 2; }
+  .net-avatar {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; border: 1px solid var(--border); background: var(--card);
+  }
+  .net-label { font-size: 11px; color: var(--body); font-weight: 500; }
+  .net-connector { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; height: 52px; }
+  .net-line {
+    position: absolute; top: 50%; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,194,224,0.4), var(--aurora-start), rgba(0,194,224,0.4), transparent);
+  }
+  .net-ai-core {
+    width: 78px; height: 78px; border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,194,224,0.1); border: 1px solid rgba(0,194,224,0.3);
+    box-shadow: 0 0 40px rgba(0,194,224,0.25);
+    font-size: 14px; font-weight: 800;
+    position: relative; z-index: 2; flex-shrink: 0;
+    flex-direction: column; gap: 2px;
+  }
+  .net-ai-core .core-text { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 16px; }
+  .net-ai-core .core-label { font-size: 8px; letter-spacing: 0.1em; color: rgba(0,194,224,0.6); }
+  .data-packet {
+    position: absolute; width: 8px; height: 8px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    border-radius: 50%; box-shadow: 0 0 10px rgba(0,194,224,0.8);
+    top: 50%; transform: translateY(-50%);
+    animation: movePacket 3s linear infinite;
+  }
+  .data-packet-2 { animation-delay: 1.5s; }
+  @keyframes movePacket {
+    0% { left: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  /* ── CONCEPT STRIP ───────────────────────────────────────────────────────── */
+  .concept-strip {
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 20px 56px;
+    display: flex; align-items: center; justify-content: center; gap: 48px;
+    background: rgba(255,255,255,0.01); flex-wrap: wrap;
+  }
+  .strip-item { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .strip-teal { font-weight: 600;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .strip-sep { color: var(--border); }
+
+  /* ── TWO-SIDED SECTION ───────────────────────────────────────────────────── */
+  .two-sided { padding: 96px 56px; background: var(--mid); }
+  .two-sided-inner { max-width: 1160px; margin: 0 auto; }
+  .two-sided-header { text-align: center; margin-bottom: 64px; }
+  .section-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .section-title { font-size: clamp(28px, 3.5vw, 46px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
+  .section-sub { font-size: 17px; color: var(--body); line-height: 1.6; max-width: 560px; margin: 14px auto 0; }
+
+  .sides-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .side-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 18px; padding: 36px; position: relative; overflow: hidden;
+  }
+  .side-card-consumer { border-top: 2px solid rgba(56,189,248,0.5); }
+  .side-card-vendor { border-top: 2px solid transparent; position: relative; }
+  .side-card-vendor::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    border-radius: 18px 18px 0 0;
+  }
+  .side-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+  .label-consumer { color: #60A5FA; }
+  .label-vendor { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .side-card h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.2; }
+  .side-card p { font-size: 15px; color: var(--body); line-height: 1.6; margin-bottom: 28px; }
+  .side-feats { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .side-feat { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--body); }
+  .sf-check-c { color: #60A5FA; font-weight: 700; flex-shrink: 0; }
+  .sf-check-v { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; flex-shrink: 0; }
+  .side-cta-c {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 14px; font-weight: 600; color: #60A5FA;
+    background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2);
+    padding: 10px 20px; border-radius: 7px; text-decoration: none; transition: all 0.2s;
+  }
+  .side-cta-c:hover { background: rgba(59,130,246,0.12); }
+  .side-cta-v {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 14px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: var(--dark); padding: 10px 20px; border-radius: 7px;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 0 20px rgba(0,194,224,0.25);
+  }
+  .side-cta-v:hover { box-shadow: 0 0 32px rgba(0,194,224,0.4); transform: translateY(-1px); }
+
+  /* ── STATS ───────────────────────────────────────────────────────────────── */
+  .stats-section { padding: 96px 56px 0; }
+  .stats-inner { max-width: 1160px; margin: 0 auto; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-radius: 16px; overflow: hidden; }
+  .stat-item { background: var(--card); padding: 36px 32px; }
+  .stat-number {
+    font-size: 44px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 6px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .stat-label { font-size: 14px; color: var(--body); line-height: 1.5; }
+
+  /* ── VISION SECTION ──────────────────────────────────────────────────────── */
+  .vision-section { padding: 120px 56px; text-align: center; }
+  .vision-inner { max-width: 900px; margin: 0 auto; }
+  .vision-section .section-title { font-size: clamp(32px, 4.5vw, 56px); margin-bottom: 22px; }
+  .vision-section .section-sub { font-size: 18px; max-width: 680px; margin: 0 auto 60px; }
+
+  .vision-flow { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+  .vf-node { text-align: center; padding: 0 20px; }
+  .vf-icon { width: 60px; height: 60px; border-radius: 16px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; border: 1px solid var(--border); background: var(--card); }
+  .vf-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .vf-desc { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .vf-arrow { font-size: 20px; color: var(--muted); padding: 0 4px; align-self: flex-start; padding-top: 18px; }
+  .vf-center { padding: 0 24px; }
+  .vf-center-icon {
+    width: 84px; height: 84px; border-radius: 22px; margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800;
+    background: linear-gradient(135deg, var(--aurora-start), var(--aurora-end));
+    box-shadow: 0 0 48px rgba(0,194,224,0.35), 0 0 0 2px rgba(0,194,224,0.3);
+    flex-direction: column; gap: 1px;
+    color: var(--dark);
+  }
+  .vf-center-icon .core-sub { font-size: 8px; color: rgba(20,28,34,0.7); letter-spacing: 0.08em; }
+  .vf-center-name { font-size: 15px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .vf-center-desc { font-size: 12px; color: var(--body); margin-top: 3px; }
+
+  /* ── PLATFORM (ANDROMEDA) SECTION ────────────────────────────────────────── */
+  .platform-section { padding: 96px 56px; background: var(--mid); }
+  .platform-inner { max-width: 1160px; margin: 0 auto; }
+  .platform-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center; }
+  .platform-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+    background: rgba(0,194,224,0.08); border: 1px solid rgba(0,194,224,0.2);
+  }
+  .platform-eyebrow span {
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .platform-title { font-size: clamp(26px, 3vw, 40px); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 18px; line-height: 1.2; }
+  .platform-sub { font-size: 16px; color: var(--body); line-height: 1.65; margin-bottom: 32px; }
+  .platform-items { display: flex; flex-direction: column; gap: 16px; }
+  .platform-item { display: flex; align-items: flex-start; gap: 14px; }
+  .pi-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(0,194,224,0.1); border: 1px solid rgba(0,194,224,0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+  .pi-text h4 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .pi-text p { font-size: 13px; color: var(--body); line-height: 1.5; }
+  .platform-proof {
+    margin-top: 28px; padding: 16px 20px;
+    background: rgba(0,194,224,0.06); border: 1px solid rgba(0,194,224,0.2);
+    border-radius: 10px; font-size: 13px; color: var(--body);
+  }
+  .platform-proof strong {
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* Integrations visual */
+  .integrations-visual {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px;
+    /* Aurora top accent */
+    border-top: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .integrations-visual::before {
+    content: ''; position: absolute; top: -2px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    border-radius: 16px 16px 0 0;
+  }
+  .int-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+  .int-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .int-item {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px; padding: 14px 12px;
+    text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .int-icon { font-size: 22px; }
+  .int-name { font-size: 12px; font-weight: 600; color: var(--text); }
+  .int-tag { font-size: 10px; color: var(--muted); }
+  .int-item.live { border-color: rgba(0,194,224,0.25); background: rgba(0,194,224,0.05); }
+  .int-item.live .int-tag { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+  .int-arrow { grid-column: 1 / -1; text-align: center; font-size: 13px; font-weight: 600; padding: 4px 0;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .int-center { grid-column: 1 / -1; display: flex; justify-content: center; }
+  .int-bg8 {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(0,194,224,0.1); border: 1px solid rgba(0,194,224,0.3);
+    border-radius: 10px; padding: 12px 20px;
+    font-size: 14px; font-weight: 800;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* ── CTA ─────────────────────────────────────────────────────────────────── */
+  .cta-section {
+    padding: 120px 56px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute; width: 700px; height: 450px;
+    background: radial-gradient(ellipse, rgba(0,194,224,0.10) 0%, transparent 70%);
+    top: 50%; left: 40%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .cta-glow-2 {
+    position: absolute; width: 500px; height: 400px;
+    background: radial-gradient(ellipse, rgba(74,222,92,0.07) 0%, transparent 70%);
+    bottom: -50px; right: 10%;
+    pointer-events: none;
+  }
+  .cta-inner { max-width: 660px; margin: 0 auto; position: relative; }
+  .cta-section h2 { font-size: clamp(32px, 4.5vw, 54px); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 20px; line-height: 1.1; }
+  .cta-section p { font-size: 18px; color: var(--body); line-height: 1.6; margin-bottom: 40px; }
+  .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cta-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px; text-align: left; transition: border-color 0.2s;
+  }
+  .cta-card:hover { border-color: rgba(0,194,224,0.25); }
+  .cta-card-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .cta-card h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .cta-card p { font-size: 13px; color: var(--body); margin-bottom: 18px; line-height: 1.5; }
+  .cta-card-link {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
+    text-decoration: none; transition: gap 0.2s;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .cta-card-link:hover { gap: 12px; }
+
+  /* Standalone CTA buttons */
+  .btn-cta-aurora {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 16px; font-weight: 700;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    color: var(--dark); padding: 15px 34px; border-radius: 8px;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 0 36px rgba(0,194,224,0.3);
+  }
+  .btn-cta-aurora:hover { box-shadow: 0 0 52px rgba(0,194,224,0.5); transform: translateY(-2px); }
+  .btn-cta-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 15px; font-weight: 500; color: var(--body);
+    border: 1px solid var(--border); padding: 14px 26px;
+    border-radius: 8px; text-decoration: none; transition: all 0.2s;
+  }
+  .btn-cta-ghost:hover { border-color: rgba(0,194,224,0.3); color: var(--text); }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────────────── */
+  footer {
+    background: rgba(0,0,0,0.5); border-top: 1px solid var(--border);
+    padding: 40px 56px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  }
+  .footer-brand .footer-logo {
+    font-size: 17px; font-weight: 800; margin-bottom: 6px;
+    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 280px; }
+  .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+  .footer-col h4 { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom {
+    padding: 16px 56px; border-top: 1px solid rgba(255,255,255,0.04);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy { font-size: 12px; color: var(--muted); }
+
+  /* ── CONCEPT BADGE ───────────────────────────────────────────────────────── */
+  .concept-badge {
+    position: fixed; bottom: 20px; right: 20px; z-index: 200;
+    background: rgba(0,194,224,0.08); color: var(--aurora-start);
+    border: 1px solid rgba(0,194,224,0.2); border-radius: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 8px 14px;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-center { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .sides-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .platform-grid { grid-template-columns: 1fr; }
+    .cta-grid { grid-template-columns: 1fr; }
+    .footer-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">BG8</div>
+  <div class="nav-center">
+    <a href="#" class="nav-link">For Consumers</a>
+    <a href="#" class="nav-link">For Businesses</a>
+    <a href="#" class="nav-link">How It Works</a>
+    <a href="#" class="nav-link">Platform</a>
+  </div>
+  <div class="nav-right">
+    <a href="#" class="nav-cta-ghost">Sign in</a>
+    <a href="#" class="nav-cta">Get started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-backdrop"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-eyebrow">
+    <span class="eyebrow-dot"></span>
+    Now live in Vancouver, BC
+  </div>
+
+  <h1>
+    The world's first<br>
+    <span class="aurora-text">AI-to-AI</span><br>
+    services network.
+  </h1>
+
+  <p class="hero-sub">
+    You describe what you need. Your AI talks to the vendor's AI. A booking happens. No searching. No calls. No forms. Just done.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#" class="btn-hero-primary">
+      Try BG8 free →
+    </a>
+    <a href="#" class="btn-hero-ghost">
+      For businesses →
+    </a>
+  </div>
+
+  <!-- NETWORK VISUAL -->
+  <div class="network-visual">
+    <div class="network-inner">
+      <div class="net-node">
+        <div class="net-avatar">👤</div>
+        <div class="net-label">User AI</div>
+      </div>
+      <div class="net-connector">
+        <div class="net-line"></div>
+        <div class="data-packet"></div>
+      </div>
+      <div class="net-node">
+        <div class="net-ai-core">
+          <div class="core-text">BG8</div>
+          <div class="core-label">Network</div>
+        </div>
+        <div class="net-label">AI Commerce Layer</div>
+      </div>
+      <div class="net-connector">
+        <div class="net-line"></div>
+        <div class="data-packet data-packet-2"></div>
+      </div>
+      <div class="net-node">
+        <div class="net-avatar">🏪</div>
+        <div class="net-label">Vendor AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="concept-strip">
+  <div class="strip-item"><span class="strip-teal">2,400+</span> bookings completed</div>
+  <div class="strip-sep">·</div>
+  <div class="strip-item"><span class="strip-teal">190+</span> local service businesses</div>
+  <div class="strip-sep">·</div>
+  <div class="strip-item">As seen at <span class="strip-teal">Vancouver AI Summit</span> &amp; <span class="strip-teal">ALL IN 2025</span></div>
+  <div class="strip-sep">·</div>
+  <div class="strip-item">Web Summit <span class="strip-teal">Lisbon 2026</span></div>
+</div>
+
+<!-- TWO SIDES -->
+<section class="two-sided">
+  <div class="two-sided-inner">
+    <div class="two-sided-header">
+      <div class="section-label">Built for both sides</div>
+      <div class="section-title">One platform.<br>Two people win.</div>
+      <div class="section-sub">BG8 connects consumers who need things done with businesses that do them — through AI agents on both ends.</div>
+    </div>
+    <div class="sides-grid">
+      <div class="side-card side-card-consumer">
+        <div class="side-label label-consumer">For Consumers</div>
+        <h2>Book anything<br>with one message.</h2>
+        <p>No searching. No comparing. No phone calls. Tell BG8 what you need — in plain English — and your AI finds the right person and books it.</p>
+        <div class="side-feats">
+          <div class="side-feat"><span class="sf-check-c">✓</span>Chat-based booking — no apps, no forms</div>
+          <div class="side-feat"><span class="sf-check-c">✓</span>Real quotes in seconds, not days</div>
+          <div class="side-feat"><span class="sf-check-c">✓</span>Verified businesses, real reviews</div>
+          <div class="side-feat"><span class="sf-check-c">✓</span>Completely free for consumers, forever</div>
+        </div>
+        <a href="#" class="side-cta-c">Find a service →</a>
+      </div>
+      <div class="side-card side-card-vendor">
+        <div class="side-label label-vendor">For Businesses</div>
+        <h2>Your AI agent<br>never sleeps.</h2>
+        <p>BG8 gives every local business a free 24/7 AI agent that handles inquiries, qualifies leads, and books appointments — automatically.</p>
+        <div class="side-feats">
+          <div class="side-feat"><span class="sf-check-v">✓</span>AI handles every customer conversation</div>
+          <div class="side-feat"><span class="sf-check-v">✓</span>Pay per booking, not per click</div>
+          <div class="side-feat"><span class="sf-check-v">✓</span>Setup in 30 minutes. Free to start.</div>
+          <div class="side-feat"><span class="sf-check-v">✓</span>3× average booking increase</div>
+        </div>
+        <a href="#" class="side-cta-v">Get your AI agent →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">2,400+</div>
+        <div class="stat-label">Bookings completed through the platform</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">190+</div>
+        <div class="stat-label">Verified service providers on the network</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">68%</div>
+        <div class="stat-label">AI inquiry-to-confirmed-booking conversion</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">$100K</div>
+        <div class="stat-label">Revenue in first 10 months of operation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="vision-section">
+  <div class="vision-inner">
+    <div class="section-label">The vision</div>
+    <div class="section-title">Every AI assistant, connected<br>to every local service.</div>
+    <div class="section-sub">BG8 is built to be the commerce layer between the AIs people already use — Siri, Alexa, Google Assistant — and the real world services that get things done.</div>
+
+    <div class="vision-flow">
+      <div class="vf-node">
+        <div class="vf-icon">🍎</div>
+        <div class="vf-name">Siri</div>
+        <div class="vf-desc">Coming soon</div>
+      </div>
+      <div class="vf-arrow">→</div>
+      <div class="vf-node">
+        <div class="vf-icon">🤖</div>
+        <div class="vf-name">Alexa</div>
+        <div class="vf-desc">Coming soon</div>
+      </div>
+      <div class="vf-arrow">→</div>
+      <div class="vf-center">
+        <div>
+          <div class="vf-center-icon">
+            BG8
+            <span class="core-sub">Network</span>
+          </div>
+          <div class="vf-center-name">BG8 · Andromeda Engine™</div>
+          <div class="vf-center-desc">AI commerce layer · by VLS Solutions</div>
+        </div>
+      </div>
+      <div class="vf-arrow">→</div>
+      <div class="vf-node">
+        <div class="vf-icon">🔧</div>
+        <div class="vf-name">Plumber</div>
+        <div class="vf-desc">Vendor AI agent</div>
+      </div>
+      <div class="vf-arrow">→</div>
+      <div class="vf-node">
+        <div class="vf-icon">✅</div>
+        <div class="vf-name">Booked</div>
+        <div class="vf-desc">Instantly confirmed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM — ANDROMEDA ENGINE -->
+<section class="platform-section">
+  <div class="platform-inner">
+    <div class="platform-grid">
+      <div>
+        <div class="platform-eyebrow">
+          <span>Andromeda Engine™ · by VLS Solutions</span>
+        </div>
+        <div class="platform-title">The technology behind BG8.<br>Available to the world.</div>
+        <div class="platform-sub">
+          BG8 runs on Andromeda Engine — VLS Solutions' proprietary AI commerce platform. Any enterprise, telecom, or startup can license Andromeda Engine and launch their own AI-powered service marketplace in weeks.
+        </div>
+        <div class="platform-items">
+          <div class="platform-item">
+            <div class="pi-icon">🚀</div>
+            <div class="pi-text">
+              <h4>Launch your own marketplace</h4>
+              <p>Any vertical. Any geography. Any brand. White-label in weeks, not years. Starting at $100K for tech buyers.</p>
+            </div>
+          </div>
+          <div class="platform-item">
+            <div class="pi-icon">🤝</div>
+            <div class="pi-text">
+              <h4>Enterprise &amp; telecom ready</h4>
+              <p>Letter of Intent from a 1M+ user telecom. Designed for carriers, governments, and enterprise operators.</p>
+            </div>
+          </div>
+          <div class="platform-item">
+            <div class="pi-icon">⚙️</div>
+            <div class="pi-text">
+              <h4>The AI-to-AI protocol</h4>
+              <p>Infrastructure for the future where AI agents transact on behalf of humans — at scale, with accountability.</p>
+            </div>
+          </div>
+        </div>
+        <div class="platform-proof">
+          <strong>BG8 is the proof Andromeda works.</strong> Every booking on BG8 is Andromeda Engine in production.
+        </div>
+      </div>
+
+      <div class="integrations-visual">
+        <div class="int-label">Andromeda Engine™ connections</div>
+        <div class="int-grid">
+          <div class="int-item">
+            <div class="int-icon">🍎</div>
+            <div class="int-name">Siri</div>
+            <div class="int-tag">Planned</div>
+          </div>
+          <div class="int-item">
+            <div class="int-icon">🤖</div>
+            <div class="int-name">Alexa</div>
+            <div class="int-tag">Planned</div>
+          </div>
+          <div class="int-item">
+            <div class="int-icon">🔍</div>
+            <div class="int-name">Google</div>
+            <div class="int-tag">Planned</div>
+          </div>
+          <div class="int-arrow">↓ All connect through ↓</div>
+          <div class="int-center">
+            <div class="int-bg8">⚡ Andromeda Engine™ · VLS Solutions</div>
+          </div>
+          <div class="int-arrow">↓ Reaching ↓</div>
+          <div class="int-item live">
+            <div class="int-icon">🔧</div>
+            <div class="int-name">Trades</div>
+            <div class="int-tag">Live now</div>
+          </div>
+          <div class="int-item live">
+            <div class="int-icon">🏠</div>
+            <div class="int-name">Home services</div>
+            <div class="int-tag">Live now</div>
+          </div>
+          <div class="int-item live">
+            <div class="int-icon">🐾</div>
+            <div class="int-name">Pet care</div>
+            <div class="int-tag">Live now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-glow-2"></div>
+  <div class="cta-inner">
+    <div class="section-label" style="margin-bottom: 16px;">What are you here for?</div>
+    <h2>Get started with <span class="aurora-text">BG8.</span></h2>
+    <p>Whether you need something done or you run a business that does things — BG8 is built for you.</p>
+    <div class="cta-grid">
+      <div class="cta-card">
+        <div class="cta-card-label">For Consumers</div>
+        <h3>Book a service today</h3>
+        <p>Try BG8 for free. Find a cleaner, a plumber, a dog walker — by chatting, not searching.</p>
+        <a href="#" class="cta-card-link">Download the app →</a>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-label">For Businesses</div>
+        <h3>Get your AI agent</h3>
+        <p>Free to start. Your AI handles inquiries 24/7 and books customers automatically.</p>
+        <a href="#" class="cta-card-link">List your business →</a>
+      </div>
+    </div>
+    <div style="margin-top: 40px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+      <a href="#" class="btn-cta-aurora">Try BG8 free →</a>
+      <a href="#" class="btn-cta-ghost">Explore Andromeda Engine →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">BG8</div>
+    <p>The AI-to-AI services network. By VLS Solutions. Vancouver, BC.</p>
+  </div>
+  <div class="footer-links">
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#">For Consumers</a>
+      <a href="#">For Businesses</a>
+      <a href="#">How It Works</a>
+      <a href="#">Pricing</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About VLS</a>
+      <a href="#">Andromeda Engine™</a>
+      <a href="#">Partners</a>
+      <a href="#">Press</a>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div class="footer-copy">© 2026 VLS AI Corporation. All rights reserved.</div>
+  <div class="footer-copy">bg8.ai · vls.solutions</div>
+</div>
+
+<div class="concept-badge">Concept C · Vision / Homepage</div>
+
+</body>
+</html>
