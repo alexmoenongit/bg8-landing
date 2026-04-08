@@ -1,0 +1,146 @@
+Create 3 Web Summit trade show booth SVG concept files in the current directory. Each SVG represents a 2-wall corner booth spread (two 3x3m walls side by side) as a single 6000x3000px canvas.
+
+Wall 1 = left half (x: 0-3000). Wall 2 = right half (x: 3000-6000).
+A subtle 1px divider line at x=3000. Both walls treated as one continuous design.
+
+---
+BRAND TOKENS (non-negotiable):
+- Background: #141C22 (deep dark navy)
+- Accent gradient: #00C2E0 (teal) to #4ADE5C (electric green), left-to-right
+- Hero text: #E8F5F2 (off-white)
+- Secondary text: #7BB5A8 (muted teal-gray)
+- Accent small: #00C2E0
+- Font: Outfit, Inter, sans-serif (Outfit is primary)
+- Font weights: 800 headline, 600 eyebrow/label, 400 body
+- Letter spacing: headlines -6px (tight), eyebrow/labels +4px (airy)
+- Aurora: radial glow #00C2E0 top-right of canvas, #4ADE5C bottom-left, both ~18-20% opacity
+- Bottom accent bar: full-width 55px strip at y=2945, gradient left-to-right, 55% opacity
+- Gradient text technique: define mask with white text, render as <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#mX)"/>. This works in Figma and Illustrator.
+
+---
+PRODUCT CONTEXT:
+Company: VLS Solutions
+Product: VLS Engine — AI execution infrastructure that powers AI-to-AI marketplaces.
+BG8 is one example marketplace built on the VLS Engine.
+Target audience: B2B investors, enterprise buyers, potential licensees who want to BUILD their own marketplace.
+Core pitch: "We sell the engine, not just the app. Deploy your own AI-powered service marketplace in weeks."
+
+---
+ALL 3 CONCEPTS share these elements:
+- VLS SOLUTIONS wordmark: x=120 y=190, font-size=64, weight=600, fill="#00C2E0", letter-spacing=4
+- Thin separator line: x1=120 y1=215 x2=600 y2=215, stroke="#00C2E0" opacity=0.3
+- Eyebrow label above headline (gradient mask caps, tracked): "AI MARKETPLACE INFRASTRUCTURE"
+- Bottom accent bar: y=2945, height=55, gradient, opacity=0.55
+- Wall divider: x=3000, full height, stroke="#00C2E0" opacity=0.12
+- QR code section: bottom-right of wall 2, approx x:4650-5750 y:2050-2880
+  - Square border with gradient stroke, rx=16
+  - 3 QR corner-finder squares inside (top-left, top-right, bottom-left)
+  - Grid of small filled squares for QR data pattern in #7BB5A8 opacity=0.5
+  - Gradient label above: "SCAN TO TALK TO OUR AI" (mask technique, font-size=52, weight=600)
+  - Below QR: "vls.ai — Try the demo" in #7BB5A8 font-size=42
+  - Tiny note: "[ PLACEHOLDER — SWAP URL BEFORE PRINT ]" in #7BB5A8 opacity=0.4
+
+Service categories for node labels:
+Consumer side: Towing, Home Repair, Plumbing, Food Delivery, Legal Services, Healthcare
+Enterprise side: Real Estate, Logistics, E-Commerce, Finance, Procurement, Government
+
+---
+CONCEPT 1: concept-1-hub.svg — "THE HUB"
+Visual metaphor: VLS Engine as a glowing central hub at (3000, 1450) straddling the wall seam. Service category nodes connect to it via thin lines radiating outward.
+
+Hub visual at cx=3000 cy=1450:
+- Atmosphere: large radial glow r=1000, fill="#00C2E0" opacity=0.10
+- Orbital rings (dashed circles): r=820, 620, 450, 290 — thin strokes, varying dash patterns, opacity 0.15-0.5
+- Corona: r=140 fill="#00C2E0" opacity=0.15, feGaussianBlur stdDeviation=50
+- Hub core: r=80, radialGradient white center to #00C2E0 edge
+- Bright center dot: r=25 fill="#FFFFFF" opacity=0.95
+- Hub label "VLS ENGINE" gradient mask below hub at y=1610, font-size=52 weight=600 letter-spacing=4
+
+12 service nodes (6 per wall). Each node: glow circle r=40 opacity=0.15, fill circle r=22, inner dot r=8 fill white, label below font-size=36 fill="#7BB5A8"
+Left wall positions: (450,220), (160,850), (280,1550), (520,2380), (1350,2680), (2100,2150)
+Labels: Towing, Home Repair, Plumbing, Food Delivery, Legal Services, Healthcare
+Right wall positions: (3550,280), (4400,480), (5450,780), (5820,1480), (5380,2350), (3950,2680)
+Labels: Real Estate, Logistics, E-Commerce, Finance, Procurement, Government
+
+Connection lines from (3000,1450) to each node: stroke="#00C2E0" stroke-width=1.5 opacity=0.28
+Small data-pulse dots at midpoints of some lines: r=5-7 fill="#00C2E0" opacity=0.55
+
+Wall 1 text:
+- Eyebrow y=305, font-size=42, gradient mask: "AI MARKETPLACE INFRASTRUCTURE"
+- Headline "ONE ENGINE." y=575, font-size=260, weight=800, gradient mask
+- Headline "EVERY MARKET." y=855, font-size=260, weight=800, gradient mask
+- Tagline y=975: "The AI infrastructure that powers" font-size=70, fill="#E8F5F2"
+- Tagline y=1060: "any service marketplace." font-size=70, fill="#E8F5F2"
+- Detail y=1175: "Deploy in weeks. Scale to millions. Automate everything." font-size=50, fill="#7BB5A8"
+
+---
+CONCEPT 2: concept-2-scale.svg — "SCALE IGNITION"
+Visual metaphor: Single ignition point at (600, 1450) on left wall explodes into a massive dense network filling both walls. Sparse left, increasingly dense right.
+
+Ignition point at (600, 1450):
+- Bright core: r=50 fill="#FFFFFF" feGaussianBlur stdDeviation=20
+- Glow rings: r=120 stroke="#00C2E0" opacity=0.8, r=200 opacity=0.5, r=320 opacity=0.3
+- Atmosphere: r=600 fill="#00C2E0" opacity=0.08
+
+Network of ~30 nodes scattered both walls (more dense toward right):
+- Sparse left (x:900-2200): ~8 nodes, r=12-18
+- Mid (x:2200-4000): ~10 nodes, r=14-24
+- Dense right (x:4000-5900): ~12 nodes, r=16-30, some with brighter glow
+- Node colors: mix of #00C2E0 and #4ADE5C fills
+- Web of thin lines connecting nodes: stroke="#00C2E0" opacity=0.20 stroke-width=1
+- Service category labels near relevant nodes: font-size=36 fill="#7BB5A8"
+
+Wall 1 text:
+- Eyebrow y=305, font-size=42, gradient mask
+- "SCALE" y=575, font-size=300, weight=800, gradient mask
+- "WITHOUT" y=885, font-size=300, weight=800, fill="#E8F5F2"
+- "LIMITS." y=1180, font-size=300, weight=800, gradient mask
+- Sub y=1310: "One VLS Engine. Any market. Any scale." font-size=68, fill="#E8F5F2"
+- Detail y=1395: "Deploy your own AI marketplace in weeks, not years." font-size=50, fill="#7BB5A8"
+
+Wall 2 stat display (x starting at 3200):
+- "10-20x" y=620, font-size=220, weight=800, gradient mask
+- "faster to market" y=680, font-size=60, fill="#7BB5A8"
+- "70-90%" y=950, font-size=220, weight=800, gradient mask
+- "cost reduction vs. custom builds" y=1010, font-size=60, fill="#7BB5A8"
+
+---
+CONCEPT 3: concept-3-constellation.svg — "THE CONSTELLATION"
+Visual metaphor: A star map across both walls. Service categories as bright stars connected by constellation lines. VLS Engine as the brightest central star. "Connecting dots in the sky creates constellations."
+
+Background stars: ~60 tiny circles r=2-5, fill="#E8F5F2" opacity=0.10-0.35, scattered across both walls
+
+VLS Engine central star at (3000, 1400):
+- Large halo: r=200 fill="#00C2E0" opacity=0.10, feGaussianBlur stdDeviation=60
+- Glow ring: r=130 stroke="#00C2E0" stroke-width=2 opacity=0.5 fill=none
+- Bright star: r=60, radialGradient white to #00C2E0
+- Inner core: r=20 fill="#FFFFFF"
+- Label "VLS ENGINE" gradient mask below at y=1540, font-size=52 weight=600 tracking=4
+
+12 primary service stars at same positions as concept 1 nodes:
+- Star glow: r=55 fill="#00C2E0" or "#4ADE5C" opacity=0.12
+- Star point: r=20-28 fill="#E8F5F2" opacity=0.9
+- Service label: font-size=38 fill="#7BB5A8" letter-spacing=2
+
+Constellation lines: connect stars in a believable pattern (not all-to-all, more like 2-4 connections per star). stroke="#00C2E0" opacity=0.22 stroke-width=1.5. Also draw lines from each star to the central VLS Engine star.
+
+Wall 1 text:
+- Eyebrow y=305, font-size=42, gradient mask
+- "CONNECT" y=560, font-size=270, weight=800, gradient mask
+- "EVERY" y=840, font-size=270, weight=800, fill="#E8F5F2"
+- "MARKET." y=1110, font-size=270, weight=800, gradient mask
+- Sub y=1225: "VLS Engine maps any service, any vendor," font-size=68, fill="#E8F5F2"
+- Sub y=1310: "any industry into one intelligent network." font-size=68, fill="#E8F5F2"
+- Detail y=1420: "The infrastructure layer behind AI-powered commerce." font-size=50, fill="#7BB5A8"
+
+---
+TECHNICAL REQUIREMENTS:
+1. Named groups: background, aurora, visual-metaphor, wall-divider, branding, headline, tagline, qr-section, accent-bar
+2. All gradients: gradientUnits="userSpaceOnUse" with absolute coordinates
+3. Gradient text: mask technique ONLY (never fill="url(...)" on text elements)
+4. Filters in defs (feGaussianBlur for glows)
+5. font-family="Outfit, Inter, sans-serif"
+6. All 3 SVG files go in the current directory
+7. Create README.md explaining the 3 concepts, dimensions, font requirements, and how to open in Illustrator
+
+When completely finished, run: openclaw system event --text "Done: 3 booth SVGs built in booth-concepts/" --mode now

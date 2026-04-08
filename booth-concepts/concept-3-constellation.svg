@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VLS Solutions — Web Summit Booth Concept 3: THE CONSTELLATION -->
+<!-- Canvas: 6000x3000px = two 3x3m walls as one spread -->
+<!-- Wall 1 (left): x 0-3000 | Wall 2 (right): x 3000-6000 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6000 3000" width="6000" height="3000">
+<defs>
+
+  <linearGradient id="g-accent" x1="0" y1="0" x2="6000" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0"/>
+    <stop offset="100%" stop-color="#4ADE5C"/>
+  </linearGradient>
+
+  <radialGradient id="aurora-tr" cx="5500" cy="0" r="2000" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="aurora-bl" cx="500" cy="3000" r="1800" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#4ADE5C" stop-opacity="0.20"/>
+    <stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- Central star gradient -->
+  <radialGradient id="star-core" cx="3000" cy="1400" r="60" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.98"/>
+    <stop offset="50%" stop-color="#00C2E0" stop-opacity="0.90"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0.25"/>
+  </radialGradient>
+
+  <filter id="f-star-xl" x="-150%" y="-150%" width="400%" height="400%">
+    <feGaussianBlur stdDeviation="60" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="f-star-md" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="18" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="f-star-sm" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="8"/>
+  </filter>
+
+  <!-- Gradient text masks -->
+  <mask id="m-eyebrow">
+    <text x="120" y="308" font-family="Outfit, Inter, sans-serif" font-size="42" font-weight="600" fill="white" letter-spacing="5">AI MARKETPLACE INFRASTRUCTURE</text>
+  </mask>
+  <mask id="m-market">
+    <text x="120" y="840" font-family="Outfit, Inter, sans-serif" font-size="270" font-weight="800" fill="white" letter-spacing="-6">Power it.</text>
+  </mask>
+  <mask id="m-hub-lbl">
+    <text x="3000" y="1545" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="52" font-weight="600" fill="white" letter-spacing="5">VLS ENGINE</text>
+  </mask>
+  <mask id="m-qr-lbl">
+    <text x="5200" y="2430" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="50" font-weight="600" fill="white" letter-spacing="3">SCAN TO TALK TO OUR AI</text>
+  </mask>
+
+</defs>
+
+<!-- BACKGROUND -->
+<g id="background">
+  <rect width="6000" height="3000" fill="#141C22"/>
+</g>
+
+<!-- AURORA -->
+<g id="aurora">
+  <rect width="6000" height="3000" fill="url(#aurora-tr)"/>
+  <rect width="6000" height="3000" fill="url(#aurora-bl)"/>
+</g>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- VISUAL METAPHOR: CONSTELLATION -->
+<g id="visual-metaphor">
+
+  <!-- Background micro-stars (scattered across both walls) -->
+  <g fill="#E8F5F2">
+    <circle cx="180" cy="380" r="2" opacity="0.25"/>
+    <circle cx="340" cy="130" r="3" opacity="0.18"/>
+    <circle cx="680" cy="460" r="2" opacity="0.22"/>
+    <circle cx="820" cy="180" r="2.5" opacity="0.20"/>
+    <circle cx="1050" cy="360" r="2" opacity="0.18"/>
+    <circle cx="1280" cy="120" r="3" opacity="0.22"/>
+    <circle cx="1420" cy="480" r="2" opacity="0.20"/>
+    <circle cx="1680" cy="280" r="2.5" opacity="0.25"/>
+    <circle cx="1880" cy="420" r="2" opacity="0.18"/>
+    <circle cx="2080" cy="160" r="3" opacity="0.20"/>
+    <circle cx="2340" cy="380" r="2" opacity="0.22"/>
+    <circle cx="2560" cy="220" r="2.5" opacity="0.18"/>
+    <circle cx="2780" cy="400" r="2" opacity="0.20"/>
+    <circle cx="120" cy="620" r="2.5" opacity="0.18"/>
+    <circle cx="380" cy="780" r="2" opacity="0.22"/>
+    <circle cx="640" cy="680" r="3" opacity="0.18"/>
+    <circle cx="880" cy="580" r="2" opacity="0.20"/>
+    <circle cx="1140" cy="720" r="2.5" opacity="0.25"/>
+    <circle cx="1380" cy="650" r="2" opacity="0.18"/>
+    <circle cx="1650" cy="780" r="3" opacity="0.20"/>
+    <circle cx="1920" cy="620" r="2" opacity="0.22"/>
+    <circle cx="2180" cy="740" r="2.5" opacity="0.18"/>
+    <circle cx="2440" cy="600" r="2" opacity="0.20"/>
+    <circle cx="2720" cy="680" r="3" opacity="0.18"/>
+    <circle cx="200" cy="1080" r="2" opacity="0.20"/>
+    <circle cx="480" cy="1180" r="2.5" opacity="0.18"/>
+    <circle cx="780" cy="1060" r="2" opacity="0.22"/>
+    <circle cx="1020" cy="1200" r="3" opacity="0.18"/>
+    <circle cx="1260" cy="1080" r="2" opacity="0.20"/>
+    <circle cx="1560" cy="1160" r="2.5" opacity="0.25"/>
+    <circle cx="1840" cy="1080" r="2" opacity="0.18"/>
+    <circle cx="2120" cy="1180" r="3" opacity="0.20"/>
+    <circle cx="2400" cy="1080" r="2" opacity="0.22"/>
+    <circle cx="2660" cy="1160" r="2.5" opacity="0.18"/>
+    <circle cx="2900" cy="1080" r="2" opacity="0.20"/>
+    <circle cx="120" cy="1680" r="2.5" opacity="0.18"/>
+    <circle cx="360" cy="1820" r="2" opacity="0.22"/>
+    <circle cx="620" cy="1720" r="3" opacity="0.18"/>
+    <circle cx="880" cy="1840" r="2" opacity="0.20"/>
+    <circle cx="1160" cy="1760" r="2.5" opacity="0.25"/>
+    <circle cx="1420" cy="1840" r="2" opacity="0.18"/>
+    <circle cx="1700" cy="1720" r="3" opacity="0.20"/>
+    <circle cx="1960" cy="1840" r="2" opacity="0.22"/>
+    <circle cx="2220" cy="1760" r="2.5" opacity="0.18"/>
+    <circle cx="2500" cy="1840" r="2" opacity="0.20"/>
+    <circle cx="2760" cy="1720" r="3" opacity="0.18"/>
+    <circle cx="200" cy="2280" r="2" opacity="0.20"/>
+    <circle cx="460" cy="2380" r="2.5" opacity="0.18"/>
+    <circle cx="720" cy="2280" r="2" opacity="0.22"/>
+    <circle cx="980" cy="2380" r="3" opacity="0.18"/>
+    <circle cx="1240" cy="2280" r="2" opacity="0.20"/>
+    <circle cx="1500" cy="2380" r="2.5" opacity="0.25"/>
+    <circle cx="1760" cy="2300" r="2" opacity="0.18"/>
+    <circle cx="2020" cy="2380" r="3" opacity="0.20"/>
+    <circle cx="2280" cy="2280" r="2" opacity="0.22"/>
+    <circle cx="2540" cy="2380" r="2.5" opacity="0.18"/>
+    <circle cx="2800" cy="2280" r="2" opacity="0.20"/>
+    <!-- Right wall bg stars -->
+    <circle cx="3200" cy="180" r="2.5" opacity="0.20"/>
+    <circle cx="3500" cy="420" r="2" opacity="0.18"/>
+    <circle cx="3780" cy="180" r="3" opacity="0.22"/>
+    <circle cx="4060" cy="360" r="2" opacity="0.20"/>
+    <circle cx="4380" cy="160" r="2.5" opacity="0.18"/>
+    <circle cx="4660" cy="340" r="2" opacity="0.20"/>
+    <circle cx="4940" cy="120" r="3" opacity="0.22"/>
+    <circle cx="5220" cy="360" r="2" opacity="0.18"/>
+    <circle cx="5500" cy="180" r="2.5" opacity="0.20"/>
+    <circle cx="5780" cy="320" r="2" opacity="0.18"/>
+    <circle cx="3300" cy="700" r="2" opacity="0.22"/>
+    <circle cx="3620" cy="880" r="2.5" opacity="0.18"/>
+    <circle cx="3900" cy="720" r="2" opacity="0.20"/>
+    <circle cx="4180" cy="860" r="3" opacity="0.18"/>
+    <circle cx="4480" cy="720" r="2" opacity="0.22"/>
+    <circle cx="4760" cy="880" r="2.5" opacity="0.18"/>
+    <circle cx="5040" cy="720" r="2" opacity="0.20"/>
+    <circle cx="5320" cy="860" r="3" opacity="0.18"/>
+    <circle cx="5620" cy="720" r="2" opacity="0.22"/>
+    <circle cx="5880" cy="880" r="2.5" opacity="0.18"/>
+    <circle cx="3200" cy="1280" r="2" opacity="0.20"/>
+    <circle cx="3480" cy="1420" r="2.5" opacity="0.18"/>
+    <circle cx="3760" cy="1280" r="2" opacity="0.22"/>
+    <circle cx="4080" cy="1380" r="3" opacity="0.18"/>
+    <circle cx="4380" cy="1280" r="2" opacity="0.20"/>
+    <circle cx="4680" cy="1380" r="2.5" opacity="0.18"/>
+    <circle cx="4980" cy="1280" r="2" opacity="0.22"/>
+    <circle cx="5280" cy="1380" r="3" opacity="0.18"/>
+    <circle cx="5580" cy="1280" r="2" opacity="0.20"/>
+    <circle cx="5860" cy="1380" r="2.5" opacity="0.18"/>
+    <circle cx="3280" cy="1880" r="2" opacity="0.22"/>
+    <circle cx="3560" cy="2020" r="2.5" opacity="0.18"/>
+    <circle cx="3840" cy="1880" r="2" opacity="0.20"/>
+    <circle cx="4120" cy="2020" r="3" opacity="0.18"/>
+    <circle cx="4420" cy="1880" r="2" opacity="0.22"/>
+    <circle cx="4720" cy="2020" r="2.5" opacity="0.18"/>
+    <circle cx="5020" cy="1880" r="2" opacity="0.20"/>
+    <circle cx="5320" cy="2020" r="3" opacity="0.18"/>
+    <circle cx="5620" cy="1880" r="2" opacity="0.22"/>
+    <circle cx="5900" cy="2020" r="2.5" opacity="0.18"/>
+    <circle cx="3320" cy="2480" r="2" opacity="0.20"/>
+    <circle cx="3640" cy="2620" r="2.5" opacity="0.18"/>
+    <circle cx="3960" cy="2480" r="2" opacity="0.22"/>
+    <circle cx="4280" cy="2620" r="3" opacity="0.18"/>
+    <circle cx="4600" cy="2480" r="2" opacity="0.20"/>
+    <circle cx="4920" cy="2620" r="2.5" opacity="0.18"/>
+    <circle cx="5240" cy="2480" r="2" opacity="0.22"/>
+    <circle cx="5560" cy="2620" r="3" opacity="0.18"/>
+    <circle cx="5840" cy="2480" r="2" opacity="0.20"/>
+  </g>
+
+  <!-- CONSTELLATION LINES (between service stars + to VLS Engine) -->
+  <g stroke="#00C2E0" stroke-width="1.5" opacity="0.22">
+    <!-- VLS Engine (3000,1400) to all service stars -->
+    <line x1="3000" y1="1400" x2="450" y2="220"/>
+    <line x1="3000" y1="1400" x2="160" y2="850"/>
+    <line x1="3000" y1="1400" x2="280" y2="1550"/>
+    <line x1="3000" y1="1400" x2="520" y2="2380"/>
+    <line x1="3000" y1="1400" x2="1350" y2="2680"/>
+    <line x1="3000" y1="1400" x2="2100" y2="2150"/>
+    <line x1="3000" y1="1400" x2="3550" y2="280"/>
+    <line x1="3000" y1="1400" x2="4400" y2="480"/>
+    <line x1="3000" y1="1400" x2="5450" y2="780"/>
+    <line x1="3000" y1="1400" x2="5820" y2="1480"/>
+    <line x1="3000" y1="1400" x2="5380" y2="2350"/>
+    <line x1="3000" y1="1400" x2="3950" y2="2680"/>
+    <!-- Star-to-star constellation connections -->
+    <line x1="450" y1="220" x2="160" y2="850"/>
+    <line x1="160" y1="850" x2="280" y2="1550"/>
+    <line x1="280" y1="1550" x2="520" y2="2380"/>
+    <line x1="520" y1="2380" x2="1350" y2="2680"/>
+    <line x1="1350" y1="2680" x2="2100" y2="2150"/>
+    <line x1="450" y1="220" x2="3550" y2="280"/>
+    <line x1="3550" y1="280" x2="4400" y2="480"/>
+    <line x1="4400" y1="480" x2="5450" y2="780"/>
+    <line x1="5450" y1="780" x2="5820" y2="1480"/>
+    <line x1="5820" y1="1480" x2="5380" y2="2350"/>
+    <line x1="5380" y1="2350" x2="3950" y2="2680"/>
+    <line x1="2100" y1="2150" x2="3950" y2="2680"/>
+    <line x1="160" y1="850" x2="2100" y2="2150"/>
+  </g>
+
+  <!-- SERVICE STARS — Left wall -->
+  <!-- Towing (450, 220) -->
+  <circle cx="450" cy="220" r="55" fill="#00C2E0" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="450" cy="220" r="24" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="450" cy="220" r="10" fill="#FFFFFF"/>
+  <text x="450" y="278" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">TOWING</text>
+  <!-- Home Repair (160, 850) -->
+  <circle cx="160" cy="850" r="55" fill="#00C2E0" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="160" cy="850" r="24" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="160" cy="850" r="10" fill="#FFFFFF"/>
+  <text x="160" y="908" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">HOME REPAIR</text>
+  <!-- Plumbing (280, 1550) -->
+  <circle cx="280" cy="1550" r="55" fill="#00C2E0" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="280" cy="1550" r="24" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="280" cy="1550" r="10" fill="#FFFFFF"/>
+  <text x="280" y="1608" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">PLUMBING</text>
+  <!-- Food Delivery (520, 2380) -->
+  <circle cx="520" cy="2380" r="60" fill="#4ADE5C" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="520" cy="2380" r="26" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="520" cy="2380" r="10" fill="#FFFFFF"/>
+  <text x="520" y="2438" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">FOOD DELIVERY</text>
+  <!-- Legal Services (1350, 2680) -->
+  <circle cx="1350" cy="2680" r="60" fill="#4ADE5C" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="1350" cy="2680" r="26" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="1350" cy="2680" r="10" fill="#FFFFFF"/>
+  <text x="1350" y="2738" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">LEGAL SERVICES</text>
+  <!-- Healthcare (2100, 2150) -->
+  <circle cx="2100" cy="2150" r="60" fill="#4ADE5C" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="2100" cy="2150" r="26" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="2100" cy="2150" r="10" fill="#FFFFFF"/>
+  <text x="2100" y="2208" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">HEALTHCARE</text>
+
+  <!-- SERVICE STARS — Right wall -->
+  <!-- Real Estate (3550, 280) -->
+  <circle cx="3550" cy="280" r="55" fill="#00C2E0" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="3550" cy="280" r="24" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="3550" cy="280" r="10" fill="#FFFFFF"/>
+  <text x="3550" y="338" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">REAL ESTATE</text>
+  <!-- Logistics (4400, 480) -->
+  <circle cx="4400" cy="480" r="55" fill="#00C2E0" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="4400" cy="480" r="24" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="4400" cy="480" r="10" fill="#FFFFFF"/>
+  <text x="4400" y="538" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">LOGISTICS</text>
+  <!-- E-Commerce (5450, 780) -->
+  <circle cx="5450" cy="780" r="55" fill="#00C2E0" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="5450" cy="780" r="24" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="5450" cy="780" r="10" fill="#FFFFFF"/>
+  <text x="5450" y="838" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">E-COMMERCE</text>
+  <!-- Finance (5820, 1480) -->
+  <circle cx="5820" cy="1480" r="55" fill="#00C2E0" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="5820" cy="1480" r="24" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="5820" cy="1480" r="10" fill="#FFFFFF"/>
+  <text x="5820" y="1538" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">FINANCE</text>
+  <!-- Procurement (5380, 2350) -->
+  <circle cx="5380" cy="2350" r="60" fill="#4ADE5C" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="5380" cy="2350" r="26" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="5380" cy="2350" r="10" fill="#FFFFFF"/>
+  <text x="5380" y="2408" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">PROCUREMENT</text>
+  <!-- Government (3950, 2680) -->
+  <circle cx="3950" cy="2680" r="60" fill="#4ADE5C" opacity="0.10" filter="url(#f-star-sm)"/>
+  <circle cx="3950" cy="2680" r="26" fill="#E8F5F2" opacity="0.92" filter="url(#f-star-md)"/>
+  <circle cx="3950" cy="2680" r="10" fill="#FFFFFF"/>
+  <text x="3950" y="2738" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="38" font-weight="400" fill="#7BB5A8" letter-spacing="2">GOVERNMENT</text>
+
+  <!-- VLS ENGINE — Central star -->
+  <circle cx="3000" cy="1400" r="200" fill="#00C2E0" opacity="0.08" filter="url(#f-star-xl)"/>
+  <circle cx="3000" cy="1400" r="130" stroke="#00C2E0" stroke-width="2" fill="none" opacity="0.50"/>
+  <circle cx="3000" cy="1400" r="60" fill="url(#star-core)" filter="url(#f-star-md)"/>
+  <circle cx="3000" cy="1400" r="20" fill="#FFFFFF"/>
+
+</g>
+
+<!-- HUB LABEL -->
+<g id="hub-label">
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-hub-lbl)"/>
+</g>
+
+<!-- WALL DIVIDER -->
+<g id="wall-divider">
+  <line x1="3000" y1="0" x2="3000" y2="3000" stroke="#00C2E0" stroke-width="1" opacity="0.10"/>
+</g>
+
+<!-- BRANDING -->
+<g id="branding">
+  <text x="120" y="190" font-family="Outfit, Inter, sans-serif" font-size="64" font-weight="600" fill="#00C2E0" letter-spacing="4">VLS SOLUTIONS</text>
+  <line x1="120" y1="215" x2="640" y2="215" stroke="#00C2E0" stroke-width="2" opacity="0.30"/>
+</g>
+
+<!-- EYEBROW -->
+<g id="eyebrow">
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-eyebrow)"/>
+</g>
+
+<!-- HEADLINE -->
+<g id="headline">
+  <text x="120" y="560" font-family="Outfit, Inter, sans-serif" font-size="270" font-weight="800" fill="#E8F5F2" letter-spacing="-6">Connect it.</text>
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-market)"/>
+</g>
+
+<!-- TAGLINE + DETAIL -->
+<g id="tagline">
+  <text x="120" y="1228" font-family="Outfit, Inter, sans-serif" font-size="68" font-weight="400" fill="#E8F5F2">VLS Engine maps any service, any vendor,</text>
+  <text x="120" y="1312" font-family="Outfit, Inter, sans-serif" font-size="68" font-weight="400" fill="#E8F5F2">any industry into one intelligent network.</text>
+  <text x="120" y="1422" font-family="Outfit, Inter, sans-serif" font-size="50" font-weight="400" fill="#7BB5A8">The infrastructure layer behind AI-powered commerce.</text>
+</g>
+
+<!-- QR SECTION -->
+<g id="qr-section">
+  <rect x="4660" y="2060" width="680" height="680" rx="16" fill="#141C22" stroke="url(#g-accent)" stroke-width="3"/>
+  <rect x="4692" y="2092" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="4710" y="2110" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <rect x="5218" y="2092" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="5236" y="2110" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <rect x="4692" y="2618" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="4710" y="2636" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <g fill="#7BB5A8" opacity="0.45">
+    <rect x="4822" y="2092" width="22" height="22"/><rect x="4858" y="2108" width="22" height="22"/>
+    <rect x="4894" y="2092" width="22" height="22"/><rect x="4930" y="2108" width="22" height="22"/>
+    <rect x="4966" y="2092" width="22" height="22"/><rect x="5002" y="2106" width="22" height="22"/>
+    <rect x="5038" y="2092" width="22" height="22"/><rect x="5074" y="2110" width="22" height="22"/>
+    <rect x="5110" y="2092" width="22" height="22"/><rect x="5146" y="2104" width="22" height="22"/>
+    <rect x="5182" y="2092" width="22" height="22"/>
+    <rect x="4822" y="2138" width="22" height="22"/><rect x="4866" y="2152" width="22" height="22"/>
+    <rect x="4910" y="2138" width="22" height="22"/><rect x="4950" y="2148" width="22" height="22"/>
+    <rect x="4990" y="2138" width="22" height="22"/><rect x="5030" y="2152" width="22" height="22"/>
+    <rect x="5070" y="2138" width="22" height="22"/><rect x="5110" y="2148" width="22" height="22"/>
+    <rect x="5150" y="2138" width="22" height="22"/><rect x="5190" y="2150" width="22" height="22"/>
+    <rect x="4822" y="2228" width="22" height="22"/><rect x="4860" y="2244" width="22" height="22"/>
+    <rect x="4900" y="2228" width="22" height="22"/><rect x="4940" y="2240" width="22" height="22"/>
+    <rect x="4980" y="2228" width="22" height="22"/><rect x="5020" y="2244" width="22" height="22"/>
+    <rect x="5060" y="2228" width="22" height="22"/><rect x="5100" y="2238" width="22" height="22"/>
+    <rect x="5140" y="2228" width="22" height="22"/><rect x="5180" y="2244" width="22" height="22"/>
+    <rect x="5220" y="2228" width="22" height="22"/>
+    <rect x="4822" y="2298" width="22" height="22"/><rect x="4864" y="2312" width="22" height="22"/>
+    <rect x="4906" y="2298" width="22" height="22"/><rect x="4946" y="2308" width="22" height="22"/>
+    <rect x="4986" y="2298" width="22" height="22"/><rect x="5026" y="2314" width="22" height="22"/>
+    <rect x="5066" y="2298" width="22" height="22"/><rect x="5106" y="2306" width="22" height="22"/>
+    <rect x="5146" y="2298" width="22" height="22"/><rect x="5186" y="2312" width="22" height="22"/>
+    <rect x="5222" y="2298" width="22" height="22"/>
+    <rect x="4822" y="2368" width="22" height="22"/><rect x="4860" y="2382" width="22" height="22"/>
+    <rect x="4902" y="2368" width="22" height="22"/><rect x="4942" y="2380" width="22" height="22"/>
+    <rect x="4982" y="2368" width="22" height="22"/><rect x="5022" y="2384" width="22" height="22"/>
+    <rect x="5062" y="2368" width="22" height="22"/><rect x="5100" y="2376" width="22" height="22"/>
+    <rect x="5138" y="2368" width="22" height="22"/><rect x="5176" y="2382" width="22" height="22"/>
+    <rect x="5214" y="2368" width="22" height="22"/>
+    <rect x="5222" y="2228" width="22" height="22"/><rect x="5238" y="2264" width="22" height="22"/>
+    <rect x="5222" y="2300" width="22" height="22"/><rect x="5238" y="2336" width="22" height="22"/>
+    <rect x="5222" y="2372" width="22" height="22"/><rect x="5238" y="2408" width="22" height="22"/>
+    <rect x="4822" y="2440" width="22" height="22"/><rect x="4860" y="2454" width="22" height="22"/>
+    <rect x="4902" y="2440" width="22" height="22"/><rect x="4942" y="2452" width="22" height="22"/>
+    <rect x="4982" y="2440" width="22" height="22"/><rect x="5022" y="2456" width="22" height="22"/>
+    <rect x="5062" y="2440" width="22" height="22"/><rect x="5102" y="2448" width="22" height="22"/>
+    <rect x="5142" y="2440" width="22" height="22"/><rect x="5182" y="2454" width="22" height="22"/>
+    <rect x="5222" y="2440" width="22" height="22"/>
+    <rect x="4822" y="2510" width="22" height="22"/><rect x="4864" y="2524" width="22" height="22"/>
+    <rect x="4906" y="2510" width="22" height="22"/><rect x="4948" y="2520" width="22" height="22"/>
+    <rect x="4990" y="2510" width="22" height="22"/><rect x="5032" y="2526" width="22" height="22"/>
+    <rect x="5074" y="2510" width="22" height="22"/><rect x="5116" y="2518" width="22" height="22"/>
+    <rect x="5158" y="2510" width="22" height="22"/><rect x="5200" y="2524" width="22" height="22"/>
+    <rect x="5222" y="2510" width="22" height="22"/>
+    <rect x="4822" y="2580" width="22" height="22"/><rect x="4864" y="2594" width="22" height="22"/>
+    <rect x="4906" y="2580" width="22" height="22"/><rect x="4948" y="2590" width="22" height="22"/>
+    <rect x="4990" y="2580" width="22" height="22"/><rect x="5032" y="2596" width="22" height="22"/>
+    <rect x="5074" y="2580" width="22" height="22"/><rect x="5116" y="2588" width="22" height="22"/>
+    <rect x="5158" y="2580" width="22" height="22"/><rect x="5200" y="2594" width="22" height="22"/>
+    <rect x="5222" y="2580" width="22" height="22"/>
+  </g>
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-qr-lbl)"/>
+  <text x="5200" y="2498" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="42" font-weight="400" fill="#7BB5A8">vls.ai · Try the demo</text>
+  <text x="5200" y="2790" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="28" fill="#7BB5A8" opacity="0.38">[ PLACEHOLDER — SWAP URL BEFORE PRINT ]</text>
+</g>
+
+<!-- BOTTOM ACCENT BAR -->
+<g id="accent-bar">
+  <rect x="0" y="2945" width="6000" height="55" fill="url(#g-accent)" opacity="0.55"/>
+</g>
+
+</svg>

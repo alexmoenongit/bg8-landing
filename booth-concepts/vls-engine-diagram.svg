@@ -1,0 +1,81 @@
+<svg width="1400" height="680" viewBox="0 0 1400 680" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Arial, sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C2E0"/><stop offset="100%" stop-color="#4ADE5C"/></linearGradient>
+  <linearGradient id="arrowGrad" gradientUnits="userSpaceOnUse" x1="534" y1="335" x2="866" y2="335">
+    <stop offset="0%" stop-color="#00C2E0"/><stop offset="100%" stop-color="#4ADE5C"/>
+  </linearGradient>
+  <linearGradient id="arrowGlow" gradientUnits="userSpaceOnUse" x1="534" y1="335" x2="866" y2="335">
+    <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.4"/><stop offset="100%" stop-color="#4ADE5C" stop-opacity="0.4"/>
+  </linearGradient>
+  <linearGradient id="engineFill" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00C2E0" stop-opacity="0.1"/><stop offset="100%" stop-color="#4ADE5C" stop-opacity="0.04"/></linearGradient>
+  <radialGradient id="tealCore" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#00C2E0"/></radialGradient>
+  <radialGradient id="greenCore" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#4ADE5C"/></radialGradient>
+  <radialGradient id="tealAura" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00C2E0" stop-opacity="0.3"/><stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/></radialGradient>
+  <radialGradient id="greenAura" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#4ADE5C" stop-opacity="0.28"/><stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/></radialGradient>
+  <radialGradient id="engineGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00C2E0" stop-opacity="0.09"/><stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/></radialGradient>
+  <filter id="softglow"><feGaussianBlur stdDeviation="6"/></filter>
+  <marker id="arT" markerWidth="7" markerHeight="7" refX="4" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#00C2E0" opacity="0.55"/></marker>
+  <marker id="arG" markerWidth="7" markerHeight="7" refX="4" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#4ADE5C" opacity="0.55"/></marker>
+</defs>
+
+<rect width="1400" height="680" fill="#141C22"/>
+<ellipse cx="700" cy="340" rx="420" ry="260" fill="url(#engineGlow)"/>
+
+<!-- ENGINE CONTAINER -->
+<rect x="295" y="72" width="810" height="520" rx="64" fill="url(#engineFill)"/>
+<rect x="295" y="72" width="810" height="520" rx="64" fill="none" stroke="url(#bg)" stroke-width="2" opacity="0.75"/>
+<rect x="299" y="76" width="802" height="512" rx="62" fill="none" stroke="#00C2E0" stroke-width="0.6" opacity="0.12"/>
+<text x="700" y="56" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="5" fill="url(#bg)" opacity="0.9">VLS ENGINE</text>
+<text x="700" y="567" text-anchor="middle" font-size="11" letter-spacing="3.5" fill="#7BB5A8" opacity="0.5">CONNECT  ·  ORCHESTRATE  ·  EXECUTE</text>
+
+<!-- ORCHESTRATE ARROW -->
+<line x1="534" y1="335" x2="866" y2="335" stroke="url(#arrowGlow)" stroke-width="14" filter="url(#softglow)"/>
+<line x1="548" y1="335" x2="852" y2="335" stroke="url(#arrowGrad)" stroke-width="4.5" opacity="0.9"/>
+<polygon points="868,335 850,324 850,346" fill="#4ADE5C" opacity="0.9"/>
+<polygon points="532,335 550,324 550,346" fill="#00C2E0" opacity="0.9"/>
+<text x="700" y="316" text-anchor="middle" font-size="10" letter-spacing="3.5" fill="#7BB5A8" opacity="0.5">ORCHESTRATE</text>
+
+<!-- CUSTOMER AI NODE -->
+<g transform="translate(490,335)">
+  <circle cx="0" cy="0" r="105" fill="url(#tealAura)" opacity="0.7"/>
+  <circle cx="0" cy="0" r="54" fill="none" stroke="#00C2E0" stroke-width="1.3" opacity="0.22" stroke-dasharray="6,7"/>
+  <circle cx="0" cy="0" r="38" fill="url(#tealCore)" opacity="0.95"/>
+  <circle cx="0" cy="0" r="12" fill="#ffffff" opacity="0.97"/>
+  <text x="0" y="72" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="2.5" fill="#00C2E0" opacity="0.9">CUSTOMER AI</text>
+</g>
+
+<!-- VENDOR AI NODE -->
+<g transform="translate(910,335)">
+  <circle cx="0" cy="0" r="105" fill="url(#greenAura)" opacity="0.7"/>
+  <circle cx="0" cy="0" r="54" fill="none" stroke="#4ADE5C" stroke-width="1.3" opacity="0.22" stroke-dasharray="6,7"/>
+  <circle cx="0" cy="0" r="38" fill="url(#greenCore)" opacity="0.95"/>
+  <circle cx="0" cy="0" r="12" fill="#ffffff" opacity="0.97"/>
+  <text x="0" y="72" text-anchor="middle" font-size="11" font-weight="700" letter-spacing="2.5" fill="#4ADE5C" opacity="0.9">VENDOR AI</text>
+</g>
+
+<!-- INCOMING LINES: Customers → Customer AI -->
+<line x1="152" y1="142" x2="422" y2="322" stroke="#00C2E0" stroke-width="1.6" opacity="0.32" marker-end="url(#arT)"/>
+<line x1="154" y1="335" x2="418" y2="335" stroke="#00C2E0" stroke-width="1.6" opacity="0.32" marker-end="url(#arT)"/>
+<line x1="152" y1="528" x2="422" y2="348" stroke="#00C2E0" stroke-width="1.6" opacity="0.32" marker-end="url(#arT)"/>
+<text x="272" y="320" text-anchor="middle" font-size="10" font-weight="600" letter-spacing="2.5" fill="#00C2E0" opacity="0.45">REQUEST</text>
+
+<!-- OUTGOING LINES: Vendor AI → Vendors -->
+<line x1="958" y1="322" x2="1248" y2="142" stroke="#4ADE5C" stroke-width="1.6" opacity="0.32" marker-end="url(#arG)"/>
+<line x1="962" y1="335" x2="1246" y2="335" stroke="#4ADE5C" stroke-width="1.6" opacity="0.32" marker-end="url(#arG)"/>
+<line x1="958" y1="348" x2="1248" y2="528" stroke="#4ADE5C" stroke-width="1.6" opacity="0.32" marker-end="url(#arG)"/>
+<text x="1120" y="320" text-anchor="middle" font-size="10" font-weight="600" letter-spacing="2.5" fill="#4ADE5C" opacity="0.45">FULFIL</text>
+
+<!-- CUSTOMER ICONS -->
+<g transform="translate(108,128)"><circle cx="0" cy="0" r="40" fill="#00C2E0" opacity="0.06"/><circle cx="0" cy="-5" r="18" fill="#00C2E0" opacity="0.88"/><path d="M-25,38 Q-25,16 0,16 Q25,16 25,38 Z" fill="#00C2E0" opacity="0.88"/><text x="0" y="62" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.5" fill="#7BB5A8">CUSTOMER</text></g>
+<g transform="translate(108,335)"><circle cx="0" cy="0" r="40" fill="#00C2E0" opacity="0.06"/><circle cx="0" cy="-5" r="18" fill="#00C2E0" opacity="0.88"/><path d="M-25,38 Q-25,16 0,16 Q25,16 25,38 Z" fill="#00C2E0" opacity="0.88"/><text x="0" y="62" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.5" fill="#7BB5A8">CUSTOMER</text></g>
+<g transform="translate(108,530)"><circle cx="0" cy="0" r="40" fill="#00C2E0" opacity="0.06"/><circle cx="0" cy="-5" r="18" fill="#00C2E0" opacity="0.88"/><path d="M-25,38 Q-25,16 0,16 Q25,16 25,38 Z" fill="#00C2E0" opacity="0.88"/><text x="0" y="62" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.5" fill="#7BB5A8">CUSTOMER</text></g>
+
+<!-- VENDOR ICONS -->
+<g transform="translate(1292,114)"><circle cx="0" cy="10" r="40" fill="#4ADE5C" opacity="0.06"/><rect x="-26" y="-34" width="52" height="60" rx="3" fill="#4ADE5C" opacity="0.85"/><rect x="-18" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-5" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="8" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-18" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-5" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="8" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-26" y="18" width="52" height="8" rx="1" fill="#141C22" opacity="0.3"/><text x="0" y="44" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.5" fill="#7BB5A8">VENDOR</text></g>
+<g transform="translate(1292,321)"><circle cx="0" cy="10" r="40" fill="#4ADE5C" opacity="0.06"/><rect x="-26" y="-34" width="52" height="60" rx="3" fill="#4ADE5C" opacity="0.85"/><rect x="-18" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-5" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="8" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-18" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-5" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="8" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-26" y="18" width="52" height="8" rx="1" fill="#141C22" opacity="0.3"/><text x="0" y="44" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.5" fill="#7BB5A8">VENDOR</text></g>
+<g transform="translate(1292,516)"><circle cx="0" cy="10" r="40" fill="#4ADE5C" opacity="0.06"/><rect x="-26" y="-34" width="52" height="60" rx="3" fill="#4ADE5C" opacity="0.85"/><rect x="-18" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-5" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="8" y="-26" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-18" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-5" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="8" y="-11" width="10" height="9" rx="1.5" fill="#141C22" opacity="0.7"/><rect x="-26" y="18" width="52" height="8" rx="1" fill="#141C22" opacity="0.3"/><text x="0" y="44" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.5" fill="#7BB5A8">VENDOR</text></g>
+
+<text x="108" y="634" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="2.5" fill="#E8F5F2" opacity="0.25">CUSTOMERS</text>
+<text x="1292" y="634" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="2.5" fill="#E8F5F2" opacity="0.25">VENDORS</text>
+<rect x="0" y="672" width="1400" height="8" fill="url(#bg)" opacity="0.5"/>
+</svg>

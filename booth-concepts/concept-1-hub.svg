@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VLS Solutions — Web Summit Booth Concept 1: THE HUB -->
+<!-- Canvas: 6000x3000px = two 3x3m walls as one spread -->
+<!-- Wall 1 (left): x 0-3000 | Wall 2 (right): x 3000-6000 -->
+<!-- Font required: Outfit (Google Fonts) — install before opening in Illustrator -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6000 3000" width="6000" height="3000">
+<defs>
+
+  <!-- ACCENT GRADIENT (full canvas, left to right) -->
+  <!-- Full-width gradient for bars, borders, QR -->
+  <linearGradient id="g-accent" x1="0" y1="0" x2="6000" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0"/>
+    <stop offset="100%" stop-color="#4ADE5C"/>
+  </linearGradient>
+
+  <!-- AURORA BACKGROUNDS -->
+  <radialGradient id="aurora-tr" cx="5500" cy="0" r="2000" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="aurora-bl" cx="500" cy="3000" r="1800" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#4ADE5C" stop-opacity="0.20"/>
+    <stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="aurora-c" cx="3000" cy="1450" r="1400" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.07"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- HUB ATMOSPHERE -->
+  <radialGradient id="hub-atm" cx="3000" cy="1450" r="1100" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.13"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- HUB CORE -->
+  <radialGradient id="hub-core" cx="3000" cy="1450" r="80" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+    <stop offset="50%" stop-color="#00C2E0" stop-opacity="0.85"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0.3"/>
+  </radialGradient>
+
+  <!-- FILTERS -->
+  <filter id="f-glow-xl" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="50" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="f-glow-md" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="20" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="f-node" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="10" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <!-- GRADIENT TEXT MASKS -->
+  <mask id="m-eyebrow">
+    <text x="120" y="308" font-family="Outfit, Inter, sans-serif" font-size="42" font-weight="600" fill="white" letter-spacing="5">AI MARKETPLACE INFRASTRUCTURE</text>
+  </mask>
+  <mask id="m-h2">
+    <text x="120" y="858" font-family="Outfit, Inter, sans-serif" font-size="260" font-weight="800" fill="white" letter-spacing="-6">Every market.</text>
+  </mask>
+  <mask id="m-hub-lbl">
+    <text x="3000" y="1618" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="52" font-weight="600" fill="white" letter-spacing="5">VLS ENGINE</text>
+  </mask>
+  <mask id="m-qr-lbl">
+    <text x="5200" y="2430" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="50" font-weight="600" fill="white" letter-spacing="3">SCAN TO TALK TO OUR AI</text>
+  </mask>
+
+  <!-- Text gradient: spans headline text width (120→2400) so full teal→green sweep is visible -->
+  <linearGradient id="g-text" x1="120" y1="0" x2="2400" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0"/>
+    <stop offset="100%" stop-color="#4ADE5C"/>
+  </linearGradient>
+  <!-- QR label gradient: spans QR label area -->
+  <linearGradient id="g-qr-text" x1="4200" y1="0" x2="5700" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0"/>
+    <stop offset="100%" stop-color="#4ADE5C"/>
+  </linearGradient>
+</defs>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- BACKGROUND -->
+<g id="background">
+  <rect width="6000" height="3000" fill="#141C22"/>
+</g>
+
+<!-- AURORA GLOWS -->
+<g id="aurora">
+  <rect width="6000" height="3000" fill="url(#aurora-tr)"/>
+  <rect width="6000" height="3000" fill="url(#aurora-bl)"/>
+  <rect width="6000" height="3000" fill="url(#aurora-c)"/>
+  <!-- Hub atmosphere -->
+  <rect width="6000" height="3000" fill="url(#hub-atm)"/>
+</g>
+
+<!-- CONNECTION LINES -->
+<g id="connection-lines" stroke="#00C2E0" stroke-width="1.5" opacity="0.28">
+  <!-- Left wall nodes -->
+  <line x1="3000" y1="1450" x2="450" y2="220"/>
+  <line x1="3000" y1="1450" x2="160" y2="850"/>
+  <line x1="3000" y1="1450" x2="280" y2="1550"/>
+  <line x1="3000" y1="1450" x2="520" y2="2380"/>
+  <line x1="3000" y1="1450" x2="1350" y2="2680"/>
+  <line x1="3000" y1="1450" x2="2100" y2="2150"/>
+  <!-- Right wall nodes -->
+  <line x1="3000" y1="1450" x2="3550" y2="280"/>
+  <line x1="3000" y1="1450" x2="4400" y2="480"/>
+  <line x1="3000" y1="1450" x2="5450" y2="780"/>
+  <line x1="3000" y1="1450" x2="5820" y2="1480"/>
+  <line x1="3000" y1="1450" x2="5380" y2="2350"/>
+  <line x1="3000" y1="1450" x2="3950" y2="2680"/>
+</g>
+
+<!-- DATA PULSE DOTS -->
+<g id="data-pulses" fill="#00C2E0">
+  <!-- Midpoints on various lines -->
+  <circle cx="1725" cy="835" r="6" opacity="0.6"/>
+  <circle cx="580" cy="1150" r="5" opacity="0.5"/>
+  <circle cx="1760" cy="1800" r="6" opacity="0.55"/>
+  <circle cx="935" cy="1015" r="4" opacity="0.45"/>
+  <circle cx="3275" cy="865" r="6" opacity="0.6"/>
+  <circle cx="3700" cy="965" r="5" opacity="0.5"/>
+  <circle cx="4725" cy="630" r="6" opacity="0.55"/>
+  <circle cx="4910" cy="1015" r="5" opacity="0.5"/>
+  <circle cx="4410" cy="1865" r="5" fill="#4ADE5C" opacity="0.55"/>
+</g>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- VISUAL METAPHOR: THE HUB -->
+<g id="visual-metaphor">
+  <!-- Outer atmosphere ring (very subtle) -->
+  <circle cx="3000" cy="1450" r="900" stroke="#00C2E0" stroke-width="1" fill="none" opacity="0.12" stroke-dasharray="35 25"/>
+  <!-- Orbital ring 3 -->
+  <circle cx="3000" cy="1450" r="700" stroke="#00C2E0" stroke-width="1.5" fill="none" opacity="0.22" stroke-dasharray="22 18"/>
+  <!-- Orbital ring 2 -->
+  <circle cx="3000" cy="1450" r="510" stroke="#00C2E0" stroke-width="1.5" fill="none" opacity="0.35" stroke-dasharray="16 12"/>
+  <!-- Orbital ring 1 -->
+  <circle cx="3000" cy="1450" r="340" stroke="#4ADE5C" stroke-width="2" fill="none" opacity="0.50" stroke-dasharray="10 10"/>
+  <!-- Hub corona glow -->
+  <circle cx="3000" cy="1450" r="130" fill="#00C2E0" opacity="0.15" filter="url(#f-glow-xl)"/>
+  <!-- Hub core -->
+  <circle cx="3000" cy="1450" r="80" fill="url(#hub-core)" filter="url(#f-glow-md)"/>
+  <!-- Hub center dot -->
+  <circle cx="3000" cy="1450" r="26" fill="#FFFFFF" opacity="0.95"/>
+</g>
+
+<!-- HUB LABEL -->
+<g id="hub-label">
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-text)" mask="url(#m-hub-lbl)"/>
+</g>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SERVICE NODES — LEFT WALL -->
+<g id="nodes-left">
+  <!-- Towing (450, 220) -->
+  <circle cx="450" cy="220" r="44" fill="#00C2E0" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="450" cy="220" r="22" fill="#00C2E0" opacity="0.85"/>
+  <circle cx="450" cy="220" r="8" fill="#FFFFFF"/>
+  <text x="450" y="278" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">TOWING</text>
+  <!-- Home Repair (160, 850) -->
+  <circle cx="160" cy="850" r="44" fill="#00C2E0" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="160" cy="850" r="22" fill="#00C2E0" opacity="0.85"/>
+  <circle cx="160" cy="850" r="8" fill="#FFFFFF"/>
+  <text x="160" y="908" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">HOME REPAIR</text>
+  <!-- Plumbing (280, 1550) -->
+  <circle cx="280" cy="1550" r="44" fill="#00C2E0" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="280" cy="1550" r="22" fill="#00C2E0" opacity="0.85"/>
+  <circle cx="280" cy="1550" r="8" fill="#FFFFFF"/>
+  <text x="280" y="1608" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">PLUMBING</text>
+  <!-- Food Delivery (520, 2380) -->
+  <circle cx="520" cy="2380" r="44" fill="#4ADE5C" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="520" cy="2380" r="22" fill="#4ADE5C" opacity="0.85"/>
+  <circle cx="520" cy="2380" r="8" fill="#FFFFFF"/>
+  <text x="520" y="2438" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">FOOD DELIVERY</text>
+  <!-- Legal Services (1350, 2680) -->
+  <circle cx="1350" cy="2680" r="44" fill="#4ADE5C" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="1350" cy="2680" r="22" fill="#4ADE5C" opacity="0.85"/>
+  <circle cx="1350" cy="2680" r="8" fill="#FFFFFF"/>
+  <text x="1350" y="2738" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">LEGAL SERVICES</text>
+  <!-- Healthcare (2100, 2150) -->
+  <circle cx="2100" cy="2150" r="44" fill="#4ADE5C" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="2100" cy="2150" r="22" fill="#4ADE5C" opacity="0.85"/>
+  <circle cx="2100" cy="2150" r="8" fill="#FFFFFF"/>
+  <text x="2100" y="2208" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">HEALTHCARE</text>
+</g>
+
+<!-- SERVICE NODES — RIGHT WALL -->
+<g id="nodes-right">
+  <!-- Real Estate (3550, 280) -->
+  <circle cx="3550" cy="280" r="44" fill="#00C2E0" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="3550" cy="280" r="22" fill="#00C2E0" opacity="0.85"/>
+  <circle cx="3550" cy="280" r="8" fill="#FFFFFF"/>
+  <text x="3550" y="338" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">REAL ESTATE</text>
+  <!-- Logistics (4400, 480) -->
+  <circle cx="4400" cy="480" r="44" fill="#00C2E0" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="4400" cy="480" r="22" fill="#00C2E0" opacity="0.85"/>
+  <circle cx="4400" cy="480" r="8" fill="#FFFFFF"/>
+  <text x="4400" y="538" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">LOGISTICS</text>
+  <!-- E-Commerce (5450, 780) -->
+  <circle cx="5450" cy="780" r="44" fill="#00C2E0" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="5450" cy="780" r="22" fill="#00C2E0" opacity="0.85"/>
+  <circle cx="5450" cy="780" r="8" fill="#FFFFFF"/>
+  <text x="5450" y="838" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">E-COMMERCE</text>
+  <!-- Finance (5820, 1480) -->
+  <circle cx="5820" cy="1480" r="44" fill="#00C2E0" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="5820" cy="1480" r="22" fill="#00C2E0" opacity="0.85"/>
+  <circle cx="5820" cy="1480" r="8" fill="#FFFFFF"/>
+  <text x="5820" y="1538" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">FINANCE</text>
+  <!-- Procurement (5380, 2350) -->
+  <circle cx="5380" cy="2350" r="44" fill="#4ADE5C" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="5380" cy="2350" r="22" fill="#4ADE5C" opacity="0.85"/>
+  <circle cx="5380" cy="2350" r="8" fill="#FFFFFF"/>
+  <text x="5380" y="2408" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">PROCUREMENT</text>
+  <!-- Government (3950, 2680) -->
+  <circle cx="3950" cy="2680" r="44" fill="#4ADE5C" opacity="0.14" filter="url(#f-node)"/>
+  <circle cx="3950" cy="2680" r="22" fill="#4ADE5C" opacity="0.85"/>
+  <circle cx="3950" cy="2680" r="8" fill="#FFFFFF"/>
+  <text x="3950" y="2738" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" font-weight="400" fill="#7BB5A8" letter-spacing="2">GOVERNMENT</text>
+</g>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- WALL DIVIDER -->
+<g id="wall-divider">
+  <line x1="3000" y1="0" x2="3000" y2="3000" stroke="#00C2E0" stroke-width="1" opacity="0.12"/>
+</g>
+
+<!-- BRANDING -->
+<g id="branding">
+  <text x="120" y="190" font-family="Outfit, Inter, sans-serif" font-size="64" font-weight="600" fill="#00C2E0" letter-spacing="4">VLS SOLUTIONS</text>
+  <line x1="120" y1="215" x2="640" y2="215" stroke="#00C2E0" stroke-width="2" opacity="0.30"/>
+</g>
+
+<!-- EYEBROW -->
+<g id="eyebrow">
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-text)" mask="url(#m-eyebrow)"/>
+</g>
+
+<!-- HEADLINE -->
+<g id="headline">
+  <text x="120" y="578" font-family="Outfit, Inter, sans-serif" font-size="260" font-weight="800" fill="#E8F5F2" letter-spacing="-6">One engine.</text>
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-text)" mask="url(#m-h2)"/>
+</g>
+
+<!-- TAGLINE + DETAIL -->
+<g id="tagline">
+  <text x="120" y="978" font-family="Outfit, Inter, sans-serif" font-size="70" font-weight="400" fill="#E8F5F2">The AI infrastructure that powers</text>
+  <text x="120" y="1062" font-family="Outfit, Inter, sans-serif" font-size="70" font-weight="400" fill="#E8F5F2">any service marketplace.</text>
+  <text x="120" y="1178" font-family="Outfit, Inter, sans-serif" font-size="50" font-weight="400" fill="#7BB5A8">Deploy in weeks. Scale to millions. Automate everything.</text>
+</g>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- QR SECTION -->
+<g id="qr-section">
+  <!-- QR border -->
+  <rect x="4660" y="2060" width="680" height="680" rx="16" fill="#141C22" stroke="url(#g-accent)" stroke-width="3"/>
+  <!-- Corner finder: top-left -->
+  <rect x="4692" y="2092" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="4710" y="2110" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <!-- Corner finder: top-right -->
+  <rect x="5218" y="2092" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="5236" y="2110" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <!-- Corner finder: bottom-left -->
+  <rect x="4692" y="2618" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="4710" y="2636" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <!-- QR data pattern (simplified grid) -->
+  <g fill="#7BB5A8" opacity="0.48">
+    <rect x="4822" y="2092" width="22" height="22"/><rect x="4858" y="2092" width="22" height="22"/>
+    <rect x="4894" y="2110" width="22" height="22"/><rect x="4930" y="2092" width="22" height="22"/>
+    <rect x="4966" y="2104" width="22" height="22"/><rect x="5002" y="2092" width="22" height="22"/>
+    <rect x="5038" y="2112" width="22" height="22"/><rect x="5074" y="2092" width="22" height="22"/>
+    <rect x="5110" y="2104" width="22" height="22"/><rect x="5146" y="2092" width="22" height="22"/>
+    <rect x="5182" y="2100" width="22" height="22"/>
+    <rect x="4822" y="2128" width="22" height="22"/><rect x="4876" y="2140" width="22" height="22"/>
+    <rect x="4912" y="2128" width="22" height="22"/><rect x="4948" y="2144" width="22" height="22"/>
+    <rect x="4984" y="2128" width="22" height="22"/><rect x="5020" y="2138" width="22" height="22"/>
+    <rect x="5056" y="2128" width="22" height="22"/><rect x="5092" y="2142" width="22" height="22"/>
+    <rect x="5128" y="2128" width="22" height="22"/><rect x="5164" y="2136" width="22" height="22"/>
+    <rect x="4822" y="2220" width="22" height="22"/><rect x="4858" y="2240" width="22" height="22"/>
+    <rect x="4894" y="2220" width="22" height="22"/><rect x="4930" y="2235" width="22" height="22"/>
+    <rect x="4966" y="2220" width="22" height="22"/><rect x="5002" y="2228" width="22" height="22"/>
+    <rect x="5038" y="2220" width="22" height="22"/><rect x="5074" y="2238" width="22" height="22"/>
+    <rect x="5110" y="2220" width="22" height="22"/><rect x="5146" y="2232" width="22" height="22"/>
+    <rect x="5182" y="2220" width="22" height="22"/>
+    <rect x="4822" y="2290" width="22" height="22"/><rect x="4870" y="2308" width="22" height="22"/>
+    <rect x="4916" y="2290" width="22" height="22"/><rect x="4952" y="2302" width="22" height="22"/>
+    <rect x="4988" y="2290" width="22" height="22"/><rect x="5024" y="2310" width="22" height="22"/>
+    <rect x="5060" y="2290" width="22" height="22"/><rect x="5096" y="2298" width="22" height="22"/>
+    <rect x="5132" y="2290" width="22" height="22"/><rect x="5168" y="2306" width="22" height="22"/>
+    <rect x="5204" y="2290" width="22" height="22"/>
+    <rect x="4822" y="2356" width="22" height="22"/><rect x="4858" y="2374" width="22" height="22"/>
+    <rect x="4904" y="2356" width="22" height="22"/><rect x="4940" y="2368" width="22" height="22"/>
+    <rect x="4976" y="2356" width="22" height="22"/><rect x="5012" y="2370" width="22" height="22"/>
+    <rect x="5048" y="2356" width="22" height="22"/><rect x="5084" y="2362" width="22" height="22"/>
+    <rect x="5120" y="2356" width="22" height="22"/><rect x="5156" y="2374" width="22" height="22"/>
+    <rect x="5192" y="2356" width="22" height="22"/>
+    <rect x="5218" y="2220" width="22" height="22"/><rect x="5218" y="2256" width="22" height="22"/>
+    <rect x="5236" y="2292" width="22" height="22"/><rect x="5218" y="2330" width="22" height="22"/>
+    <rect x="5236" y="2360" width="22" height="22"/><rect x="5218" y="2390" width="22" height="22"/>
+    <rect x="4822" y="2430" width="22" height="22"/><rect x="4858" y="2448" width="22" height="22"/>
+    <rect x="4898" y="2430" width="22" height="22"/><rect x="4936" y="2442" width="22" height="22"/>
+    <rect x="4974" y="2430" width="22" height="22"/><rect x="5012" y="2446" width="22" height="22"/>
+    <rect x="5050" y="2430" width="22" height="22"/><rect x="5086" y="2440" width="22" height="22"/>
+    <rect x="5122" y="2430" width="22" height="22"/><rect x="5158" y="2448" width="22" height="22"/>
+    <rect x="5194" y="2430" width="22" height="22"/>
+    <rect x="4822" y="2502" width="22" height="22"/><rect x="4860" y="2518" width="22" height="22"/>
+    <rect x="4906" y="2502" width="22" height="22"/><rect x="4944" y="2514" width="22" height="22"/>
+    <rect x="4982" y="2502" width="22" height="22"/><rect x="5020" y="2516" width="22" height="22"/>
+    <rect x="5058" y="2502" width="22" height="22"/><rect x="5094" y="2510" width="22" height="22"/>
+    <rect x="5130" y="2502" width="22" height="22"/><rect x="5166" y="2518" width="22" height="22"/>
+    <rect x="5202" y="2502" width="22" height="22"/>
+    <rect x="4822" y="2572" width="22" height="22"/><rect x="4862" y="2586" width="22" height="22"/>
+    <rect x="4902" y="2572" width="22" height="22"/><rect x="4942" y="2582" width="22" height="22"/>
+    <rect x="4982" y="2572" width="22" height="22"/><rect x="5022" y="2588" width="22" height="22"/>
+    <rect x="5062" y="2572" width="22" height="22"/><rect x="5102" y="2580" width="22" height="22"/>
+    <rect x="5142" y="2572" width="22" height="22"/><rect x="5182" y="2586" width="22" height="22"/>
+    <rect x="5222" y="2572" width="22" height="22"/>
+  </g>
+  <!-- QR scan label -->
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-qr-text)" mask="url(#m-qr-lbl)"/>
+  <!-- QR sub label -->
+  <text x="5200" y="2498" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="42" font-weight="400" fill="#7BB5A8">vls.ai · Try the demo</text>
+  <!-- Placeholder note -->
+  <text x="5200" y="2790" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="28" fill="#7BB5A8" opacity="0.38">[ PLACEHOLDER — SWAP URL BEFORE PRINT ]</text>
+</g>
+
+<!-- BOTTOM ACCENT BAR -->
+<g id="accent-bar">
+  <rect x="0" y="2945" width="6000" height="55" fill="url(#g-accent)" opacity="0.55"/>
+</g>
+
+</svg>

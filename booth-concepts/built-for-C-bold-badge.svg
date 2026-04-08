@@ -1,0 +1,34 @@
+<svg width="680" height="272" viewBox="0 0 680 272" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Arial, sans-serif">
+<defs>
+  <linearGradient id="gr" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C2E0"/><stop offset="100%" stop-color="#4ADE5C"/></linearGradient>
+</defs>
+<rect width="680" height="272" fill="#141C22"/>
+<text x="340" y="22" text-anchor="middle" font-size="10" font-weight="700" letter-spacing="4" fill="url(#gr)" opacity="0.8">BUILT FOR</text>
+<rect x="8" y="30" width="664" height="234" rx="10" fill="#1a2530" opacity="0.5"/>
+<rect x="8" y="30" width="664" height="234" rx="10" fill="none" stroke="#00C2E0" stroke-width="0.8" opacity="0.2"/>
+<!-- Row 1 -->
+<rect x="14" y="36" width="652" height="54" rx="6" fill="#00C2E0" opacity="0.04"/>
+<rect x="20" y="44" width="158" height="38" rx="8" fill="#00C2E0" opacity="0.18"/>
+<text x="99" y="67" text-anchor="middle" font-size="11" font-weight="700" fill="#00C2E0" letter-spacing="0.5">REGIONAL INVESTORS</text>
+<text x="192" y="60" font-size="11" fill="#E8F5F2" opacity="0.85">Launch agentic commerce in your region</text>
+<text x="192" y="76" font-size="10" fill="#7BB5A8" opacity="0.7">No engineering  ·  Rapid ROI  ·  White-label</text>
+<!-- Row 2 -->
+<rect x="14" y="92" width="652" height="54" rx="6" fill="#00C2E0" opacity="0.02"/>
+<rect x="20" y="100" width="174" height="38" rx="8" fill="url(#gr)" opacity="0.14"/>
+<text x="107" y="123" text-anchor="middle" font-size="11" font-weight="700" fill="#E8F5F2" letter-spacing="0.5">TELECOM &amp; PLATFORMS</text>
+<text x="208" y="116" font-size="11" fill="#E8F5F2" opacity="0.85">Turn your user base into new revenue</text>
+<text x="208" y="132" font-size="10" fill="#7BB5A8" opacity="0.7">Fast deploy  ·  Localized  ·  Scalable</text>
+<!-- Row 3 -->
+<rect x="14" y="148" width="652" height="54" rx="6" fill="#4ADE5C" opacity="0.02"/>
+<rect x="20" y="156" width="164" height="38" rx="8" fill="url(#gr)" opacity="0.14"/>
+<text x="102" y="179" text-anchor="middle" font-size="11" font-weight="700" fill="#E8F5F2" letter-spacing="0.5">MARKETPLACES</text>
+<text x="198" y="172" font-size="11" fill="#E8F5F2" opacity="0.85">Increase conversion from high-intent demand</text>
+<text x="198" y="188" font-size="10" fill="#7BB5A8" opacity="0.7">Customizable  ·  AI-to-AI  ·  Any vertical</text>
+<!-- Row 4 -->
+<rect x="14" y="204" width="652" height="54" rx="6" fill="#4ADE5C" opacity="0.04"/>
+<rect x="20" y="212" width="168" height="38" rx="8" fill="#4ADE5C" opacity="0.18"/>
+<text x="104" y="235" text-anchor="middle" font-size="11" font-weight="700" fill="#4ADE5C" letter-spacing="0.5">ENTERPRISE &amp; GOV</text>
+<text x="202" y="228" font-size="11" fill="#E8F5F2" opacity="0.85">Automate workflows with full control</text>
+<text x="202" y="244" font-size="10" fill="#7BB5A8" opacity="0.7">Secure  ·  Compliant  ·  Enterprise-ready</text>
+<rect x="0" y="264" width="680" height="8" fill="url(#gr)" opacity="0.45"/>
+</svg>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VLS Solutions — Web Summit Booth Concept 2: SCALE IGNITION -->
+<!-- Canvas: 6000x3000px = two 3x3m walls as one spread -->
+<!-- Wall 1 (left): x 0-3000 | Wall 2 (right): x 3000-6000 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6000 3000" width="6000" height="3000">
+<defs>
+
+  <linearGradient id="g-accent" x1="0" y1="0" x2="6000" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0"/>
+    <stop offset="100%" stop-color="#4ADE5C"/>
+  </linearGradient>
+
+  <radialGradient id="aurora-tr" cx="5500" cy="0" r="2000" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="aurora-bl" cx="500" cy="3000" r="1800" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#4ADE5C" stop-opacity="0.20"/>
+    <stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- Ignition point glow -->
+  <radialGradient id="ignition-glow" cx="600" cy="1450" r="700" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.20"/>
+    <stop offset="60%" stop-color="#00C2E0" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+  </radialGradient>
+
+  <filter id="f-ignite" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="22" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="f-glow-lg" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="14" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="f-node-sm" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="8"/>
+  </filter>
+
+  <!-- Gradient text masks -->
+  <mask id="m-eyebrow">
+    <text x="120" y="308" font-family="Outfit, Inter, sans-serif" font-size="42" font-weight="600" fill="white" letter-spacing="5">AI MARKETPLACE INFRASTRUCTURE</text>
+  </mask>
+  <mask id="m-limits">
+    <text x="120" y="840" font-family="Outfit, Inter, sans-serif" font-size="300" font-weight="800" fill="white" letter-spacing="-8">Scale it.</text>
+  </mask>
+  <mask id="m-stat1">
+    <text x="3180" y="620" font-family="Outfit, Inter, sans-serif" font-size="220" font-weight="800" fill="white" letter-spacing="-6">10-20x</text>
+  </mask>
+  <mask id="m-stat2">
+    <text x="3180" y="960" font-family="Outfit, Inter, sans-serif" font-size="220" font-weight="800" fill="white" letter-spacing="-6">70-90%</text>
+  </mask>
+  <mask id="m-qr-lbl">
+    <text x="5200" y="2430" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="50" font-weight="600" fill="white" letter-spacing="3">SCAN TO TALK TO OUR AI</text>
+  </mask>
+
+</defs>
+
+<!-- BACKGROUND -->
+<g id="background">
+  <rect width="6000" height="3000" fill="#141C22"/>
+</g>
+
+<!-- AURORA -->
+<g id="aurora">
+  <rect width="6000" height="3000" fill="url(#aurora-tr)"/>
+  <rect width="6000" height="3000" fill="url(#aurora-bl)"/>
+  <rect width="6000" height="3000" fill="url(#ignition-glow)"/>
+</g>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- VISUAL METAPHOR: SCALE IGNITION -->
+<g id="visual-metaphor">
+
+  <!-- Network web lines (drawn first, behind nodes) -->
+  <g stroke="#00C2E0" stroke-width="1" opacity="0.20">
+    <!-- Sparse zone: left to mid -->
+    <line x1="600" y1="1450" x2="1050" y2="820"/>
+    <line x1="600" y1="1450" x2="1280" y2="1680"/>
+    <line x1="600" y1="1450" x2="980" y2="2100"/>
+    <line x1="1050" y1="820" x2="1680" y2="660"/>
+    <line x1="1280" y1="1680" x2="1820" y2="1500"/>
+    <line x1="980" y1="2100" x2="1680" y2="2240"/>
+    <line x1="1680" y1="660" x2="2350" y2="580"/>
+    <line x1="1820" y1="1500" x2="2350" y2="580"/>
+    <line x1="1820" y1="1500" x2="2480" y2="1700"/>
+    <line x1="1680" y1="2240" x2="2480" y2="1700"/>
+    <line x1="1680" y1="2240" x2="2200" y2="2550"/>
+    <!-- Mid zone -->
+    <line x1="2350" y1="580" x2="3100" y2="480"/>
+    <line x1="2480" y1="1700" x2="3200" y2="1580"/>
+    <line x1="2200" y1="2550" x2="3050" y2="2600"/>
+    <line x1="3100" y1="480" x2="3750" y2="380"/>
+    <line x1="3100" y1="480" x2="3600" y2="900"/>
+    <line x1="3200" y1="1580" x2="3750" y2="380"/>
+    <line x1="3200" y1="1580" x2="3900" y2="1420"/>
+    <line x1="3200" y1="1580" x2="3700" y2="2000"/>
+    <line x1="3050" y1="2600" x2="3700" y2="2000"/>
+    <!-- Dense right zone -->
+    <line x1="3750" y1="380" x2="4300" y2="280"/>
+    <line x1="3750" y1="380" x2="4450" y2="650"/>
+    <line x1="3600" y1="900" x2="4450" y2="650"/>
+    <line x1="3900" y1="1420" x2="4450" y2="650"/>
+    <line x1="3900" y1="1420" x2="4600" y2="1300"/>
+    <line x1="3900" y1="1420" x2="4500" y2="1750"/>
+    <line x1="3700" y1="2000" x2="4500" y2="1750"/>
+    <line x1="3700" y1="2000" x2="4200" y2="2350"/>
+    <line x1="4300" y1="280" x2="4900" y2="200"/>
+    <line x1="4300" y1="280" x2="5100" y2="500"/>
+    <line x1="4450" y1="650" x2="5100" y2="500"/>
+    <line x1="4600" y1="1300" x2="5100" y2="500"/>
+    <line x1="4600" y1="1300" x2="5500" y2="1100"/>
+    <line x1="4600" y1="1300" x2="5400" y2="1650"/>
+    <line x1="4500" y1="1750" x2="5400" y2="1650"/>
+    <line x1="4200" y1="2350" x2="5400" y2="1650"/>
+    <line x1="4200" y1="2350" x2="4900" y2="2600"/>
+    <line x1="4900" y1="200" x2="5600" y2="300"/>
+    <line x1="5100" y1="500" x2="5600" y2="300"/>
+    <line x1="5500" y1="1100" x2="5800" y2="800"/>
+    <line x1="5500" y1="1100" x2="5900" y2="1400"/>
+    <line x1="5400" y1="1650" x2="5900" y2="1400"/>
+    <line x1="5400" y1="1650" x2="5700" y2="2000"/>
+    <line x1="4900" y1="2600" x2="5700" y2="2000"/>
+    <line x1="5700" y1="2000" x2="5850" y2="2300"/>
+  </g>
+
+  <!-- IGNITION SOURCE at (600, 1450) -->
+  <circle cx="600" cy="1450" r="50" fill="#FFFFFF" opacity="0.95" filter="url(#f-ignite)"/>
+  <circle cx="600" cy="1450" r="120" stroke="#00C2E0" stroke-width="3" fill="none" opacity="0.80"/>
+  <circle cx="600" cy="1450" r="200" stroke="#00C2E0" stroke-width="2" fill="none" opacity="0.50"/>
+  <circle cx="600" cy="1450" r="320" stroke="#00C2E0" stroke-width="1.5" fill="none" opacity="0.28"/>
+  <circle cx="600" cy="1450" r="480" stroke="#00C2E0" stroke-width="1" fill="none" opacity="0.15"/>
+  <circle cx="600" cy="1450" r="24" fill="#FFFFFF"/>
+
+  <!-- Network nodes — sparse left -->
+  <circle cx="1050" cy="820" r="14" fill="#00C2E0" opacity="0.75"/><circle cx="1050" cy="820" r="28" fill="#00C2E0" opacity="0.10" filter="url(#f-node-sm)"/>
+  <circle cx="1280" cy="1680" r="16" fill="#00C2E0" opacity="0.75"/><circle cx="1280" cy="1680" r="30" fill="#00C2E0" opacity="0.10" filter="url(#f-node-sm)"/>
+  <circle cx="980" cy="2100" r="13" fill="#4ADE5C" opacity="0.75"/><circle cx="980" cy="2100" r="26" fill="#4ADE5C" opacity="0.10" filter="url(#f-node-sm)"/>
+  <circle cx="1680" cy="660" r="16" fill="#00C2E0" opacity="0.80"/><circle cx="1680" cy="660" r="32" fill="#00C2E0" opacity="0.12" filter="url(#f-node-sm)"/>
+  <circle cx="1820" cy="1500" r="15" fill="#4ADE5C" opacity="0.75"/><circle cx="1820" cy="1500" r="30" fill="#4ADE5C" opacity="0.10" filter="url(#f-node-sm)"/>
+  <circle cx="1680" cy="2240" r="14" fill="#4ADE5C" opacity="0.75"/><circle cx="1680" cy="2240" r="28" fill="#4ADE5C" opacity="0.10" filter="url(#f-node-sm)"/>
+
+  <!-- Network nodes — mid zone -->
+  <circle cx="2350" cy="580" r="18" fill="#00C2E0" opacity="0.80"/><circle cx="2350" cy="580" r="36" fill="#00C2E0" opacity="0.12" filter="url(#f-node-sm)"/>
+  <circle cx="2480" cy="1700" r="18" fill="#4ADE5C" opacity="0.80"/><circle cx="2480" cy="1700" r="36" fill="#4ADE5C" opacity="0.12" filter="url(#f-node-sm)"/>
+  <circle cx="2200" cy="2550" r="16" fill="#4ADE5C" opacity="0.75"/><circle cx="2200" cy="2550" r="32" fill="#4ADE5C" opacity="0.10" filter="url(#f-node-sm)"/>
+  <circle cx="3100" cy="480" r="20" fill="#00C2E0" opacity="0.85"/><circle cx="3100" cy="480" r="40" fill="#00C2E0" opacity="0.14" filter="url(#f-node-sm)"/>
+  <circle cx="3200" cy="1580" r="20" fill="#4ADE5C" opacity="0.85"/><circle cx="3200" cy="1580" r="40" fill="#4ADE5C" opacity="0.14" filter="url(#f-node-sm)"/>
+  <circle cx="3050" cy="2600" r="18" fill="#4ADE5C" opacity="0.80"/><circle cx="3050" cy="2600" r="36" fill="#4ADE5C" opacity="0.12" filter="url(#f-node-sm)"/>
+
+  <!-- Network nodes — dense right zone -->
+  <circle cx="3750" cy="380" r="22" fill="#00C2E0" opacity="0.88"/><circle cx="3750" cy="380" r="44" fill="#00C2E0" opacity="0.15" filter="url(#f-node-sm)"/>
+  <circle cx="3600" cy="900" r="20" fill="#00C2E0" opacity="0.85"/><circle cx="3600" cy="900" r="40" fill="#00C2E0" opacity="0.14" filter="url(#f-node-sm)"/>
+  <circle cx="3900" cy="1420" r="24" fill="#4ADE5C" opacity="0.90"/><circle cx="3900" cy="1420" r="48" fill="#4ADE5C" opacity="0.16" filter="url(#f-node-sm)"/>
+  <circle cx="3700" cy="2000" r="22" fill="#4ADE5C" opacity="0.88"/><circle cx="3700" cy="2000" r="44" fill="#4ADE5C" opacity="0.15" filter="url(#f-node-sm)"/>
+  <circle cx="4300" cy="280" r="24" fill="#00C2E0" opacity="0.90"/><circle cx="4300" cy="280" r="48" fill="#00C2E0" opacity="0.16" filter="url(#f-node-sm)"/>
+  <circle cx="4450" cy="650" r="26" fill="#00C2E0" opacity="0.90"/><circle cx="4450" cy="650" r="52" fill="#00C2E0" opacity="0.16" filter="url(#f-node-sm)"/>
+  <circle cx="4600" cy="1300" r="26" fill="#4ADE5C" opacity="0.90"/><circle cx="4600" cy="1300" r="52" fill="#4ADE5C" opacity="0.16" filter="url(#f-node-sm)"/>
+  <circle cx="4500" cy="1750" r="24" fill="#4ADE5C" opacity="0.90"/><circle cx="4500" cy="1750" r="48" fill="#4ADE5C" opacity="0.15" filter="url(#f-node-sm)"/>
+  <circle cx="4200" cy="2350" r="24" fill="#4ADE5C" opacity="0.88"/><circle cx="4200" cy="2350" r="48" fill="#4ADE5C" opacity="0.15" filter="url(#f-node-sm)"/>
+  <circle cx="4900" cy="200" r="26" fill="#00C2E0" opacity="0.90"/><circle cx="4900" cy="200" r="52" fill="#00C2E0" opacity="0.16" filter="url(#f-node-sm)"/>
+  <circle cx="5100" cy="500" r="28" fill="#00C2E0" opacity="0.92"/><circle cx="5100" cy="500" r="56" fill="#00C2E0" opacity="0.18" filter="url(#f-node-sm)"/>
+  <circle cx="5500" cy="1100" r="28" fill="#4ADE5C" opacity="0.92"/><circle cx="5500" cy="1100" r="56" fill="#4ADE5C" opacity="0.18" filter="url(#f-node-sm)"/>
+  <circle cx="5400" cy="1650" r="30" fill="#4ADE5C" opacity="0.95"/><circle cx="5400" cy="1650" r="60" fill="#4ADE5C" opacity="0.20" filter="url(#f-node-sm)"/>
+  <circle cx="4900" cy="2600" r="26" fill="#4ADE5C" opacity="0.88"/><circle cx="4900" cy="2600" r="52" fill="#4ADE5C" opacity="0.15" filter="url(#f-node-sm)"/>
+  <circle cx="5600" cy="300" r="28" fill="#00C2E0" opacity="0.92"/><circle cx="5600" cy="300" r="56" fill="#00C2E0" opacity="0.18" filter="url(#f-node-sm)"/>
+  <circle cx="5800" cy="800" r="26" fill="#00C2E0" opacity="0.90"/><circle cx="5800" cy="800" r="52" fill="#00C2E0" opacity="0.16" filter="url(#f-node-sm)"/>
+  <circle cx="5900" cy="1400" r="26" fill="#4ADE5C" opacity="0.90"/><circle cx="5900" cy="1400" r="52" fill="#4ADE5C" opacity="0.16" filter="url(#f-node-sm)"/>
+  <circle cx="5700" cy="2000" r="28" fill="#4ADE5C" opacity="0.92"/><circle cx="5700" cy="2000" r="56" fill="#4ADE5C" opacity="0.18" filter="url(#f-node-sm)"/>
+  <circle cx="5850" cy="2300" r="24" fill="#4ADE5C" opacity="0.88"/><circle cx="5850" cy="2300" r="48" fill="#4ADE5C" opacity="0.15" filter="url(#f-node-sm)"/>
+
+  <!-- Service labels near representative nodes -->
+  <text x="1050" y="880" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">TOWING</text>
+  <text x="1680" y="720" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">HOME REPAIR</text>
+  <text x="980" y="2162" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">FOOD DELIVERY</text>
+  <text x="2200" y="2614" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">LEGAL SERVICES</text>
+  <text x="4300" y="344" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">REAL ESTATE</text>
+  <text x="4450" y="714" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">LOGISTICS</text>
+  <text x="5100" y="564" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">E-COMMERCE</text>
+  <text x="5500" y="1164" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">FINANCE</text>
+  <text x="4200" y="2414" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">PROCUREMENT</text>
+  <text x="5700" y="2064" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="36" fill="#7BB5A8" letter-spacing="2">GOVERNMENT</text>
+
+</g>
+
+<!-- WALL DIVIDER -->
+<g id="wall-divider">
+  <line x1="3000" y1="0" x2="3000" y2="3000" stroke="#00C2E0" stroke-width="1" opacity="0.10"/>
+</g>
+
+<!-- BRANDING -->
+<g id="branding">
+  <text x="120" y="190" font-family="Outfit, Inter, sans-serif" font-size="64" font-weight="600" fill="#00C2E0" letter-spacing="4">VLS SOLUTIONS</text>
+  <line x1="120" y1="215" x2="640" y2="215" stroke="#00C2E0" stroke-width="2" opacity="0.30"/>
+</g>
+
+<!-- EYEBROW -->
+<g id="eyebrow">
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-eyebrow)"/>
+</g>
+
+<!-- HEADLINE -->
+<g id="headline">
+  <text x="120" y="530" font-family="Outfit, Inter, sans-serif" font-size="300" font-weight="800" fill="#E8F5F2" letter-spacing="-8">Build it.</text>
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-limits)"/>
+</g>
+
+<!-- TAGLINE + DETAIL -->
+<g id="tagline">
+  <text x="120" y="1312" font-family="Outfit, Inter, sans-serif" font-size="68" font-weight="400" fill="#E8F5F2">One VLS Engine. Any market. Any scale.</text>
+  <text x="120" y="1398" font-family="Outfit, Inter, sans-serif" font-size="50" font-weight="400" fill="#7BB5A8">Deploy your own AI marketplace in weeks, not years.</text>
+</g>
+
+<!-- STATS — Wall 2 (right) -->
+<g id="stats">
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-stat1)"/>
+  <text x="3180" y="690" font-family="Outfit, Inter, sans-serif" font-size="60" font-weight="400" fill="#7BB5A8">faster to market</text>
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-stat2)"/>
+  <text x="3180" y="1030" font-family="Outfit, Inter, sans-serif" font-size="60" font-weight="400" fill="#7BB5A8">cost reduction vs. custom builds</text>
+  <line x1="3180" y1="1120" x2="5800" y2="1120" stroke="#00C2E0" stroke-width="1" opacity="0.20"/>
+</g>
+
+<!-- QR SECTION -->
+<g id="qr-section">
+  <rect x="4660" y="2060" width="680" height="680" rx="16" fill="#141C22" stroke="url(#g-accent)" stroke-width="3"/>
+  <rect x="4692" y="2092" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="4710" y="2110" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <rect x="5218" y="2092" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="5236" y="2110" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <rect x="4692" y="2618" width="110" height="110" rx="6" fill="none" stroke="#00C2E0" stroke-width="5"/>
+  <rect x="4710" y="2636" width="74" height="74" rx="3" fill="#00C2E0" opacity="0.75"/>
+  <g fill="#7BB5A8" opacity="0.45">
+    <rect x="4822" y="2092" width="22" height="22"/><rect x="4858" y="2108" width="22" height="22"/>
+    <rect x="4894" y="2092" width="22" height="22"/><rect x="4930" y="2112" width="22" height="22"/>
+    <rect x="4966" y="2092" width="22" height="22"/><rect x="5002" y="2102" width="22" height="22"/>
+    <rect x="5038" y="2092" width="22" height="22"/><rect x="5074" y="2108" width="22" height="22"/>
+    <rect x="5110" y="2092" width="22" height="22"/><rect x="5146" y="2100" width="22" height="22"/>
+    <rect x="5182" y="2092" width="22" height="22"/>
+    <rect x="4822" y="2134" width="22" height="22"/><rect x="4870" y="2148" width="22" height="22"/>
+    <rect x="4908" y="2134" width="22" height="22"/><rect x="4946" y="2142" width="22" height="22"/>
+    <rect x="4984" y="2134" width="22" height="22"/><rect x="5022" y="2146" width="22" height="22"/>
+    <rect x="5060" y="2134" width="22" height="22"/><rect x="5096" y="2140" width="22" height="22"/>
+    <rect x="5132" y="2134" width="22" height="22"/><rect x="5168" y="2148" width="22" height="22"/>
+    <rect x="4822" y="2225" width="22" height="22"/><rect x="4858" y="2243" width="22" height="22"/>
+    <rect x="4898" y="2225" width="22" height="22"/><rect x="4936" y="2237" width="22" height="22"/>
+    <rect x="4974" y="2225" width="22" height="22"/><rect x="5012" y="2239" width="22" height="22"/>
+    <rect x="5050" y="2225" width="22" height="22"/><rect x="5086" y="2233" width="22" height="22"/>
+    <rect x="5122" y="2225" width="22" height="22"/><rect x="5158" y="2241" width="22" height="22"/>
+    <rect x="5194" y="2225" width="22" height="22"/>
+    <rect x="4822" y="2295" width="22" height="22"/><rect x="4862" y="2311" width="22" height="22"/>
+    <rect x="4902" y="2295" width="22" height="22"/><rect x="4942" y="2305" width="22" height="22"/>
+    <rect x="4982" y="2295" width="22" height="22"/><rect x="5022" y="2309" width="22" height="22"/>
+    <rect x="5062" y="2295" width="22" height="22"/><rect x="5102" y="2303" width="22" height="22"/>
+    <rect x="5142" y="2295" width="22" height="22"/><rect x="5182" y="2311" width="22" height="22"/>
+    <rect x="5222" y="2295" width="22" height="22"/>
+    <rect x="4822" y="2365" width="22" height="22"/><rect x="4858" y="2379" width="22" height="22"/>
+    <rect x="4898" y="2365" width="22" height="22"/><rect x="4938" y="2377" width="22" height="22"/>
+    <rect x="4978" y="2365" width="22" height="22"/><rect x="5018" y="2381" width="22" height="22"/>
+    <rect x="5058" y="2365" width="22" height="22"/><rect x="5094" y="2373" width="22" height="22"/>
+    <rect x="5130" y="2365" width="22" height="22"/><rect x="5166" y="2379" width="22" height="22"/>
+    <rect x="5202" y="2365" width="22" height="22"/>
+    <rect x="4822" y="2435" width="22" height="22"/><rect x="4860" y="2451" width="22" height="22"/>
+    <rect x="4900" y="2435" width="22" height="22"/><rect x="4940" y="2447" width="22" height="22"/>
+    <rect x="4980" y="2435" width="22" height="22"/><rect x="5020" y="2449" width="22" height="22"/>
+    <rect x="5060" y="2435" width="22" height="22"/><rect x="5096" y="2443" width="22" height="22"/>
+    <rect x="5132" y="2435" width="22" height="22"/><rect x="5168" y="2451" width="22" height="22"/>
+    <rect x="5204" y="2435" width="22" height="22"/>
+    <rect x="5218" y="2225" width="22" height="22"/><rect x="5238" y="2261" width="22" height="22"/>
+    <rect x="5218" y="2297" width="22" height="22"/><rect x="5238" y="2333" width="22" height="22"/>
+    <rect x="5218" y="2369" width="22" height="22"/><rect x="5238" y="2405" width="22" height="22"/>
+    <rect x="4822" y="2505" width="22" height="22"/><rect x="4862" y="2519" width="22" height="22"/>
+    <rect x="4904" y="2505" width="22" height="22"/><rect x="4944" y="2517" width="22" height="22"/>
+    <rect x="4984" y="2505" width="22" height="22"/><rect x="5024" y="2521" width="22" height="22"/>
+    <rect x="5064" y="2505" width="22" height="22"/><rect x="5100" y="2513" width="22" height="22"/>
+    <rect x="5136" y="2505" width="22" height="22"/><rect x="5172" y="2519" width="22" height="22"/>
+    <rect x="5208" y="2505" width="22" height="22"/>
+    <rect x="4822" y="2575" width="22" height="22"/><rect x="4864" y="2589" width="22" height="22"/>
+    <rect x="4906" y="2575" width="22" height="22"/><rect x="4948" y="2585" width="22" height="22"/>
+    <rect x="4990" y="2575" width="22" height="22"/><rect x="5032" y="2591" width="22" height="22"/>
+    <rect x="5074" y="2575" width="22" height="22"/><rect x="5116" y="2583" width="22" height="22"/>
+    <rect x="5158" y="2575" width="22" height="22"/><rect x="5200" y="2589" width="22" height="22"/>
+    <rect x="5222" y="2457" width="22" height="22"/><rect x="5238" y="2493" width="22" height="22"/>
+    <rect x="5222" y="2529" width="22" height="22"/><rect x="5238" y="2565" width="22" height="22"/>
+  </g>
+  <rect x="0" y="0" width="6000" height="3000" fill="url(#g-accent)" mask="url(#m-qr-lbl)"/>
+  <text x="5200" y="2498" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="42" font-weight="400" fill="#7BB5A8">vls.ai · Try the demo</text>
+  <text x="5200" y="2790" text-anchor="middle" font-family="Outfit, Inter, sans-serif" font-size="28" fill="#7BB5A8" opacity="0.38">[ PLACEHOLDER — SWAP URL BEFORE PRINT ]</text>
+</g>
+
+<!-- BOTTOM ACCENT BAR -->
+<g id="accent-bar">
+  <rect x="0" y="2945" width="6000" height="55" fill="url(#g-accent)" opacity="0.55"/>
+</g>
+
+</svg>

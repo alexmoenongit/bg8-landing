@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0c1217; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px; }
+</style>
+</head>
+<body>
+<svg width="1100" height="480" viewBox="0 0 1100 480" xmlns="http://www.w3.org/2000/svg" font-family="'Outfit', 'Helvetica Neue', sans-serif">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00C2E0"/>
+      <stop offset="100%" stop-color="#4ADE5C"/>
+    </linearGradient>
+    <radialGradient id="hubCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#00C2E0"/>
+    </radialGradient>
+    <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="480" fill="#141C22" rx="12"/>
+
+  <!-- Ambient center glow -->
+  <circle cx="550" cy="240" r="260" fill="url(#bgGlow)"/>
+
+  <!-- ── CONNECTION LINES ── -->
+  <!-- Customer 1 (top) → hub -->
+  <line x1="175" y1="118" x2="498" y2="236" stroke="#00C2E0" stroke-width="1.5" opacity="0.35"/>
+  <!-- Customer 2 (mid) → hub -->
+  <line x1="178" y1="240" x2="498" y2="240" stroke="#00C2E0" stroke-width="1.5" opacity="0.35"/>
+  <!-- Customer 3 (bottom) → hub -->
+  <line x1="175" y1="362" x2="498" y2="244" stroke="#00C2E0" stroke-width="1.5" opacity="0.35"/>
+  <!-- Hub → Vendor 1 (top) -->
+  <line x1="602" y1="236" x2="924" y2="118" stroke="#4ADE5C" stroke-width="1.5" opacity="0.35"/>
+  <!-- Hub → Vendor 2 (mid) -->
+  <line x1="602" y1="240" x2="922" y2="240" stroke="#4ADE5C" stroke-width="1.5" opacity="0.35"/>
+  <!-- Hub → Vendor 3 (bottom) -->
+  <line x1="602" y1="244" x2="924" y2="362" stroke="#4ADE5C" stroke-width="1.5" opacity="0.35"/>
+
+  <!-- Arrow heads on vendor side -->
+  <polygon points="924,118 912,112 916,122" fill="#4ADE5C" opacity="0.5"/>
+  <polygon points="922,240 910,234 910,246" fill="#4ADE5C" opacity="0.5"/>
+  <polygon points="924,362 912,358 916,368" fill="#4ADE5C" opacity="0.5"/>
+
+  <!-- ── VLS ENGINE HUB ── -->
+  <!-- Outer atmosphere -->
+  <circle cx="550" cy="240" r="130" fill="url(#hubGlow)"/>
+  <!-- Orbital ring 1 -->
+  <circle cx="550" cy="240" r="96" fill="none" stroke="#00C2E0" stroke-width="1" opacity="0.18" stroke-dasharray="7,7"/>
+  <!-- Orbital ring 2 -->
+  <circle cx="550" cy="240" r="70" fill="none" stroke="#4ADE5C" stroke-width="1.5" opacity="0.28" stroke-dasharray="5,6"/>
+  <!-- Hub glow layer -->
+  <circle cx="550" cy="240" r="50" fill="#00C2E0" opacity="0.12" filter="url(#softBlur)"/>
+  <!-- Hub core -->
+  <circle cx="550" cy="240" r="44" fill="url(#hubCore)" opacity="0.95"/>
+  <!-- Center dot -->
+  <circle cx="550" cy="240" r="13" fill="#ffffff" opacity="0.95"/>
+
+  <!-- VLS ENGINE label -->
+  <text x="550" y="314" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="3.5" fill="url(#brandGrad)">VLS ENGINE</text>
+
+  <!-- ── CUSTOMER ICONS (left, teal) ── -->
+  <!-- Person icon macro: head = circle, body = arc path -->
+
+  <!-- Customer 1: y=100 -->
+  <g transform="translate(148, 100)">
+    <!-- glow bg -->
+    <circle cx="0" cy="0" r="34" fill="#00C2E0" opacity="0.07"/>
+    <!-- body -->
+    <path d="M-22,32 Q-22,14 0,14 Q22,14 22,32 Z" fill="#00C2E0" opacity="0.85"/>
+    <!-- head -->
+    <circle cx="0" cy="-2" r="16" fill="#00C2E0" opacity="0.9"/>
+    <!-- label -->
+    <text x="0" y="56" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#7BB5A8">CUSTOMER</text>
+  </g>
+
+  <!-- Customer 2: y=240 -->
+  <g transform="translate(148, 226)">
+    <circle cx="0" cy="0" r="34" fill="#00C2E0" opacity="0.07"/>
+    <path d="M-22,32 Q-22,14 0,14 Q22,14 22,32 Z" fill="#00C2E0" opacity="0.85"/>
+    <circle cx="0" cy="-2" r="16" fill="#00C2E0" opacity="0.9"/>
+    <text x="0" y="56" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#7BB5A8">CUSTOMER</text>
+  </g>
+
+  <!-- Customer 3: y=348 -->
+  <g transform="translate(148, 348)">
+    <circle cx="0" cy="0" r="34" fill="#00C2E0" opacity="0.07"/>
+    <path d="M-22,32 Q-22,14 0,14 Q22,14 22,32 Z" fill="#00C2E0" opacity="0.85"/>
+    <circle cx="0" cy="-2" r="16" fill="#00C2E0" opacity="0.9"/>
+    <text x="0" y="56" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#7BB5A8">CUSTOMER</text>
+  </g>
+
+  <!-- ── VENDOR ICONS (right, green) ── -->
+  <!-- Building shape: rect body + door + two windows -->
+
+  <!-- Vendor 1: y=80 -->
+  <g transform="translate(950, 80)">
+    <circle cx="0" cy="12" r="34" fill="#4ADE5C" opacity="0.07"/>
+    <!-- building body -->
+    <rect x="-24" y="-22" width="48" height="44" rx="3" fill="#4ADE5C" opacity="0.85"/>
+    <!-- door -->
+    <rect x="-8" y="6" width="16" height="16" rx="2" fill="#141C22" opacity="0.9"/>
+    <!-- windows -->
+    <rect x="-18" y="-12" width="12" height="11" rx="1.5" fill="#141C22" opacity="0.65"/>
+    <rect x="6" y="-12" width="12" height="11" rx="1.5" fill="#141C22" opacity="0.65"/>
+    <!-- label -->
+    <text x="0" y="40" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#7BB5A8">VENDOR</text>
+  </g>
+
+  <!-- Vendor 2: y=220 -->
+  <g transform="translate(950, 220)">
+    <circle cx="0" cy="12" r="34" fill="#4ADE5C" opacity="0.07"/>
+    <rect x="-24" y="-22" width="48" height="44" rx="3" fill="#4ADE5C" opacity="0.85"/>
+    <rect x="-8" y="6" width="16" height="16" rx="2" fill="#141C22" opacity="0.9"/>
+    <rect x="-18" y="-12" width="12" height="11" rx="1.5" fill="#141C22" opacity="0.65"/>
+    <rect x="6" y="-12" width="12" height="11" rx="1.5" fill="#141C22" opacity="0.65"/>
+    <text x="0" y="40" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#7BB5A8">VENDOR</text>
+  </g>
+
+  <!-- Vendor 3: y=340 -->
+  <g transform="translate(950, 340)">
+    <circle cx="0" cy="12" r="34" fill="#4ADE5C" opacity="0.07"/>
+    <rect x="-24" y="-22" width="48" height="44" rx="3" fill="#4ADE5C" opacity="0.85"/>
+    <rect x="-8" y="6" width="16" height="16" rx="2" fill="#141C22" opacity="0.9"/>
+    <rect x="-18" y="-12" width="12" height="11" rx="1.5" fill="#141C22" opacity="0.65"/>
+    <rect x="6" y="-12" width="12" height="11" rx="1.5" fill="#141C22" opacity="0.65"/>
+    <text x="0" y="40" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2" fill="#7BB5A8">VENDOR</text>
+  </g>
+
+  <!-- ── COLUMN LABELS (subtle, bottom) ── -->
+  <text x="148" y="448" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2.5" fill="#E8F5F2" opacity="0.35">CUSTOMERS</text>
+  <text x="950" y="448" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2.5" fill="#E8F5F2" opacity="0.35">VENDORS</text>
+
+  <!-- Subtle bottom gradient bar -->
+  <rect x="0" y="472" width="1100" height="8" rx="0 0 12 12" fill="url(#brandGrad)" opacity="0.4"/>
+
+</svg>
+</body>
+</html>
