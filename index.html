@@ -241,6 +241,19 @@
     }
     .step h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
     .step p { font-size: 17px; color: var(--muted); line-height: 1.55; max-width: 540px; }
+    .store-badges { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .store-badge {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 20px; border-radius: 10px; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: #fff; transition: background 0.2s, border-color 0.2s;
+      min-width: 152px;
+    }
+    .store-badge:hover { background: rgba(255,255,255,0.1); border-color: rgba(0,194,224,0.4); }
+    .store-badge span { display: flex; flex-direction: column; line-height: 1.2; }
+    .store-badge small { font-size: 11px; color: var(--muted); font-weight: 400; }
+    .store-badge strong { font-size: 15px; font-weight: 700; }
 
     /* CTA */
     .cta-section {
@@ -539,8 +552,8 @@
     <div class="local-grid">
       <div class="local-text">
         <div class="eyebrow">Your market</div>
-        <h2>Your customers are<br><span class="grad-text">already searching.</span></h2>
-        <p>Greater Vancouver has millions of residents looking for local services right now. BG8 routes qualified demand directly to vendors like you — no ads to run, no cold calls to make. Just bookings.</p>
+        <h2>Your Local Network<br><span class="grad-text">and System.</span></h2>
+        <p>Today's customers expect speed, clarity, and instant responses, but most service businesses are still managing inquiries manually. BG8 helps you build your own AI agent to structure the process, helping you find the right customers, managing responses, and turning requests into confirmed bookings automatically.</p>
       </div>
 
       <!-- Vancouver Map SVG -->
@@ -616,27 +629,24 @@
 <section class="problem-section">
   <div class="container">
     <div class="eyebrow">The problem</div>
-    <h2>Growing your business<br>shouldn't feel like a gamble.</h2>
-    <p class="lead">Word of mouth has limits. BG8 doesn't.</p>
+    <h2>Running a service business is complex.<br>It doesn't have to be.</h2>
+    <p class="lead">With the right system, demand becomes clear, structured, and easier to convert.</p>
 
     <div class="chaos-grid">
 
       <div class="chaos-card">
-        <div class="chaos-icon">🎯</div>
         <div class="chaos-title">Leads that don't convert.</div>
         <div class="chaos-desc">You spend hours following up on inquiries that go nowhere. Tire-kickers, price-shoppers, no-shows. Your time is worth more than this.</div>
         <span class="chaos-tag">Lost revenue</span>
       </div>
 
       <div class="chaos-card">
-        <div class="chaos-icon">📲</div>
         <div class="chaos-title">No reliable booking channel.</div>
         <div class="chaos-desc">You're managing DMs, voicemails, texts, and emails — all for the same job. There's no central system. Just chaos across five platforms.</div>
         <span class="chaos-tag">Scattered workflow</span>
       </div>
 
       <div class="chaos-card">
-        <div class="chaos-icon">📉</div>
         <div class="chaos-title">The quiet season.</div>
         <div class="chaos-desc">Work dries up in the slow months and floods in the busy ones. There's no lever to pull. You just wait and hope the phone rings.</div>
         <span class="chaos-tag">No demand visibility</span>
@@ -661,19 +671,19 @@
         <div class="compare-label old-label">Without BG8</div>
         <div class="compare-item">
           <span class="icon">❌</span>
-          <span>Post on Kijiji and wait for tire-kickers to respond</span>
+          <span>Chasing leads that don't convert</span>
         </div>
         <div class="compare-item">
           <span class="icon">❌</span>
-          <span>Manage leads across texts, DMs, voicemails, and email</span>
+          <span>Messages scattered across platforms</span>
         </div>
         <div class="compare-item">
           <span class="icon">❌</span>
-          <span>No upfront job info — quote blind, show up blind</span>
+          <span>Quoting without full job details</span>
         </div>
         <div class="compare-item">
           <span class="icon">❌</span>
-          <span>Compete on price against faceless national apps</span>
+          <span>Competing on price, no way to stand out</span>
         </div>
         <div class="compare-item">
           <span class="icon">❌</span>
@@ -690,23 +700,23 @@
         <div class="compare-label new-label">With BG8</div>
         <div class="compare-item">
           <span class="icon">✓</span>
-          <span>Receive qualified, matched requests — ready to book</span>
+          <span>Receive matched requests ready to book</span>
         </div>
         <div class="compare-item">
           <span class="icon">✓</span>
-          <span>One platform. All your leads, bookings, and confirmations</span>
+          <span>All inquiries structured in one system</span>
         </div>
         <div class="compare-item">
           <span class="icon">✓</span>
-          <span>Job details upfront. Quote accurately. Show up prepared.</span>
+          <span>Clear job details before you quote</span>
         </div>
         <div class="compare-item">
           <span class="icon">✓</span>
-          <span>Local network that grows your reputation, not erodes it</span>
+          <span>Build trust within a local network</span>
         </div>
         <div class="compare-item">
           <span class="icon">✓</span>
-          <span>Demand routing keeps your calendar full year-round</span>
+          <span>Steady demand that fills your calendar</span>
         </div>
       </div>
 
@@ -728,24 +738,34 @@
       <div class="step">
         <div class="step-num">01</div>
         <div>
-          <h3>List your services</h3>
-          <p>Tell BG8 what you do, where you work, and your availability. Takes minutes. No marketing degree required.</p>
+          <h3>Download the app and register for free</h3>
+          <p>Create your vendor account in minutes. Available on iOS and Android.</p>
+          <div class="store-badges">
+            <a class="store-badge apple" href="#" aria-label="Download on the App Store">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <span><small>Download on the</small><strong>App Store</strong></span>
+            </a>
+            <a class="store-badge google" href="#" aria-label="Get it on Google Play">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.18.64.24.99.18l12.45-7.19-2.78-2.78-10.66 9.79zm-1.67-20.6C1.19 3.55 1 4 1 4.56v14.88c0 .56.19 1.01.51 1.33l.07.07 8.34-8.34v-.2L1.51 3.09l-.01.07zM20.49 10.7l-2.78-1.61-3.12 3.12 3.12 3.12 2.82-1.63c.8-.46.8-1.52-.04-1.99zM4.17.23L16.62 7.42l-2.78 2.78L3.18.41C3.52.35 3.87.41 4.17.23z"/></svg>
+              <span><small>Get it on</small><strong>Google Play</strong></span>
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">02</div>
         <div>
-          <h3>Receive matched requests</h3>
-          <p>When a customer in your area needs what you offer, BG8 routes their request to you — with job details, location, and budget already attached. No cold leads.</p>
+          <h3>List your services</h3>
+          <p>Tell BG8 what you do, where you work, and your availability. Takes minutes. No marketing degree required.</p>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">03</div>
         <div>
-          <h3>Confirm and get paid</h3>
-          <p>Review the job, confirm the booking, and show up ready. Everything in writing. No chasing. No guessing.</p>
+          <h3>Receive matched requests, confirm, and get paid</h3>
+          <p>When a customer in your area needs what you offer, BG8 routes their request to you — with job details, location, and budget attached. Review, confirm, show up ready. Everything in writing. No chasing.</p>
         </div>
       </div>
 
