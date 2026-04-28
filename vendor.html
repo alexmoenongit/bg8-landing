@@ -1,760 +1,1193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BG8 — Concept B: Vendor (B2B)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BG8 — Grow your local business. Get booked.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-base: #141C22;
+      --bg-raised: #1A2530;
+      --bg-deep: #0D1419;
+      --teal: #00C2E0;
+      --green: #4ADE5C;
+      --text: #E8F5F2;
+      --muted: #7BB5A8;
+      --font: 'Outfit', sans-serif;
+      --grad: linear-gradient(90deg, #00C2E0, #4ADE5C);
+      --max-w: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg-base);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    section { padding: 100px 0; }
+    .eyebrow {
+      font-size: 13px; font-weight: 600; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+    }
 
-  :root {
-    --aurora-start: #00C2E0;
-    --aurora-end:   #4ADE5C;
-    --bg:    #141C22;
-    --card:  #1E2A32;
-    --card2: #1A2830;
-    --border: #2A3A44;
-    --text:  #E8F5F2;
-    --muted: #7BB5A8;
-    --body:  #5A8A80;
-    --dark:  #0D1620;
-  }
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 40px; max-width: var(--max-w); margin: 0 auto;
+      position: relative; z-index: 20;
+    }
+    .logo { font-size: 26px; font-weight: 800; letter-spacing: 3px; }
+    .nav-badge { font-size: 13px; color: var(--muted); }
 
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Outfit', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-  }
+    /* HERO */
+    .hero {
+      position: relative; overflow: hidden;
+      height: calc(92svh - 82px);
+      display: flex; align-items: center;
+    }
+    .hero > .container { width: 100%; }
+    .hero-aurora {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .aurora-blob {
+      position: absolute; border-radius: 50%;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 4.2vw, 63px);
+      font-weight: 800; letter-spacing: -1.5px; line-height: 1.06;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 1.8vw, 20px); font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 44px; line-height: 1.45;
+    }
 
-  /* ── Aurora utility ──────────────────────────────────────────────────────── */
-  .aurora-fill { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); }
-  .aurora-text {
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .aurora-border {
-    position: relative;
-  }
-  .aurora-border::before {
-    content: ''; position: absolute; inset: -1px;
-    border-radius: inherit;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    z-index: -1;
-  }
+    /* CONVERGING STREAMLINE */
+    .streamline-wrap {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; min-height: 420px;
+    }
+    .phone-backdrop {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; z-index: 1; opacity: 1;
+      pointer-events: none;
+    }
+    .phone-frame {
+      height: 80%; max-height: 460px; width: auto; display: block;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 88%);
+      mask-image: linear-gradient(to bottom, black 0%, black 45%, transparent 88%);
+    }
+    .streamline-diagram { position: relative; z-index: 2; width: 100%; margin-top: auto; margin-bottom: 0; }
 
-  /* ── NAV ─────────────────────────────────────────────────────────────────── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 48px;
-    background: rgba(20,28,34,0.90);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo-wrap { display: flex; align-items: center; gap: 10px; }
-  .nav-logo {
-    font-size: 18px; font-weight: 800; letter-spacing: -0.01em;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .nav-badge {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    background: rgba(0,194,224,0.1); color: var(--aurora-start);
-    border: 1px solid rgba(0,194,224,0.25); padding: 3px 10px; border-radius: 4px;
-  }
-  .nav-right { display: flex; align-items: center; gap: 28px; }
-  .nav-link { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-  .nav-link:hover { color: var(--text); }
-  .nav-cta {
-    font-size: 14px; font-weight: 700;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    color: #141C22; padding: 9px 22px; border-radius: 7px;
-    text-decoration: none; transition: all 0.2s;
-    box-shadow: 0 0 20px rgba(0,194,224,0.25);
-  }
-  .nav-cta:hover { box-shadow: 0 0 32px rgba(0,194,224,0.4); transform: translateY(-1px); }
+    @media (max-width: 760px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .streamline-wrap { order: -1; }
+    }
 
-  /* ── HERO ────────────────────────────────────────────────────────────────── */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 120px 48px 80px;
-    position: relative; overflow: hidden;
-    background: var(--bg);
-  }
-  /* Subtle aurora glow layers */
-  .hero::before {
-    content: '';
-    position: absolute; width: 800px; height: 600px;
-    background: radial-gradient(ellipse, rgba(0,194,224,0.10) 0%, transparent 65%);
-    top: -100px; right: -150px; pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute; width: 600px; height: 500px;
-    background: radial-gradient(ellipse, rgba(74,222,92,0.07) 0%, transparent 65%);
-    bottom: 0; left: 100px; pointer-events: none;
-  }
-  .hero-inner {
-    max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 72px; align-items: center;
-  }
-  .hero-label {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--aurora-start); background: rgba(0,194,224,0.08);
-    border: 1px solid rgba(0,194,224,0.2); padding: 6px 14px; border-radius: 100px;
-    margin-bottom: 26px;
-  }
-  .hero h1 {
-    font-size: clamp(36px, 4.2vw, 58px);
-    font-weight: 800; line-height: 1.05;
-    letter-spacing: -0.025em; margin-bottom: 22px;
-  }
-  .hero-sub {
-    font-size: 17px; color: var(--muted); line-height: 1.65;
-    margin-bottom: 36px; max-width: 500px;
-  }
-  .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    .btn-primary {
+      display: inline-block; background: var(--grad);
+      color: var(--bg-base); font-family: var(--font);
+      font-size: 17px; font-weight: 700;
+      padding: 16px 40px; border-radius: 28px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost {
+      display: inline-block; background: transparent;
+      color: var(--text); font-family: var(--font);
+      font-size: 17px; font-weight: 600;
+      padding: 15px 40px; border-radius: 28px;
+      border: 1.5px solid rgba(0,194,224,0.35); cursor: pointer;
+      text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
 
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 16px; font-weight: 700;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    color: #141C22; padding: 14px 28px; border-radius: 8px;
-    text-decoration: none; transition: all 0.2s;
-    box-shadow: 0 0 32px rgba(0,194,224,0.3), 0 4px 16px rgba(0,0,0,0.2);
-  }
-  .btn-primary:hover { box-shadow: 0 0 48px rgba(0,194,224,0.45), 0 6px 24px rgba(0,0,0,0.25); transform: translateY(-2px); }
+    /* LOCAL MAP SECTION */
+    .local-section {
+      background: var(--bg-deep);
+      border-top: 1px solid rgba(0,194,224,0.08);
+      border-bottom: 1px solid rgba(0,194,224,0.08);
+    }
+    .local-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .local-text h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 24px;
+    }
+    .local-text p {
+      font-size: 20px; color: var(--muted); line-height: 1.55; max-width: 440px;
+    }
+    .map-wrap {
+      position: relative; display: flex; justify-content: center;
+    }
 
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 14px; font-weight: 500; color: var(--muted);
-    border: 1px solid var(--border); padding: 13px 22px;
-    border-radius: 8px; text-decoration: none; transition: all 0.2s;
-  }
-  .btn-ghost:hover { border-color: rgba(0,194,224,0.4); color: var(--text); }
+    /* PROBLEM SECTION */
+    .problem-section { background: var(--bg-base); }
+    .problem-section h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .problem-section .lead {
+      font-size: 20px; color: var(--muted); margin-bottom: 64px; max-width: 560px;
+    }
+    .chaos-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .chaos-card {
+      background: var(--bg-raised); border-radius: 16px;
+      padding: 32px; border: 1px solid rgba(255,255,255,0.05);
+      position: relative; overflow: hidden;
+    }
+    .chaos-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: rgba(255,80,80,0.5);
+    }
+    .chaos-icon { font-size: 32px; margin-bottom: 16px; }
+    .chaos-title {
+      font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text);
+    }
+    .chaos-desc { font-size: 15px; color: var(--muted); line-height: 1.5; }
+    .chaos-tag {
+      display: inline-block; margin-top: 16px;
+      background: rgba(255,80,80,0.15); color: #ff6b6b;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      padding: 4px 12px; border-radius: 20px;
+    }
 
-  .hero-trust { display: flex; align-items: center; gap: 20px; }
-  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--body); }
-  .trust-dot { width: 5px; height: 5px; border-radius: 50%;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); }
+    /* HOW IT WORKS */
+    .how-section { background: var(--bg-base); }
+    .how-section h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .how-section .lead {
+      font-size: 20px; color: var(--muted); margin-bottom: 72px; max-width: 560px;
+    }
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: grid; grid-template-columns: 80px 1fr; gap: 32px;
+      padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      align-items: center;
+    }
+    .step.has-mockup {
+      grid-template-columns: 80px 1fr 200px;
+      align-items: start;
+      max-height: 340px;
+      overflow: hidden;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-size: 48px; font-weight: 800; letter-spacing: -2px;
+      line-height: 1; background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .step h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 17px; color: var(--muted); line-height: 1.55; max-width: 540px; }
+    .step-mockup {
+      display: flex; justify-content: center; align-items: flex-start;
+      padding-top: 8px;
+    }
+    .step-phone {
+      height: 420px; width: auto; display: block;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 75%);
+      mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 75%);
+    }
+    @media (max-width: 860px) {
+      .step.has-mockup { grid-template-columns: 80px 1fr; }
+      .step-mockup { display: none; }
+    }
+    .store-badges { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .store-badge {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 20px; border-radius: 10px; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: #fff; transition: background 0.2s, border-color 0.2s;
+      min-width: 152px;
+    }
+    .store-badge:hover { background: rgba(255,255,255,0.1); border-color: rgba(0,194,224,0.4); }
+    .store-badge span { display: flex; flex-direction: column; line-height: 1.2; }
+    .store-badge small { font-size: 11px; color: var(--muted); font-weight: 400; }
+    .store-badge strong { font-size: 15px; font-weight: 700; }
 
-  /* ── DASHBOARD MOCKUP ────────────────────────────────────────────────────── */
-  .dashboard-mockup {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; overflow: hidden;
-    box-shadow: 0 0 0 1px rgba(0,194,224,0.06), 0 32px 80px rgba(0,0,0,0.5);
-    /* Aurora top accent */
-    border-top: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
-  }
-  .dashboard-mockup::before {
-    content: '';
-    position: absolute; top: -2px; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    border-radius: 14px 14px 0 0;
-  }
-  .dash-topbar {
-    background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border);
-    padding: 12px 18px; display: flex; align-items: center; justify-content: space-between;
-  }
-  .dash-logo {
-    font-size: 13px; font-weight: 700;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .dash-pills { display: flex; gap: 6px; }
-  .dpill { font-size: 11px; padding: 4px 10px; border-radius: 4px; font-weight: 500; cursor: pointer; }
-  .dpill-active { background: rgba(0,194,224,0.12); color: var(--aurora-start); }
-  .dpill-inactive { color: var(--body); }
-  .dash-body { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
-  .dash-section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--body); margin-bottom: 10px; }
+    /* EARLY VENDORS SECTION — redesigned */
+    .early-vendors-section {
+      background: var(--bg-base);
+      border-top: 1px solid rgba(0,194,224,0.08);
+      position: relative; overflow: hidden;
+    }
+    .early-vendors-section::before {
+      content: '';
+      position: absolute; top: -20%; right: -10%;
+      width: 60%; height: 70%;
+      background: radial-gradient(circle, rgba(0,194,224,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .early-vendors-section::after {
+      content: '';
+      position: absolute; bottom: -10%; left: -5%;
+      width: 50%; height: 60%;
+      background: radial-gradient(circle, rgba(74,222,92,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .early-vendors-section h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .early-vendors-section .section-sub {
+      font-size: 20px; color: var(--muted); margin-bottom: 52px; max-width: 580px; line-height: 1.55;
+    }
 
-  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .stat-box {
-    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-    border-radius: 8px; padding: 12px 14px;
-  }
-  .stat-val { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 2px; }
-  .stat-val .aurora { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .stat-label { font-size: 11px; color: var(--body); }
-  .stat-change { font-size: 11px; color: #4ADE5C; margin-top: 4px; }
+    /* Benefits bar — horizontal pill row */
+    .benefits-bar {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 56px;
+    }
+    .benefit-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,194,224,0.06);
+      border: 1px solid rgba(0,194,224,0.25);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 14px; font-weight: 600; color: var(--text);
+      white-space: nowrap;
+    }
+    .benefit-pill .pill-emoji { font-size: 15px; }
 
-  .activity-list { display: flex; flex-direction: column; gap: 8px; }
-  .activity-item {
-    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);
-    border-radius: 8px; padding: 11px 14px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .activity-left { display: flex; align-items: center; gap: 10px; }
-  .a-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
-  .a-icon-green { background: rgba(0,194,224,0.1); }
-  .a-icon-yellow { background: rgba(255,198,0,0.1); }
-  .a-icon-blue { background: rgba(59,130,246,0.1); }
-  .a-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
-  .a-sub { font-size: 11px; color: var(--body); }
-  .a-status { font-size: 11px; font-weight: 600; }
-  .status-done { color: var(--aurora-start); }
-  .status-pending { color: #FBB03B; }
-  .status-new { color: #60A5FA; }
+    /* Two-column session card */
+    .ev-single-card {
+      max-width: 100%;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 0;
+      position: relative; overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+    .ev-single-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #00C2E0, #4ADE5C);
+      z-index: 1;
+    }
+    .ev-left {
+      padding: 52px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .ev-right {
+      padding: 52px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: rgba(0,0,0,0.15);
+    }
 
-  .ai-status-bar {
-    background: rgba(0,194,224,0.06); border: 1px solid rgba(0,194,224,0.18);
-    border-radius: 8px; padding: 11px 14px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .ai-status-left { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
-  .ai-dot { width: 7px; height: 7px; border-radius: 50%; animation: pulse 2s infinite;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); }
-  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
-  .ai-status-right { font-size: 11px; font-weight: 600; color: var(--aurora-start); }
+    .workshop-date {
+      display: inline-block;
+      background: rgba(0,194,224,0.1); color: var(--teal);
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 14px; border-radius: 20px;
+      border: 1px solid rgba(0,194,224,0.25);
+      margin-bottom: 24px; text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .ev-left h3 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .ev-left .card-sub {
+      font-size: 16px; color: var(--muted); margin-bottom: 32px; line-height: 1.65;
+    }
+    .ev-checklist {
+      list-style: none; padding: 0; margin: 0 0 36px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .ev-checklist li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; color: var(--text); line-height: 1.45;
+    }
+    .ev-checklist li::before {
+      content: '';
+      width: 20px; height: 20px; flex-shrink: 0;
+      border-radius: 50%;
+      margin-top: 1px;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9'%3E%3Cpath d='M1 4l3.5 3.5L11 1' stroke='%23141C22' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 9px no-repeat,
+        linear-gradient(135deg, #00C2E0, #4ADE5C);
+    }
+    .ev-meta-row {
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .ev-meta-item {
+      font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+    }
 
-  /* ── NUMBERS STRIP ───────────────────────────────────────────────────────── */
-  .numbers-section {
-    padding: 56px 48px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: rgba(0,194,224,0.03);
-  }
-  .numbers-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-  .num-item { text-align: center; }
-  .num-val {
-    font-size: 44px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.04em;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .num-label { font-size: 14px; color: var(--muted); }
+    /* Lead gen form */
+    .form-field {
+      margin-bottom: 18px;
+    }
+    .form-field label {
+      display: block; font-size: 12px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 7px;
+    }
+    .form-field input {
+      width: 100%; background: var(--bg-deep);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 14px 18px;
+      font-family: var(--font); font-size: 16px; color: var(--text);
+      transition: border-color 0.2s;
+      outline: none; box-sizing: border-box;
+    }
+    .form-field input::placeholder { color: rgba(123,181,168,0.5); }
+    .form-field input:focus { border-color: rgba(0,194,224,0.5); }
+    .form-submit {
+      width: 100%; margin-top: 10px;
+      font-size: 17px; padding: 18px 40px;
+    }
 
-  /* ── SECTION COMMONS ─────────────────────────────────────────────────────── */
-  .section { padding: 96px 48px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
-  .label {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-    margin-bottom: 12px;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .title { font-size: clamp(28px, 3vw, 42px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 14px; }
-  .subtitle { font-size: 17px; color: var(--muted); line-height: 1.6; max-width: 580px; margin-bottom: 56px; }
+    /* Closing copy below card */
+    .ev-closing {
+      margin-top: 28px;
+      font-size: 15px; color: var(--muted); line-height: 1.6;
+      text-align: center; max-width: 480px; margin-left: auto; margin-right: auto;
+    }
 
-  /* Aurora divider */
-  .aurora-divider { height: 2px; background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); border: none; margin: 0; opacity: 0.5; }
+    /* Calendly mock widget */
+    .calendly-mock {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(0,194,224,0.18);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      text-align: left;
+      width: 100%;
+    }
+    .calendly-mock-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+    }
+    .calendly-mock-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, #00C2E0, #4ADE5C);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: #141C22; flex-shrink: 0;
+    }
+    .calendly-mock-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .calendly-mock-event { font-size: 13px; color: var(--muted); margin: 2px 0; }
+    .calendly-mock-meta { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .calendly-mock-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 0 0 20px; }
+    .calendly-mock-cal-label { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .calendly-mock-month {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .cal-month-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .cal-nav { font-size: 20px; color: var(--muted); cursor: pointer; padding: 0 8px; user-select: none; }
+    .calendly-mock-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px; margin-bottom: 20px;
+    }
+    .cal-dow { font-size: 11px; color: rgba(255,255,255,0.3); text-align: center; padding: 4px 0; font-weight: 600; }
+    .cal-day {
+      font-size: 13px; text-align: center; padding: 7px 4px;
+      border-radius: 8px; color: rgba(255,255,255,0.2);
+    }
+    .cal-day.cal-avail { color: #fff; cursor: pointer; }
+    .cal-day.cal-avail:hover { background: rgba(0,194,224,0.15); }
+    .cal-day.cal-selected {
+      background: linear-gradient(135deg, #00C2E0, #4ADE5C);
+      color: #141C22; font-weight: 800; border-radius: 50%;
+      width: 32px; height: 32px; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin: auto;
+    }
+    .calendly-mock-times-label { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+    .calendly-mock-times { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .cal-time-slot {
+      padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.1); color: #fff; cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .cal-time-slot:hover { border-color: #00C2E0; }
+    .cal-time-slot.cal-time-selected {
+      background: linear-gradient(135deg, #00C2E0, #4ADE5C);
+      color: #141C22; border-color: transparent;
+    }
+    .calendly-mock-footer { font-size: 12px; color: rgba(255,255,255,0.25); text-align: center; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
 
-  /* ── FEATURE GRID ────────────────────────────────────────────────────────── */
-  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .feature-card {
-    background: var(--card2); border: 1px solid var(--border);
-    border-radius: 14px; padding: 28px 26px 30px; transition: border-color 0.2s;
-  }
-  .feature-card:hover { border-color: rgba(0,194,224,0.3); }
-  .feature-icon {
-    width: 46px; height: 46px; border-radius: 12px;
-    background: rgba(0,194,224,0.1); border: 1px solid rgba(0,194,224,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; margin-bottom: 18px;
-  }
-  .feature-card h3 { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 9px; }
-  .feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    /* CTA */
+    .cta-section {
+      background: var(--bg-deep);
+      border-top: 1px solid rgba(0,194,224,0.08);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(40px, 5vw, 72px); font-weight: 800;
+      letter-spacing: -2px; line-height: 1.05; margin-bottom: 28px;
+    }
+    .cta-trust {
+      display: flex; justify-content: center; gap: 40px;
+      margin-top: 40px; flex-wrap: wrap;
+    }
+    .trust-item {
+      font-size: 14px; color: var(--muted); font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
 
-  /* ── COMPARISON ──────────────────────────────────────────────────────────── */
-  .compare-section { padding: 96px 48px; background: rgba(0,0,0,0.25); }
-  .compare-inner { max-width: 860px; margin: 0 auto; }
-  .compare-table { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
-  .compare-header {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-    background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border);
-    padding: 14px 22px; gap: 16px;
-  }
-  .compare-header div { font-size: 12px; font-weight: 700; color: var(--body); text-transform: uppercase; letter-spacing: 0.08em; }
-  .compare-header .col-bg8 { background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .compare-row {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-    padding: 13px 22px; gap: 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    align-items: center;
-  }
-  .compare-row:last-child { border-bottom: none; }
-  .compare-row:hover { background: rgba(255,255,255,0.01); }
-  .compare-row .feature-name { font-size: 14px; color: var(--muted); }
-  .compare-row .check-yes { color: var(--aurora-start); font-size: 16px; font-weight: 700; }
-  .compare-row .check-no { color: rgba(255,255,255,0.15); font-size: 14px; }
-  .compare-row .check-partial { color: #FBB03B; font-size: 14px; }
+    /* FOOTER */
+    footer {
+      background: var(--bg-base); text-align: center;
+      padding: 48px 40px; border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer p { font-size: 14px; color: var(--muted); }
 
-  /* ── PRICING TIERS ───────────────────────────────────────────────────────── */
-  .tiers-section { padding: 96px 48px; }
-  .tiers-inner { max-width: 1100px; margin: 0 auto; }
-  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
-  .tier-card {
-    background: var(--card2); border: 1px solid var(--border);
-    border-radius: 14px; padding: 28px 26px 32px;
-    display: flex; flex-direction: column;
-  }
-  .tier-card.featured {
-    border-color: transparent; position: relative;
-    background: linear-gradient(var(--card2), var(--card2)) padding-box,
-                linear-gradient(90deg, var(--aurora-start), var(--aurora-end)) border-box;
-    border: 2px solid transparent;
-  }
-  .tier-badge {
-    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    color: #141C22; font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
-    text-transform: uppercase; padding: 4px 16px; border-radius: 100px;
-    white-space: nowrap;
-  }
-  .tier-name { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--body); margin-bottom: 8px; }
-  .tier-price { font-size: 38px; font-weight: 800; color: var(--text); letter-spacing: -0.04em; margin-bottom: 4px; }
-  .tier-price span { font-size: 15px; font-weight: 400; color: var(--body); }
-  .tier-desc { font-size: 14px; color: var(--muted); margin-bottom: 22px; line-height: 1.5; }
-  .tier-divider { height: 1px; background: var(--border); margin-bottom: 22px; }
-  .tier-features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; margin-bottom: 24px; }
-  .tier-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--muted); }
-  .tf-check { font-size: 13px; flex-shrink: 0; margin-top: 1px;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .tier-btn {
-    display: block; text-align: center; padding: 13px;
-    border-radius: 8px; font-size: 14px; font-weight: 700;
-    text-decoration: none; transition: all 0.2s;
-  }
-  .tier-btn-outline {
-    border: 1px solid var(--border); color: var(--muted);
-  }
-  .tier-btn-outline:hover { border-color: rgba(0,194,224,0.4); color: var(--text); }
-  .tier-btn-aurora {
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    color: #141C22;
-    box-shadow: 0 0 24px rgba(0,194,224,0.3);
-  }
-  .tier-btn-aurora:hover { box-shadow: 0 0 36px rgba(0,194,224,0.45); transform: translateY(-1px); }
-
-  /* ── MODEL COMPARISON SECTION ────────────────────────────────────────────── */
-  .model-section {
-    padding: 72px 48px;
-    background: rgba(0,194,224,0.03);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .model-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .model-card {
-    background: var(--card2); border: 1px solid var(--border);
-    border-radius: 14px; padding: 24px;
-  }
-  .model-card-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--body); margin-bottom: 10px; }
-  .model-card-label.aurora-text { color: transparent; }
-  .model-card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
-  .model-card.featured-model {
-    border-color: transparent;
-    background: linear-gradient(var(--card2), var(--card2)) padding-box,
-                linear-gradient(90deg, var(--aurora-start), var(--aurora-end)) border-box;
-    border: 1px solid transparent;
-  }
-  .model-card.featured-model p { color: var(--text); }
-
-  /* ── CTA ─────────────────────────────────────────────────────────────────── */
-  .cta-section {
-    padding: 100px 48px;
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .cta-glow {
-    position: absolute; width: 700px; height: 500px;
-    background: radial-gradient(ellipse, rgba(0,194,224,0.10) 0%, transparent 70%);
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-  .cta-glow-2 {
-    position: absolute; width: 500px; height: 400px;
-    background: radial-gradient(ellipse, rgba(74,222,92,0.07) 0%, transparent 70%);
-    bottom: -100px; right: 5%;
-    pointer-events: none;
-  }
-  .cta-inner { max-width: 620px; margin: 0 auto; position: relative; }
-  .cta-section h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 16px; line-height: 1.1; }
-  .cta-section p { font-size: 17px; color: var(--muted); line-height: 1.6; margin-bottom: 36px; }
-  .cta-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
-
-  /* ── FOOTER ──────────────────────────────────────────────────────────────── */
-  footer {
-    background: var(--dark); border-top: 1px solid var(--border);
-    padding: 36px 48px;
-    display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px;
-  }
-  .footer-logo {
-    font-size: 17px; font-weight: 800;
-    background: linear-gradient(90deg, var(--aurora-start), var(--aurora-end));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    margin-bottom: 4px;
-  }
-  .footer-tag { font-size: 12px; color: var(--body); }
-  .footer-engine { font-size: 11px; color: var(--body); margin-top: 8px; opacity: 0.7; }
-  .footer-right { font-size: 12px; color: var(--body); }
-
-  /* ── CONCEPT BADGE ───────────────────────────────────────────────────────── */
-  .concept-badge {
-    position: fixed; bottom: 20px; right: 20px; z-index: 200;
-    background: rgba(0,194,224,0.1); color: var(--aurora-start);
-    border: 1px solid rgba(0,194,224,0.25); border-radius: 8px;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 8px 14px;
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
-    .hero { padding: 100px 20px 60px; }
-    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-    .section { padding: 64px 20px; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .tiers-grid { grid-template-columns: 1fr; }
-    .numbers-inner { grid-template-columns: repeat(2, 1fr); }
-    .model-inner { grid-template-columns: 1fr; }
-  }
-</style>
+    @media (max-width: 900px) {
+      .local-grid { grid-template-columns: 1fr; }
+      .chaos-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 24px; }
+      section { padding: 72px 0; }
+      .ev-single-card { grid-template-columns: 1fr; }
+      .ev-left { padding: 36px 28px 28px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .ev-right { padding: 28px 28px 36px; }
+      .benefits-bar { gap: 10px; }
+    }
+  </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-logo-wrap">
-    <div class="nav-logo">BG8</div>
-    <div class="nav-badge">For Business</div>
-  </div>
-  <div class="nav-right">
-    <a href="#" class="nav-link">Features</a>
-    <a href="#" class="nav-link">Pricing</a>
-    <a href="#" class="nav-link">Case Studies</a>
-    <a href="#" class="nav-cta">Get Your AI Agent</a>
-  </div>
+  <span class="logo grad-text">BG8.AI</span>
+  <span class="nav-badge">by VLS Solutions</span>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-label">✦ For local service businesses in Vancouver</div>
-      <h1>Done being squeezed<br>by platforms that<br><span class="aurora-text">charge per click.</span></h1>
-      <p class="hero-sub">
-        BG8 gives your business a 24/7 AI agent that handles every inquiry, qualifies every lead, and books appointments — automatically. You pay only when a booking confirms. Zero bookings, zero cost.
-      </p>
-      <div class="hero-actions">
-        <a href="#" class="btn-primary">Get your AI agent free →</a>
-        <a href="#" class="btn-ghost">See a live demo →</a>
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-aurora" aria-hidden="true">
+    <div class="aurora-blob" style="top:-10%;right:-10%;width:65%;height:65%;background:radial-gradient(circle,rgba(0,194,224,0.16) 0%,transparent 70%);"></div>
+    <div class="aurora-blob" style="bottom:-15%;left:-8%;width:55%;height:55%;background:radial-gradient(circle,rgba(74,222,92,0.18) 0%,transparent 70%);"></div>
+  </div>
+
+  <div class="container" style="position:relative;z-index:10;">
+    <div class="hero-grid">
+
+      <!-- LEFT: Text + CTA -->
+      <div>
+        <div class="eyebrow">Greater Vancouver · Vendor Network</div>
+        <h1>Get customers.<br><span class="grad-text">Let AI handle the rest.</span></h1>
+        <p class="hero-sub">BG8 connects you with real local demand. Set up your AI agent for free and start turning inquiries into bookings.</p>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          <a href="#" class="btn-primary">Join the Vendor Network</a>
+          <a href="#how" class="btn-ghost">See How It Works</a>
+        </div>
       </div>
-      <div class="hero-trust">
-        <div class="trust-item"><div class="trust-dot"></div>Free to start</div>
-        <div class="trust-item"><div class="trust-dot"></div>No contract</div>
-        <div class="trust-item"><div class="trust-dot"></div>Setup in 30 minutes</div>
+
+      <!-- RIGHT: Phone Mockups + Converging Streamline -->
+      <div class="streamline-wrap">
+
+        <!-- Phone Backdrop: two app screens behind the diagram -->
+        <div class="phone-backdrop">
+
+          <!-- Phone 1: Meet Max (AI Agent Setup) -->
+          <svg class="phone-frame" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="p1-aur-green" cx="15%" cy="88%" r="50%">
+                <stop offset="0%" stop-color="#22C55E" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#22C55E" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="p1-aur-teal" cx="85%" cy="12%" r="55%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="p1-g-teal" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <linearGradient id="p1-g-green" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#4ADE5C"/>
+                <stop offset="100%" stop-color="#22C55E"/>
+              </linearGradient>
+              <clipPath id="p1-clip"><rect width="390" height="844" rx="47"/></clipPath>
+            </defs>
+            <rect width="390" height="844" rx="47" fill="#141C22"/>
+            <rect width="390" height="844" rx="47" stroke="#2A3A44" stroke-width="6" fill="none"/>
+            <rect width="390" height="844" rx="47" stroke="#4ADE5C" stroke-width="2" stroke-opacity="0.3" fill="none"/>
+            <g clip-path="url(#p1-clip)">
+              <rect width="390" height="844" fill="url(#p1-aur-green)"/>
+              <rect width="390" height="844" fill="url(#p1-aur-teal)" fill-opacity="0.4"/>
+            </g>
+            <rect x="140" y="12" width="110" height="30" rx="15" fill="#0A0A0F"/>
+            <text x="32" y="30" font-size="15" font-weight="600" fill="#E8F5F2">9:41</text>
+            <text x="195" y="92" text-anchor="middle" font-size="11" font-weight="600" fill="#4ADE5C">Step 3 of 4</text>
+            <rect x="36" y="102" width="318" height="4" rx="2" fill="#2A3A44"/>
+            <rect x="36" y="102" width="239" height="4" rx="2" fill="url(#p1-g-green)"/>
+            <circle cx="195" cy="210" r="52" fill="#00C2E0" fill-opacity="0.07"/>
+            <circle cx="195" cy="210" r="42" fill="#1C2730" stroke="url(#p1-g-teal)" stroke-width="2"/>
+            <rect x="173" y="196" width="44" height="36" rx="8" fill="#00C2E0" fill-opacity="0.7"/>
+            <circle cx="186" cy="210" r="5" fill="#E8F5F2"/>
+            <circle cx="204" cy="210" r="5" fill="#E8F5F2"/>
+            <path d="M185,222 Q195,228 205,222" fill="none" stroke="#E8F5F2" stroke-width="1.5"/>
+            <text x="195" y="295" text-anchor="middle" font-size="10" font-weight="600" letter-spacing="3" fill="#00C2E0" fill-opacity="0.8">YOUR AI AGENT</text>
+            <text x="195" y="324" text-anchor="middle" font-size="27" font-weight="800" fill="#E8F5F2" letter-spacing="-1.5">Meet Max,</text>
+            <text x="195" y="356" text-anchor="middle" font-size="27" font-weight="800" fill="url(#p1-g-teal)" letter-spacing="-1.5">your AI agent</text>
+            <text x="195" y="386" text-anchor="middle" font-size="14" fill="#7BB5A8">Max handles bookings and customer</text>
+            <text x="195" y="406" text-anchor="middle" font-size="14" fill="#7BB5A8">inquiries while you focus on work.</text>
+            <rect x="36" y="428" width="318" height="56" rx="12" fill="#1C2730" stroke="#00C2E0" stroke-width="1.5" stroke-opacity="0.5"/>
+            <text x="52" y="444" font-size="10" fill="#7BB5A8">Agent Name</text>
+            <text x="52" y="464" font-size="13" fill="#E8F5F2">Max</text>
+            <text x="36" y="506" font-size="12" fill="#7BB5A8">Communication tone: <tspan fill="#00C2E0" font-weight="600">Friendly</tspan></text>
+            <rect x="36" y="516" width="318" height="6" rx="3" fill="#2A3A44"/>
+            <rect x="36" y="516" width="212" height="6" rx="3" fill="url(#p1-g-teal)"/>
+            <circle cx="248" cy="519" r="10" fill="url(#p1-g-teal)"/>
+            <rect x="36" y="548" width="318" height="44" rx="10" fill="#1C2730"/>
+            <text x="56" y="574" font-size="13" fill="#E8F5F2">Auto-accept bookings</text>
+            <rect x="306" y="558" width="34" height="20" rx="10" fill="url(#p1-g-teal)"/>
+            <circle cx="330" cy="568" r="8" fill="#E8F5F2"/>
+            <rect x="36" y="604" width="318" height="44" rx="10" fill="#1C2730"/>
+            <text x="56" y="630" font-size="13" fill="#E8F5F2">Send follow-up messages</text>
+            <rect x="306" y="614" width="34" height="20" rx="10" fill="#2A3A44"/>
+            <circle cx="316" cy="624" r="8" fill="#E8F5F2"/>
+            <rect x="36" y="660" width="318" height="60" rx="14" fill="#00C2E0" fill-opacity="0.07" stroke="#00C2E0" stroke-width="1"/>
+            <text x="56" y="682" font-size="12" fill="#E8F5F2">Vendors with AI agents get <tspan fill="#00C2E0" font-weight="700">2.8x</tspan> more bookings</text>
+            <text x="56" y="700" font-size="11" fill="#7BB5A8">and respond 40x faster than manual replies</text>
+            <rect x="36" y="736" width="318" height="52" rx="26" fill="url(#p1-g-teal)"/>
+            <text x="195" y="767" text-anchor="middle" font-size="17" font-weight="700" fill="#141C22">Activate Max</text>
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
+
+          <!-- Phone 2: Payout Setup -->
+          <svg class="phone-frame" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="p2-aur-green-bl" cx="15%" cy="88%" r="50%">
+                <stop offset="0%" stop-color="#22C55E" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#22C55E" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="p2-aur-tr" cx="85%" cy="12%" r="55%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="p2-g-green" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <clipPath id="p2-clip"><rect width="390" height="844" rx="47"/></clipPath>
+            </defs>
+            <rect width="390" height="844" rx="47" fill="#141C22"/>
+            <rect width="390" height="844" rx="47" stroke="#2A3A44" stroke-width="6" fill="none"/>
+            <rect width="390" height="844" rx="47" stroke="#4ADE5C" stroke-width="2" stroke-opacity="0.3" fill="none"/>
+            <g clip-path="url(#p2-clip)">
+              <rect width="390" height="844" fill="url(#p2-aur-green-bl)"/>
+              <rect width="390" height="844" fill="url(#p2-aur-tr)" fill-opacity="0.4"/>
+            </g>
+            <rect x="140" y="12" width="110" height="30" rx="15" fill="#0A0A0F"/>
+            <text x="32" y="30" font-size="15" font-weight="600" fill="#E8F5F2">9:41</text>
+            <text x="195" y="92" text-anchor="middle" font-size="11" font-weight="600" fill="#4ADE5C">Step 4 of 4</text>
+            <rect x="36" y="102" width="318" height="4" rx="2" fill="#2A3A44"/>
+            <rect x="36" y="102" width="318" height="4" rx="2" fill="url(#p2-g-green)"/>
+            <text x="195" y="152" text-anchor="middle" font-size="10" font-weight="600" letter-spacing="3" fill="#4ADE5C" fill-opacity="0.8">PAYOUT SETUP</text>
+            <text x="195" y="184" text-anchor="middle" font-size="27" font-weight="800" fill="#E8F5F2" letter-spacing="-1.5">How do you want</text>
+            <text x="195" y="216" text-anchor="middle" font-size="27" font-weight="800" fill="url(#p2-g-green)" letter-spacing="-1.5">to get paid?</text>
+            <text x="195" y="246" text-anchor="middle" font-size="14" fill="#7BB5A8">Funds hit your account in 1–2 business days</text>
+            <rect x="24" y="270" width="342" height="80" rx="18" fill="#4ADE5C" fill-opacity="0.05" stroke="#4ADE5C" stroke-width="2"/>
+            <circle cx="54" cy="310" r="20" fill="#4ADE5C" fill-opacity="0.15"/>
+            <text x="54" y="316" text-anchor="middle" font-size="18">🏦</text>
+            <text x="88" y="300" font-size="16" font-weight="700" fill="#E8F5F2">Bank Transfer</text>
+            <text x="88" y="320" font-size="12" fill="#7BB5A8">Direct deposit to your bank</text>
+            <text x="88" y="338" font-size="11" fill="#4ADE5C">Recommended · Free</text>
+            <circle cx="342" cy="278" r="12" fill="url(#p2-g-green)"/>
+            <path d="M336,278 L340,282 L348,273" fill="none" stroke="#141C22" stroke-width="2" stroke-linecap="round"/>
+            <rect x="24" y="362" width="342" height="80" rx="18" fill="#1C2730" stroke="#2A3A44" stroke-width="1.5"/>
+            <circle cx="54" cy="402" r="20" fill="#2A3A44"/>
+            <text x="54" y="408" text-anchor="middle" font-size="18">💳</text>
+            <text x="88" y="392" font-size="16" font-weight="700" fill="#E8F5F2">Stripe Connect</text>
+            <text x="88" y="412" font-size="12" fill="#7BB5A8">Instant payouts to debit card</text>
+            <text x="88" y="430" font-size="11" fill="#7BB5A8">1.5% fee per transaction</text>
+            <rect x="36" y="462" width="318" height="56" rx="12" fill="#1C2730" stroke="#4ADE5C" stroke-width="1.5" stroke-opacity="0.5"/>
+            <text x="52" y="478" font-size="10" fill="#7BB5A8">Account Holder Name</text>
+            <text x="52" y="498" font-size="13" fill="#E8F5F2">Jane Doe</text>
+            <rect x="36" y="530" width="154" height="56" rx="12" fill="#1C2730" stroke="#2A3A44" stroke-width="1.5"/>
+            <text x="52" y="546" font-size="10" fill="#7BB5A8">BSB Number</text>
+            <text x="52" y="566" font-size="13" fill="#E8F5F2">062-001</text>
+            <rect x="200" y="530" width="154" height="56" rx="12" fill="#1C2730" stroke="#2A3A44" stroke-width="1.5"/>
+            <text x="216" y="546" font-size="10" fill="#7BB5A8">Account Number</text>
+            <text x="216" y="566" font-size="13" fill="#E8F5F2">••••••••</text>
+            <text x="195" y="612" text-anchor="middle" font-size="12" fill="#7BB5A8" font-style="italic">🔒 256-bit encrypted · Bank-level security</text>
+            <rect x="36" y="634" width="318" height="52" rx="26" fill="url(#p2-g-green)"/>
+            <text x="195" y="665" text-anchor="middle" font-size="17" font-weight="700" fill="#141C22">Finish Setup</text>
+            <text x="195" y="712" text-anchor="middle" font-size="14" fill="#7BB5A8">You can update payout details anytime</text>
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
+
+        </div><!-- /phone-backdrop -->
+
+        <svg class="streamline-diagram" viewBox="0 0 600 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="inboundGrad" gradientUnits="userSpaceOnUse" x1="90" y1="0" x2="282" y2="0">
+              <stop offset="0%" stop-color="#4ADE5C"/>
+              <stop offset="100%" stop-color="#00C2E0"/>
+            </linearGradient>
+            <linearGradient id="hubGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00C2E0"/>
+              <stop offset="100%" stop-color="#4ADE5C"/>
+            </linearGradient>
+            <filter id="hubGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Inbound paths: customers → BG8 hub (terminate at hub edge x=282) -->
+          <path d="M90,48  C200,48  220,110 282,110" stroke="url(#inboundGrad)" stroke-width="2"   fill="none" opacity="0.7"/>
+          <path d="M90,110 L282,110"                 stroke="url(#inboundGrad)" stroke-width="2.5" fill="none" opacity="0.85"/>
+          <path d="M90,172 C200,172 220,110 282,110" stroke="url(#inboundGrad)" stroke-width="2"   fill="none" opacity="0.7"/>
+
+          <!-- Outbound path: BG8 hub → vendor (start at hub edge x=318) -->
+          <path d="M318,110 L504,110" stroke="#00C2E0" stroke-width="2.5" fill="none" opacity="0.75"/>
+
+          <!-- Customer dots (green) -->
+          <circle cx="90" cy="48"  r="9"  fill="#4ADE5C" opacity="0.9"/>
+          <circle cx="90" cy="48"  r="16" fill="#4ADE5C" opacity="0.13"/>
+          <circle cx="90" cy="110" r="9"  fill="#4ADE5C" opacity="0.9"/>
+          <circle cx="90" cy="110" r="16" fill="#4ADE5C" opacity="0.13"/>
+          <circle cx="90" cy="172" r="9"  fill="#4ADE5C" opacity="0.9"/>
+          <circle cx="90" cy="172" r="16" fill="#4ADE5C" opacity="0.13"/>
+
+          <!-- BG8 Hub (gradient glow ring + inner circle) -->
+          <circle cx="300" cy="110" r="40" fill="url(#hubGrad)" opacity="0.09" filter="url(#hubGlow)"/>
+          <circle cx="300" cy="110" r="26" fill="url(#hubGrad)" opacity="0.14"/>
+          <circle cx="300" cy="110" r="18" fill="#141C22" stroke="url(#hubGrad)" stroke-width="2"/>
+          <text x="300" y="115" font-family="Outfit,Arial" font-size="9" font-weight="800" fill="url(#hubGrad)" text-anchor="middle" letter-spacing="1.5">BG8</text>
+
+          <!-- Vendor YOU dot (teal) -->
+          <circle cx="516" cy="110" r="11" fill="#00C2E0" opacity="0.9"/>
+          <circle cx="516" cy="110" r="20" fill="#00C2E0" opacity="0.11"/>
+          <circle cx="516" cy="110" r="11" stroke="#00C2E0" stroke-width="1" fill="none" opacity="0.4">
+            <animate attributeName="r"       values="13;28" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.4;0"  dur="2s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- Customer labels -->
+          <text x="90" y="33"  font-family="Outfit,Arial" font-size="9" font-weight="600" fill="#4ADE5C" text-anchor="middle" letter-spacing="1.5">CUSTOMER</text>
+          <text x="90" y="130" font-family="Outfit,Arial" font-size="9" font-weight="600" fill="#4ADE5C" text-anchor="middle" letter-spacing="1.5">CUSTOMER</text>
+          <text x="90" y="191" font-family="Outfit,Arial" font-size="9" font-weight="600" fill="#4ADE5C" text-anchor="middle" letter-spacing="1.5">CUSTOMER</text>
+
+          <!-- Vendor label -->
+          <text x="516" y="135" font-family="Outfit,Arial" font-size="11" font-weight="700" fill="#00C2E0" text-anchor="middle" letter-spacing="2">YOU</text>
+
+          <!-- Animated flow particles — customers to hub -->
+          <circle r="3.5" fill="#4ADE5C" opacity="0.9">
+            <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"
+              path="M90,48 C200,48 220,110 282,110"/>
+          </circle>
+          <circle r="3.5" fill="#4ADE5C" opacity="0.9">
+            <animateMotion dur="1.5s" repeatCount="indefinite" begin="0.5s"
+              path="M90,110 L282,110"/>
+          </circle>
+          <circle r="3.5" fill="#4ADE5C" opacity="0.9">
+            <animateMotion dur="1.8s" repeatCount="indefinite" begin="1.0s"
+              path="M90,172 C200,172 220,110 282,110"/>
+          </circle>
+
+          <!-- Animated flow particle — hub to vendor -->
+          <circle r="4" fill="#00C2E0" opacity="0.95">
+            <animateMotion dur="1.1s" repeatCount="indefinite" begin="0.9s"
+              path="M318,110 L504,110"/>
+          </circle>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     LOCAL — Your market is already here
+═══════════════════════════════════════════════ -->
+<section class="local-section">
+  <div class="container">
+    <div class="local-grid">
+      <div class="local-text">
+        <div class="eyebrow">Your market</div>
+        <h2>Your customers are<br><span class="grad-text">already searching.</span></h2>
+        <p>Greater Vancouver has millions of residents looking for local services right now. BG8 routes qualified demand directly to vendors like you — no ads to run, no cold calls to make. Just bookings.</p>
+      </div>
+
+      <!-- Vancouver Map SVG -->
+      <div class="map-wrap">
+        <svg width="480" height="360" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grid lines -->
+          <line x1="0" y1="60"  x2="480" y2="60"  stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="120" x2="480" y2="120" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="180" x2="480" y2="180" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="240" x2="480" y2="240" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="0" y1="300" x2="480" y2="300" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="80"  y1="0" x2="80"  y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="160" y1="0" x2="160" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="240" y1="0" x2="240" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="320" y1="0" x2="320" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="400" y1="0" x2="400" y2="360" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+          <!-- Connection lines (customer → vendor) -->
+          <line x1="180" y1="200" x2="280" y2="130" stroke="rgba(0,194,224,0.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="180" y1="200" x2="360" y2="220" stroke="rgba(0,194,224,0.2)"  stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="300" y1="260" x2="360" y2="220" stroke="rgba(74,222,92,0.2)"  stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="120" y1="150" x2="280" y2="130" stroke="rgba(74,222,92,0.18)" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="240" y1="310" x2="360" y2="220" stroke="rgba(0,194,224,0.15)" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+          <!-- Green dots (customers) -->
+          <circle cx="180" cy="200" r="8" fill="#4ADE5C" opacity="0.9"/>
+          <circle cx="180" cy="200" r="15" fill="#4ADE5C" opacity="0.15"/>
+          <circle cx="300" cy="260" r="6" fill="#4ADE5C" opacity="0.75"/>
+          <circle cx="300" cy="260" r="12" fill="#4ADE5C" opacity="0.12"/>
+          <circle cx="120" cy="150" r="5" fill="#4ADE5C" opacity="0.6"/>
+          <circle cx="120" cy="150" r="10" fill="#4ADE5C" opacity="0.1"/>
+          <circle cx="240" cy="310" r="5" fill="#4ADE5C" opacity="0.6"/>
+          <circle cx="240" cy="310" r="10" fill="#4ADE5C" opacity="0.1"/>
+
+          <!-- Teal dots (vendors) -->
+          <circle cx="280" cy="130" r="8" fill="#00C2E0" opacity="0.9"/>
+          <circle cx="280" cy="130" r="15" fill="#00C2E0" opacity="0.15"/>
+          <circle cx="360" cy="220" r="7" fill="#00C2E0" opacity="0.8"/>
+          <circle cx="360" cy="220" r="14" fill="#00C2E0" opacity="0.13"/>
+          <circle cx="410" cy="140" r="5" fill="#00C2E0" opacity="0.6"/>
+          <circle cx="410" cy="140" r="10" fill="#00C2E0" opacity="0.1"/>
+
+          <!-- Animated pulse rings -->
+          <circle cx="180" cy="200" r="22" stroke="#4ADE5C" stroke-width="1" fill="none" opacity="0.3">
+            <animate attributeName="r" values="14;28" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.4;0" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="280" cy="130" r="22" stroke="#00C2E0" stroke-width="1" fill="none" opacity="0.3">
+            <animate attributeName="r" values="14;28" dur="2.4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.4;0" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- City labels -->
+          <text x="165" y="222" font-family="Outfit,Arial" font-size="11" fill="rgba(232,245,242,0.5)" text-anchor="middle">Vancouver</text>
+          <text x="360" y="245" font-family="Outfit,Arial" font-size="11" fill="rgba(232,245,242,0.5)" text-anchor="middle">Burnaby</text>
+          <text x="283" y="118" font-family="Outfit,Arial" font-size="11" fill="rgba(232,245,242,0.5)" text-anchor="middle">North Van</text>
+          <text x="300" y="280" font-family="Outfit,Arial" font-size="11" fill="rgba(232,245,242,0.5)" text-anchor="middle">Richmond</text>
+
+          <!-- Legend -->
+          <circle cx="32" cy="330" r="5" fill="#4ADE5C"/>
+          <text x="44" y="334" font-family="Outfit,Arial" font-size="11" fill="rgba(123,181,168,0.8)">Customer</text>
+          <circle cx="120" cy="330" r="5" fill="#00C2E0"/>
+          <text x="132" y="334" font-family="Outfit,Arial" font-size="11" fill="rgba(123,181,168,0.8)">Vendor</text>
+        </svg>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- DASHBOARD MOCKUP -->
-    <div class="dashboard-mockup">
-      <div class="dash-topbar">
-        <div class="dash-logo">BG8 Business</div>
-        <div class="dash-pills">
-          <div class="dpill dpill-active">Dashboard</div>
-          <div class="dpill dpill-inactive">Bookings</div>
-          <div class="dpill dpill-inactive">AI Agent</div>
-        </div>
+<!-- ═══════════════════════════════════════════════
+     PROBLEM
+═══════════════════════════════════════════════ -->
+<section class="problem-section">
+  <div class="container">
+    <div class="eyebrow">The problem</div>
+    <h2>Growing your business<br>shouldn't feel like a gamble.</h2>
+    <p class="lead">Word of mouth has limits. BG8 doesn't.</p>
+
+    <div class="chaos-grid">
+
+      <div class="chaos-card">
+        <div class="chaos-icon">👻</div>
+        <div class="chaos-title">You reply, they disappear.</div>
+        <div class="chaos-desc">A customer messages you asking for a quote. You ask a few follow-up questions, wait for details, send a price, and then… nothing. No reply. No booking. Just another dead end.</div>
+        <span class="chaos-tag">Lost revenue</span>
       </div>
-      <div class="dash-body">
-        <div class="ai-status-bar">
-          <div class="ai-status-left">
-            <div class="ai-dot"></div>
-            Your AI agent is live — handling inquiries
-          </div>
-          <div class="ai-status-right">3 active chats</div>
-        </div>
 
+      <div class="chaos-card">
+        <div class="chaos-icon">🤯</div>
+        <div class="chaos-title">Everything is everywhere.</div>
+        <div class="chaos-desc">One customer texts you. Another calls and leaves a voicemail. Someone else DMs you on Instagram. You're switching between apps, trying to keep track, and still missing details, or losing the thread.</div>
+        <span class="chaos-tag">Scattered workflow</span>
+      </div>
+
+      <div class="chaos-card">
+        <div class="chaos-icon">💸</div>
+        <div class="chaos-title">You invest. But results aren't clear.</div>
+        <div class="chaos-desc">You spend time building a website. Maybe run ads. Try different platforms. Money goes in. Time goes in. But it's hard to tell what's actually working or when the next job will come from it.</div>
+        <span class="chaos-tag">No demand visibility</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════ -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="eyebrow">How it works</div>
+    <h2>Four steps to<br><span class="grad-text">your first booking.</span></h2>
+    <p class="lead">No complex setup. No ads to manage. Just list and go.</p>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">01</div>
         <div>
-          <div class="dash-section-title">This Week</div>
-          <div class="stat-row">
-            <div class="stat-box">
-              <div class="stat-val"><span class="aurora">14</span></div>
-              <div class="stat-label">New bookings</div>
-              <div class="stat-change">↑ 40% vs last week</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-val">$2,340</div>
-              <div class="stat-label">Revenue</div>
-              <div class="stat-change">↑ 28% vs last week</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-val">68<span style="font-size:14px;color:var(--body)">%</span></div>
-              <div class="stat-label">Conversion rate</div>
-              <div class="stat-change">↑ from 32%</div>
-            </div>
+          <h3>Download free, register</h3>
+          <p>Create your vendor account in minutes. Available on iOS and Android.</p>
+          <div class="store-badges">
+            <a class="store-badge apple" href="#" aria-label="Download on the App Store">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              <span><small>Download on the</small><strong>App Store</strong></span>
+            </a>
+            <a class="store-badge google" href="#" aria-label="Get it on Google Play">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.18.64.24.99.18l12.45-7.19-2.78-2.78-10.66 9.79zm-1.67-20.6C1.19 3.55 1 4 1 4.56v14.88c0 .56.19 1.01.51 1.33l.07.07 8.34-8.34v-.2L1.51 3.09l-.01.07zM20.49 10.7l-2.78-1.61-3.12 3.12 3.12 3.12 2.82-1.63c.8-.46.8-1.52-.04-1.99zM4.17.23L16.62 7.42l-2.78 2.78L3.18.41C3.52.35 3.87.41 4.17.23z"/></svg>
+              <span><small>Get it on</small><strong>Google Play</strong></span>
+            </a>
           </div>
         </div>
+      </div>
 
+      <div class="step has-mockup">
+        <div class="step-num">02</div>
         <div>
-          <div class="dash-section-title">Live Activity</div>
-          <div class="activity-list">
-            <div class="activity-item">
-              <div class="activity-left">
-                <div class="a-icon a-icon-green">✓</div>
-                <div>
-                  <div class="a-title">Cleaning booked — Sarah M.</div>
-                  <div class="a-sub">Fri Mar 20, 10 AM · $145 · 2bd apartment</div>
-                </div>
-              </div>
-              <div class="a-status status-done">Confirmed</div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-left">
-                <div class="a-icon a-icon-yellow">⋯</div>
-                <div>
-                  <div class="a-title">AI handling inquiry — James T.</div>
-                  <div class="a-sub">"Do you do move-out deep cleans?"</div>
-                </div>
-              </div>
-              <div class="a-status status-pending">In chat</div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-left">
-                <div class="a-icon a-icon-blue">★</div>
-                <div>
-                  <div class="a-title">New 5-star review — Lisa K.</div>
-                  <div class="a-sub">"Booked in 2 minutes, team was amazing"</div>
-                </div>
-              </div>
-              <div class="a-status status-new">New</div>
-            </div>
-          </div>
+          <h3>List your services</h3>
+          <p>Tell BG8 what you do, where you work, and your availability. Takes minutes. No marketing degree required.</p>
+        </div>
+        <div class="step-mockup">
+          <svg class="step-phone" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="s2-glow" cx="80%" cy="10%" r="55%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.20"/>
+                <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="s2-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <clipPath id="s2-clip"><rect width="390" height="844" rx="44" ry="44"/></clipPath>
+            </defs>
+            <!-- Phone shell -->
+            <rect width="390" height="844" rx="44" ry="44" fill="#141C22"/>
+            <rect x="1" y="1" width="388" height="842" rx="43" ry="43" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <!-- Notch -->
+            <rect x="140" y="14" width="110" height="28" rx="14" fill="#0D1419"/>
+            <!-- Glow -->
+            <rect width="390" height="844" rx="44" ry="44" fill="url(#s2-glow)" clip-path="url(#s2-clip)"/>
+            <!-- Status bar -->
+            <text x="32" y="52" font-size="14" font-weight="600" fill="#E8F5F2">9:41</text>
+            <rect x="310" y="42" width="22" height="11" rx="3" fill="none" stroke="#7BB5A8" stroke-width="1.2"/>
+            <rect x="312" y="44" width="16" height="7" rx="2" fill="#4ADE5C"/>
+            <rect x="333" y="44" width="2" height="6" rx="1" fill="#7BB5A8"/>
+            <!-- Header -->
+            <text x="195" y="108" font-size="20" font-weight="700" fill="#E8F5F2" text-anchor="middle">Your Services</text>
+            <line x1="32" y1="124" x2="358" y2="124" stroke="#2A3A48" stroke-width="1"/>
+            <!-- Profile row -->
+            <circle cx="64" cy="168" r="28" fill="#1A2530"/>
+            <circle cx="64" cy="168" r="28" fill="none" stroke="url(#s2-grad)" stroke-width="1.5"/>
+            <text x="64" y="173" font-size="18" fill="#7BB5A8" text-anchor="middle">👤</text>
+            <text x="108" y="163" font-size="16" font-weight="700" fill="#E8F5F2">Jane Doe Services</text>
+            <text x="108" y="181" font-size="13" fill="#7BB5A8">Greater Vancouver</text>
+            <!-- Section label -->
+            <text x="32" y="226" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">WHAT YOU OFFER</text>
+            <!-- Service chip pills -->
+            <rect x="32" y="238" width="120" height="34" rx="17" fill="none" stroke="url(#s2-grad)" stroke-width="1.2"/>
+            <text x="92" y="260" font-size="13" font-weight="600" fill="#00C2E0" text-anchor="middle">House Cleaning</text>
+            <rect x="164" y="238" width="90" height="34" rx="17" fill="none" stroke="#2A3A48" stroke-width="1.2"/>
+            <text x="209" y="260" font-size="13" fill="#7BB5A8" text-anchor="middle">Deep Clean</text>
+            <rect x="264" y="238" width="90" height="34" rx="17" fill="none" stroke="#2A3A48" stroke-width="1.2"/>
+            <text x="309" y="260" font-size="13" fill="#7BB5A8" text-anchor="middle">Move-out</text>
+            <!-- Availability row -->
+            <text x="32" y="310" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">AVAILABILITY</text>
+            <rect x="32" y="322" width="326" height="52" rx="12" fill="#1A2530"/>
+            <text x="56" y="353" font-size="15" fill="#E8F5F2">📅  Available this week</text>
+            <rect x="300" y="335" width="40" height="22" rx="11" fill="url(#s2-grad)"/>
+            <circle cx="328" cy="346" r="9" fill="#141C22"/>
+            <!-- Rate row -->
+            <text x="32" y="404" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">YOUR RATE</text>
+            <rect x="32" y="416" width="326" height="52" rx="12" fill="#1A2530"/>
+            <text x="56" y="447" font-size="15" fill="#E8F5F2">$</text>
+            <text x="72" y="447" font-size="15" fill="#E8F5F2">45 – 75</text>
+            <text x="200" y="447" font-size="13" fill="#7BB5A8">per hour</text>
+            <!-- CTA button -->
+            <rect x="32" y="492" width="326" height="52" rx="26" fill="url(#s2-grad)"/>
+            <text x="195" y="522" font-size="16" font-weight="700" fill="#141C22" text-anchor="middle">Save Profile</text>
+            <!-- Home indicator -->
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
         </div>
       </div>
+
+      <div class="step has-mockup">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Set up your AI agent for free</h3>
+          <p>We'll guide you step by step with a free tutorial. Customize how your AI responds from tone to style, so it matches how you talk to customers. In minutes, you'll have a personalized AI agent that represents your business and handles inquiries your way.</p>
+        </div>
+        <div class="step-mockup">
+          <svg class="step-phone" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="s3-glow-t" cx="50%" cy="30%" r="55%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="s3-avatar-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="s3-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <clipPath id="s3-clip"><rect width="390" height="844" rx="44" ry="44"/></clipPath>
+            </defs>
+            <!-- Phone shell -->
+            <rect width="390" height="844" rx="44" ry="44" fill="#141C22"/>
+            <rect x="1" y="1" width="388" height="842" rx="43" ry="43" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <rect x="140" y="14" width="110" height="28" rx="14" fill="#0D1419"/>
+            <rect width="390" height="844" rx="44" ry="44" fill="url(#s3-glow-t)" clip-path="url(#s3-clip)"/>
+            <!-- Status bar -->
+            <text x="32" y="52" font-size="14" font-weight="600" fill="#E8F5F2">9:41</text>
+            <rect x="310" y="42" width="22" height="11" rx="3" fill="none" stroke="#7BB5A8" stroke-width="1.2"/>
+            <rect x="312" y="44" width="16" height="7" rx="2" fill="#4ADE5C"/>
+            <rect x="333" y="44" width="2" height="6" rx="1" fill="#7BB5A8"/>
+            <!-- Header -->
+            <text x="195" y="108" font-size="20" font-weight="700" fill="#E8F5F2" text-anchor="middle">Your AI Agent</text>
+            <line x1="32" y1="124" x2="358" y2="124" stroke="#2A3A48" stroke-width="1"/>
+            <!-- Avatar with glow rings -->
+            <circle cx="195" cy="204" r="52" fill="url(#s3-avatar-glow)"/>
+            <circle cx="195" cy="204" r="40" fill="#1A2530"/>
+            <circle cx="195" cy="204" r="40" fill="none" stroke="url(#s3-grad)" stroke-width="2"/>
+            <text x="195" y="197" font-size="15" font-weight="800" fill="#00C2E0" text-anchor="middle">AI</text>
+            <text x="195" y="216" font-size="11" fill="#7BB5A8" text-anchor="middle">AGENT</text>
+            <!-- Active badge -->
+            <rect x="158" y="254" width="74" height="24" rx="12" fill="rgba(74,222,92,0.12)" stroke="#4ADE5C" stroke-width="1"/>
+            <circle cx="174" cy="266" r="4" fill="#4ADE5C"/>
+            <text x="191" y="270" font-size="12" font-weight="600" fill="#4ADE5C">Active</text>
+            <!-- Tone selector -->
+            <text x="32" y="308" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">TONE</text>
+            <rect x="32" y="318" width="326" height="48" rx="24" fill="#1A2530"/>
+            <rect x="34" y="320" width="104" height="44" rx="22" fill="url(#s3-grad)"/>
+            <text x="86" y="347" font-size="13" font-weight="700" fill="#141C22" text-anchor="middle">Friendly</text>
+            <text x="195" y="347" font-size="13" fill="#7BB5A8" text-anchor="middle">Professional</text>
+            <text x="304" y="347" font-size="13" fill="#7BB5A8" text-anchor="middle">Direct</text>
+            <!-- Preview bubble -->
+            <text x="32" y="394" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">PREVIEW</text>
+            <rect x="32" y="406" width="280" height="72" rx="16" rx="16" fill="#1A2530" stroke="rgba(0,194,224,0.2)" stroke-width="1"/>
+            <text x="52" y="430" font-size="13" fill="#E8F5F2">"Hi! I'd be happy to help</text>
+            <text x="52" y="450" font-size="13" fill="#E8F5F2">you book. When works</text>
+            <text x="52" y="470" font-size="13" fill="#E8F5F2">best for you?"</text>
+            <circle cx="330" cy="442" r="14" fill="#1A2530" stroke="rgba(0,194,224,0.2)" stroke-width="1"/>
+            <text x="330" y="447" font-size="13" fill="#00C2E0" text-anchor="middle">AI</text>
+            <!-- Home indicator -->
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="step has-mockup">
+        <div class="step-num">04</div>
+        <div>
+          <h3>Receive matched requests, confirm, get paid</h3>
+          <p>When a customer in your area needs what you offer, BG8 routes their request to you — with job details, location, and budget attached. Review, confirm, show up ready. Everything in writing. No chasing.</p>
+        </div>
+        <div class="step-mockup">
+          <svg class="step-phone" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="s4-glow" cx="50%" cy="20%" r="60%">
+                <stop offset="0%" stop-color="#4ADE5C" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="s4-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <clipPath id="s4-clip"><rect width="390" height="844" rx="44" ry="44"/></clipPath>
+            </defs>
+            <!-- Phone shell -->
+            <rect width="390" height="844" rx="44" ry="44" fill="#141C22"/>
+            <rect x="1" y="1" width="388" height="842" rx="43" ry="43" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <rect x="140" y="14" width="110" height="28" rx="14" fill="#0D1419"/>
+            <rect width="390" height="844" rx="44" ry="44" fill="url(#s4-glow)" clip-path="url(#s4-clip)"/>
+            <!-- Status bar -->
+            <text x="32" y="52" font-size="14" font-weight="600" fill="#E8F5F2">9:41</text>
+            <rect x="310" y="42" width="22" height="11" rx="3" fill="none" stroke="#7BB5A8" stroke-width="1.2"/>
+            <rect x="312" y="44" width="16" height="7" rx="2" fill="#4ADE5C"/>
+            <rect x="333" y="44" width="2" height="6" rx="1" fill="#7BB5A8"/>
+            <!-- Header -->
+            <text x="195" y="104" font-size="20" font-weight="700" fill="#E8F5F2" text-anchor="middle">Requests</text>
+            <line x1="32" y1="120" x2="358" y2="120" stroke="#2A3A48" stroke-width="1"/>
+            <!-- New match badge -->
+            <rect x="100" y="134" width="190" height="32" rx="16" fill="rgba(74,222,92,0.12)" stroke="#4ADE5C" stroke-width="1"/>
+            <circle cx="120" cy="150" r="5" fill="#4ADE5C"/>
+            <text x="195" y="155" font-size="13" font-weight="700" fill="#4ADE5C" text-anchor="middle">New Match!</text>
+            <!-- Request card -->
+            <rect x="24" y="178" width="342" height="196" rx="16" fill="#1A2530" stroke="url(#s4-grad)" stroke-width="1.5"/>
+            <!-- Service type -->
+            <rect x="40" y="196" width="100" height="24" rx="12" fill="rgba(0,194,224,0.12)"/>
+            <text x="90" y="212" font-size="12" font-weight="600" fill="#00C2E0" text-anchor="middle">House Cleaning</text>
+            <text x="40" y="246" font-size="17" font-weight="700" fill="#E8F5F2">Deep Clean · 3BR / 2BA</text>
+            <!-- Details row -->
+            <text x="40" y="276" font-size="13" fill="#7BB5A8">📍  2.4 km away · Kitsilano</text>
+            <text x="40" y="298" font-size="13" fill="#7BB5A8">📅  Sat Apr 26 · 2:00 PM</text>
+            <text x="40" y="320" font-size="13" fill="#7BB5A8">💰  Budget $120 – 150</text>
+            <!-- Rating -->
+            <text x="298" y="355" font-size="13" fill="#7BB5A8" text-anchor="end">⭐ 4.9</text>
+            <!-- Accept / Decline buttons -->
+            <rect x="24" y="388" width="220" height="52" rx="26" fill="url(#s4-grad)"/>
+            <text x="134" y="418" font-size="15" font-weight="700" fill="#141C22" text-anchor="middle">Accept Job</text>
+            <rect x="256" y="388" width="110" height="52" rx="26" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <text x="311" y="418" font-size="15" fill="#7BB5A8" text-anchor="middle">Decline</text>
+            <!-- Second (older) request card, partially visible -->
+            <rect x="24" y="456" width="342" height="80" rx="16" fill="#1A2530" stroke="#2A3A48" stroke-width="1"/>
+            <text x="40" y="480" font-size="14" font-weight="600" fill="#E8F5F2">Office Cleaning · 1 day ago</text>
+            <text x="40" y="500" font-size="13" fill="#7BB5A8">📍  Burnaby · $90 – 110</text>
+            <!-- Home indicator -->
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- NUMBERS -->
-<div class="numbers-section">
-  <div class="numbers-inner">
-    <div class="num-item">
-      <div class="num-val">3×</div>
-      <div class="num-label">average increase in bookings</div>
-    </div>
-    <div class="num-item">
-      <div class="num-val">68%</div>
-      <div class="num-label">AI inquiry-to-booking rate</div>
-    </div>
-    <div class="num-item">
-      <div class="num-val">0</div>
-      <div class="num-label">missed leads while you sleep</div>
-    </div>
-    <div class="num-item">
-      <div class="num-val">30 min</div>
-      <div class="num-label">average setup time</div>
-    </div>
-  </div>
-</div>
+<!-- ═══════════════════════════════════════════════
+     EARLY VENDORS PROGRAM
+═══════════════════════════════════════════════ -->
+<section class="early-vendors-section" id="early-vendors">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="eyebrow">Early Vendors Program</div>
+    <h2>Become an early vendor on BG8</h2>
+    <p class="section-sub">Get early access, priority exposure, and a system built to help you convert more bookings.</p>
 
-<!-- FEATURES -->
-<section class="section">
-  <div class="section-inner">
-    <div class="label">What your AI agent does</div>
-    <div class="title">It handles the whole customer conversation.<br>From first message to confirmed booking.</div>
-    <div class="subtitle">BG8 gives every vendor a free AI agent — not a chatbot, not a form. A real AI that understands your services, your schedule, and your pricing.</div>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <h3>24/7 inquiry handling</h3>
-        <p>Your AI answers questions about your services, pricing, and availability — any time, even at 2 AM. No call centre needed.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔍</div>
-        <h3>Lead qualification</h3>
-        <p>Stop wasting time on tire-kickers. Your AI gathers job details, budget range, and timeline — so you only see qualified leads.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📅</div>
-        <h3>Automatic booking</h3>
-        <p>Connects to your calendar. Customers book the exact slot that works — no back-and-forth, no phone tag, no friction.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⭐</div>
-        <h3>Review collection</h3>
-        <p>After every job, your AI follows up and asks for a review. More reviews, less effort. Better ratings, better visibility.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Real-time dashboard</h3>
-        <p>See every booking, every conversation, every metric in one place. Know exactly how your business is performing.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔗</div>
-        <h3>Pay per booking</h3>
-        <p>No pay-per-click, no wasted ad spend. BG8 charges a small commission only when a booking happens. Zero bookings = zero cost.</p>
-      </div>
+    <!-- Benefits Bar -->
+    <div class="benefits-bar">
+      <span class="benefit-pill"><span class="pill-emoji">🚀</span> No platform fee on first booking</span>
+      <span class="benefit-pill"><span class="pill-emoji">🏅</span> Founding Vendor Badge</span>
+      <span class="benefit-pill"><span class="pill-emoji">📍</span> Priority placement</span>
+      <span class="benefit-pill"><span class="pill-emoji">🤖</span> Early AI feature access</span>
+      <span class="benefit-pill"><span class="pill-emoji">💬</span> Direct team access</span>
     </div>
-  </div>
-</section>
 
-<hr class="aurora-divider">
+    <!-- Single registration card — two-column layout -->
+    <div class="ev-single-card">
 
-<!-- COMPARISON -->
-<section class="compare-section">
-  <div class="compare-inner">
-    <div class="label">Why BG8 wins</div>
-    <div class="title" style="margin-bottom: 40px;">Stop paying for clicks that don't convert.</div>
-    <div class="compare-table">
-      <div class="compare-header">
-        <div>Feature</div>
-        <div class="col-bg8">BG8</div>
-        <div>HomeStars</div>
-        <div>Google Ads</div>
-      </div>
-      <div class="compare-row">
-        <div class="feature-name">Pay per booking (not per click)</div>
-        <div class="check-yes">✓</div>
-        <div class="check-no">✗</div>
-        <div class="check-no">✗</div>
-      </div>
-      <div class="compare-row">
-        <div class="feature-name">24/7 AI agent that books for you</div>
-        <div class="check-yes">✓</div>
-        <div class="check-no">✗</div>
-        <div class="check-no">✗</div>
-      </div>
-      <div class="compare-row">
-        <div class="feature-name">Lead qualification before you see them</div>
-        <div class="check-yes">✓</div>
-        <div class="check-partial">~</div>
-        <div class="check-no">✗</div>
-      </div>
-      <div class="compare-row">
-        <div class="feature-name">Real-time availability booking</div>
-        <div class="check-yes">✓</div>
-        <div class="check-no">✗</div>
-        <div class="check-no">✗</div>
-      </div>
-      <div class="compare-row">
-        <div class="feature-name">Free tier to start</div>
-        <div class="check-yes">✓</div>
-        <div class="check-no">✗</div>
-        <div class="check-partial">~</div>
-      </div>
-      <div class="compare-row">
-        <div class="feature-name">No monthly minimums or contracts</div>
-        <div class="check-yes">✓</div>
-        <div class="check-no">✗</div>
-        <div class="check-no">✗</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="tiers-section">
-  <div class="tiers-inner">
-    <div class="label">Plans that scale with you</div>
-    <div class="title">Start free. Grow on your terms.</div>
-    <div class="tiers-grid">
-      <div class="tier-card">
-        <div class="tier-name">Starter</div>
-        <div class="tier-price">Free<span> forever</span></div>
-        <div class="tier-desc">Your AI agent goes live. Real conversations, real leads. No credit card required.</div>
-        <div class="tier-divider"></div>
-        <ul class="tier-features">
-          <li><span class="tf-check">✓</span> AI agent live on BG8 marketplace</li>
-          <li><span class="tf-check">✓</span> Unlimited AI customer conversations</li>
-          <li><span class="tf-check">✓</span> Smart Q&amp;A and lead capture</li>
-          <li><span class="tf-check">✓</span> Pay-per-booking commission only</li>
-          <li><span class="tf-check">✓</span> Basic analytics dashboard</li>
+      <!-- Left: pitch content -->
+      <div class="ev-left">
+        <div class="workshop-date">&#128197; Workshop Date — Coming Soon</div>
+        <h3>Book your free onboarding session</h3>
+        <p class="card-sub">Join a live session with the BG8 team. We'll help you set up your AI agent, show you how the platform works, and answer your questions directly.</p>
+        <ul class="ev-checklist">
+          <li>See how BG8 matches you with real local customers</li>
+          <li>Set up your AI agent live, with guidance from our team</li>
+          <li>Customize your tone, services, and availability</li>
+          <li>Ask questions and get direct feedback</li>
         </ul>
-        <a href="#" class="tier-btn tier-btn-outline">Get started free</a>
+        <div class="ev-meta-row">
+          <span class="ev-meta-item">⏱ 30 minutes</span>
+          <span class="ev-meta-item">📹 Video call</span>
+          <span class="ev-meta-item">✦ Free</span>
+        </div>
       </div>
-      <div class="tier-card featured">
-        <div class="tier-badge">Most Popular</div>
-        <div class="tier-name">Growth</div>
-        <div class="tier-price">$399<span>/mo</span></div>
-        <div class="tier-desc">Full automation stack. Calendar booking, CRM, and priority placement in search.</div>
-        <div class="tier-divider"></div>
-        <ul class="tier-features">
-          <li><span class="tf-check">✓</span> Everything in Starter</li>
-          <li><span class="tf-check">✓</span> Calendar integration + auto-booking</li>
-          <li><span class="tf-check">✓</span> CRM and client history</li>
-          <li><span class="tf-check">✓</span> Dynamic pricing engine</li>
-          <li><span class="tf-check">✓</span> Priority search placement</li>
-          <li><span class="tf-check">✓</span> Automated review collection</li>
-          <li><span class="tf-check">✓</span> Reduced commission rate</li>
-        </ul>
-        <a href="#" class="tier-btn tier-btn-aurora">Start 30-day trial</a>
+
+      <!-- Right: Calendly mock -->
+      <div class="ev-right">
+      <!-- Calendly inline widget placeholder (replace with real embed when URL is ready) -->
+      <div class="calendly-mock">
+        <div class="calendly-mock-header">
+          <div class="calendly-mock-avatar">BG8</div>
+          <div>
+            <div class="calendly-mock-name">BG8 Team</div>
+            <div class="calendly-mock-event">Free Vendor Onboarding Session</div>
+            <div class="calendly-mock-meta">⏱ 30 min &nbsp;·&nbsp; 📹 Video call</div>
+          </div>
+        </div>
+        <div class="calendly-mock-divider"></div>
+        <div class="calendly-mock-cal-label">Select a date &amp; time</div>
+        <div class="calendly-mock-month">
+          <span class="cal-nav">&#8249;</span>
+          <span class="cal-month-name">May 2026</span>
+          <span class="cal-nav">&#8250;</span>
+        </div>
+        <div class="calendly-mock-grid">
+          <span class="cal-dow">Su</span><span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span>
+          <span class="cal-day cal-empty"></span><span class="cal-day cal-empty"></span><span class="cal-day cal-empty"></span><span class="cal-day cal-empty"></span><span class="cal-day cal-avail">1</span><span class="cal-day cal-avail">2</span><span class="cal-day cal-empty">3</span>
+          <span class="cal-day cal-empty">4</span><span class="cal-day cal-avail">5</span><span class="cal-day cal-avail">6</span><span class="cal-day cal-avail">7</span><span class="cal-day cal-avail">8</span><span class="cal-day cal-avail">9</span><span class="cal-day cal-empty">10</span>
+          <span class="cal-day cal-empty">11</span><span class="cal-day cal-avail">12</span><span class="cal-day cal-selected">13</span><span class="cal-day cal-avail">14</span><span class="cal-day cal-avail">15</span><span class="cal-day cal-avail">16</span><span class="cal-day cal-empty">17</span>
+          <span class="cal-day cal-empty">18</span><span class="cal-day cal-avail">19</span><span class="cal-day cal-avail">20</span><span class="cal-day cal-avail">21</span><span class="cal-day cal-avail">22</span><span class="cal-day cal-avail">23</span><span class="cal-day cal-empty">24</span>
+        </div>
+        <div class="calendly-mock-times-label">Tuesday, May 13</div>
+        <div class="calendly-mock-times">
+          <div class="cal-time-slot">9:00 AM</div>
+          <div class="cal-time-slot">10:00 AM</div>
+          <div class="cal-time-slot cal-time-selected">11:00 AM</div>
+          <div class="cal-time-slot">1:00 PM</div>
+          <div class="cal-time-slot">2:00 PM</div>
+        </div>
+        <div class="calendly-mock-footer">
+          <span class="calendly-mock-tz">🌐 Pacific Time — Vancouver</span>
+        </div>
       </div>
-      <div class="tier-card">
-        <div class="tier-name">Enterprise</div>
-        <div class="tier-price">Custom<span> pricing</span></div>
-        <div class="tier-desc">White-label AI, custom workflows, and integrations built for your operation.</div>
-        <div class="tier-divider"></div>
-        <ul class="tier-features">
-          <li><span class="tf-check">✓</span> Everything in Growth</li>
-          <li><span class="tf-check">✓</span> White-label AI agent with your brand</li>
-          <li><span class="tf-check">✓</span> Custom automation workflows</li>
-          <li><span class="tf-check">✓</span> API access + CRM integrations</li>
-          <li><span class="tf-check">✓</span> Dedicated account manager</li>
-          <li><span class="tf-check">✓</span> Enterprise SLA + uptime guarantee</li>
-        </ul>
-        <a href="#" class="tier-btn tier-btn-outline">Talk to sales</a>
-      </div>
-    </div>
+      </div><!-- /ev-right -->
+
+    </div><!-- /ev-single-card -->
+
+    <p class="ev-closing">We'll personally help you set up your AI agent, so it reflects your business and handles inquiries the right way.</p>
+
   </div>
 </section>
 
-<!-- MODEL COMPARISON -->
-<section class="model-section">
-  <div class="model-inner">
-    <div>
-      <div class="label">Built for Vancouver</div>
-      <div class="title" style="font-size: clamp(24px, 2.5vw, 36px); margin-bottom: 18px;">Local business, fighting back<br>against the big platforms.</div>
-      <p style="font-size: 16px; color: var(--muted); line-height: 1.65;">
-        Google, HomeStars, Yelp — they charge you per click, whether anyone books or not. They squeeze your margins and sell your customers' attention back to you.<br><br>
-        BG8 is different. Built in Vancouver, for Vancouver. Every vendor on the platform is a real local business. Every booking is a real customer. And you only pay when you get paid.
-      </p>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div class="model-card">
-        <div class="model-card-label">The old model</div>
-        <p>You pay for clicks. They click, they leave. You pay again. No booking, no refund. No accountability. Platform wins either way.</p>
-      </div>
-      <div class="model-card featured-model">
-        <div class="model-card-label aurora-text">The BG8 model</div>
-        <p>You pay only when a booking confirms. The AI qualifies the lead, books the slot, and sends the confirmation. Then — and only then — does BG8 earn anything.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
+<!-- ═══════════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════════ -->
 <section class="cta-section">
-  <div class="cta-glow"></div>
-  <div class="cta-glow-2"></div>
-  <div class="cta-inner">
-    <div class="label" style="margin-bottom: 16px;">Ready?</div>
-    <h2>Your AI agent can be<br><span class="aurora-text">live today.</span></h2>
-    <p>Set up in 30 minutes. No technical knowledge needed. Free forever to start. Your AI starts taking inquiries the same day.</p>
-    <div class="cta-actions">
-      <a href="#" class="btn-primary">Get your AI agent free</a>
-      <a href="#" class="btn-ghost">Book a demo →</a>
+  <div class="container">
+    <div class="eyebrow">Get started</div>
+    <h2>Start for free.<br><span class="grad-text">Pay only when<br>you get booked.</span></h2>
+
+    <div style="margin-top:48px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+      <a href="#" class="btn-primary" style="font-size:18px;padding:18px 52px;">Join the Vendor Network</a>
+      <a href="#how" class="btn-ghost" style="font-size:18px;padding:17px 52px;">See How It Works</a>
+    </div>
+
+    <div class="cta-trust">
+      <span class="trust-item"><span class="trust-dot"></span>Private &amp; secure</span>
+      <span class="trust-item"><span class="trust-dot"></span>No subscription fees</span>
+      <span class="trust-item"><span class="trust-dot"></span>Greater Vancouver only</span>
+      <span class="trust-item"><span class="trust-dot"></span>Qualified leads only</span>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div>
-    <div class="footer-logo">BG8</div>
-    <div class="footer-tag">By VLS Solutions · Vancouver, BC</div>
-    <div class="footer-engine">Powered by Andromeda Engine™ — VLS AI Corporation's proprietary AI commerce platform</div>
-  </div>
-  <div class="footer-right">© 2026 VLS AI Corporation. All rights reserved.</div>
+  <p class="grad-text" style="font-size:18px;font-weight:800;letter-spacing:3px;margin-bottom:12px;">BG8.AI</p>
+  <p>by VLS Solutions · Vancouver, BC · &copy; 2026</p>
 </footer>
-
-<div class="concept-badge">Concept B · B2B Vendor</div>
 
 </body>
 </html>
