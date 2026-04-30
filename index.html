@@ -81,9 +81,8 @@
 
     /* CONVERGING STREAMLINE */
     .streamline-wrap {
-      position: relative;
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-      height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; min-height: 420px;
     }
     .phone-backdrop {
       position: absolute; inset: 0;
@@ -101,7 +100,6 @@
     @media (max-width: 760px) {
       .hero-grid { grid-template-columns: 1fr; gap: 40px; }
       .streamline-wrap { order: -1; }
-      .phone-backdrop { display: none; }
     }
 
     .btn-primary {
@@ -177,46 +175,6 @@
       padding: 4px 12px; border-radius: 20px;
     }
 
-    /* COMPARISON SECTION */
-    .compare-section { background: var(--bg-deep); }
-    .compare-section h2 {
-      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
-      letter-spacing: -1.5px; text-align: center; margin-bottom: 64px;
-    }
-    .compare-grid {
-      display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: start;
-    }
-    .compare-col { padding: 48px; border-radius: 20px; }
-    .compare-col.old {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .compare-col.new {
-      background: rgba(0,194,224,0.06);
-      border: 1px solid rgba(0,194,224,0.2);
-    }
-    .compare-divider {
-      display: flex; align-items: center; justify-content: center;
-      padding: 0 32px; margin-top: 160px;
-    }
-    .vs-badge {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--bg-raised); border: 1px solid rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 700; color: var(--muted);
-    }
-    .compare-label {
-      font-size: 14px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: 32px;
-    }
-    .compare-label.old-label { color: var(--muted); }
-    .compare-label.new-label { color: var(--teal); }
-    .compare-item {
-      display: flex; align-items: flex-start; gap: 14px;
-      margin-bottom: 20px; font-size: 16px; line-height: 1.45;
-    }
-    .compare-item .icon { font-size: 18px; margin-top: 1px; flex-shrink: 0; }
-
     /* HOW IT WORKS */
     .how-section { background: var(--bg-base); }
     .how-section h2 {
@@ -229,8 +187,14 @@
     .steps { display: flex; flex-direction: column; gap: 0; }
     .step {
       display: grid; grid-template-columns: 80px 1fr; gap: 32px;
-      padding: 48px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
       align-items: center;
+    }
+    .step.has-mockup {
+      grid-template-columns: 80px 1fr 200px;
+      align-items: start;
+      max-height: 340px;
+      overflow: hidden;
     }
     .step:last-child { border-bottom: none; }
     .step-num {
@@ -241,6 +205,19 @@
     }
     .step h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
     .step p { font-size: 17px; color: var(--muted); line-height: 1.55; max-width: 540px; }
+    .step-mockup {
+      display: flex; justify-content: center; align-items: flex-start;
+      padding-top: 8px;
+    }
+    .step-phone {
+      height: 420px; width: auto; display: block;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 75%);
+      mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 75%);
+    }
+    @media (max-width: 860px) {
+      .step.has-mockup { grid-template-columns: 80px 1fr; }
+      .step-mockup { display: none; }
+    }
     .store-badges { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
     .store-badge {
       display: flex; align-items: center; gap: 10px;
@@ -254,6 +231,213 @@
     .store-badge span { display: flex; flex-direction: column; line-height: 1.2; }
     .store-badge small { font-size: 11px; color: var(--muted); font-weight: 400; }
     .store-badge strong { font-size: 15px; font-weight: 700; }
+
+    /* EARLY VENDORS SECTION — redesigned */
+    .early-vendors-section {
+      background: var(--bg-base);
+      border-top: 1px solid rgba(0,194,224,0.08);
+      position: relative; overflow: hidden;
+    }
+    .early-vendors-section::before {
+      content: '';
+      position: absolute; top: -20%; right: -10%;
+      width: 60%; height: 70%;
+      background: radial-gradient(circle, rgba(0,194,224,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .early-vendors-section::after {
+      content: '';
+      position: absolute; bottom: -10%; left: -5%;
+      width: 50%; height: 60%;
+      background: radial-gradient(circle, rgba(74,222,92,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .early-vendors-section h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .early-vendors-section .section-sub {
+      font-size: 20px; color: var(--muted); margin-bottom: 52px; max-width: 580px; line-height: 1.55;
+    }
+
+    /* Benefits bar — horizontal pill row */
+    .benefits-bar {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 56px;
+    }
+    .benefit-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,194,224,0.06);
+      border: 1px solid rgba(0,194,224,0.25);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 14px; font-weight: 600; color: var(--text);
+      white-space: nowrap;
+    }
+    .benefit-pill .pill-emoji { font-size: 15px; }
+
+    /* Two-column session card */
+    .ev-single-card {
+      max-width: 100%;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 0;
+      position: relative; overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+    .ev-single-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #00C2E0, #4ADE5C);
+      z-index: 1;
+    }
+    .ev-left {
+      padding: 52px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .ev-right {
+      padding: 52px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: rgba(0,0,0,0.15);
+    }
+
+    .workshop-date {
+      display: inline-block;
+      background: rgba(0,194,224,0.1); color: var(--teal);
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      padding: 5px 14px; border-radius: 20px;
+      border: 1px solid rgba(0,194,224,0.25);
+      margin-bottom: 24px; text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .ev-left h3 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .ev-left .card-sub {
+      font-size: 16px; color: var(--muted); margin-bottom: 32px; line-height: 1.65;
+    }
+    .ev-checklist {
+      list-style: none; padding: 0; margin: 0 0 36px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .ev-checklist li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; color: var(--text); line-height: 1.45;
+    }
+    .ev-checklist li::before {
+      content: '';
+      width: 20px; height: 20px; flex-shrink: 0;
+      border-radius: 50%;
+      margin-top: 1px;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9'%3E%3Cpath d='M1 4l3.5 3.5L11 1' stroke='%23141C22' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px 9px no-repeat,
+        linear-gradient(135deg, #00C2E0, #4ADE5C);
+    }
+    .ev-meta-row {
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .ev-meta-item {
+      font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+
+    /* Lead gen form */
+    .form-field {
+      margin-bottom: 18px;
+    }
+    .form-field label {
+      display: block; font-size: 12px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 7px;
+    }
+    .form-field input {
+      width: 100%; background: var(--bg-deep);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 14px 18px;
+      font-family: var(--font); font-size: 16px; color: var(--text);
+      transition: border-color 0.2s;
+      outline: none; box-sizing: border-box;
+    }
+    .form-field input::placeholder { color: rgba(123,181,168,0.5); }
+    .form-field input:focus { border-color: rgba(0,194,224,0.5); }
+    .form-submit {
+      width: 100%; margin-top: 10px;
+      font-size: 17px; padding: 18px 40px;
+    }
+
+    /* Closing copy below card */
+    .ev-closing {
+      margin-top: 28px;
+      font-size: 15px; color: var(--muted); line-height: 1.6;
+      text-align: center; max-width: 480px; margin-left: auto; margin-right: auto;
+    }
+
+    /* Calendly mock widget */
+    .calendly-mock {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(0,194,224,0.18);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      text-align: left;
+      width: 100%;
+    }
+    .calendly-mock-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+    }
+    .calendly-mock-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, #00C2E0, #4ADE5C);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: #141C22; flex-shrink: 0;
+    }
+    .calendly-mock-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .calendly-mock-event { font-size: 13px; color: var(--muted); margin: 2px 0; }
+    .calendly-mock-meta { font-size: 12px; color: rgba(255,255,255,0.35); }
+    .calendly-mock-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 0 0 20px; }
+    .calendly-mock-cal-label { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .calendly-mock-month {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .cal-month-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .cal-nav { font-size: 20px; color: var(--muted); cursor: pointer; padding: 0 8px; user-select: none; }
+    .calendly-mock-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px; margin-bottom: 20px;
+    }
+    .cal-dow { font-size: 11px; color: rgba(255,255,255,0.3); text-align: center; padding: 4px 0; font-weight: 600; }
+    .cal-day {
+      font-size: 13px; text-align: center; padding: 7px 4px;
+      border-radius: 8px; color: rgba(255,255,255,0.2);
+    }
+    .cal-day.cal-avail { color: #fff; cursor: pointer; }
+    .cal-day.cal-avail:hover { background: rgba(0,194,224,0.15); }
+    .cal-day.cal-selected {
+      background: linear-gradient(135deg, #00C2E0, #4ADE5C);
+      color: #141C22; font-weight: 800; border-radius: 50%;
+      width: 32px; height: 32px; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin: auto;
+    }
+    .calendly-mock-times-label { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+    .calendly-mock-times { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .cal-time-slot {
+      padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.1); color: #fff; cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .cal-time-slot:hover { border-color: #00C2E0; }
+    .cal-time-slot.cal-time-selected {
+      background: linear-gradient(135deg, #00C2E0, #4ADE5C);
+      color: #141C22; border-color: transparent;
+    }
+    .calendly-mock-footer { font-size: 12px; color: rgba(255,255,255,0.25); text-align: center; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
 
     /* CTA */
     .cta-section {
@@ -283,11 +467,14 @@
     footer p { font-size: 14px; color: var(--muted); }
 
     @media (max-width: 900px) {
-      .local-grid, .compare-grid { grid-template-columns: 1fr; }
+      .local-grid { grid-template-columns: 1fr; }
       .chaos-grid { grid-template-columns: 1fr; }
-      .compare-divider { display: none; }
       .container { padding: 0 24px; }
       section { padding: 72px 0; }
+      .ev-single-card { grid-template-columns: 1fr; }
+      .ev-left { padding: 36px 28px 28px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .ev-right { padding: 28px 28px 36px; }
+      .benefits-bar { gap: 10px; }
     }
   </style>
 </head>
@@ -314,18 +501,18 @@
       <!-- LEFT: Text + CTA -->
       <div>
         <div class="eyebrow">Greater Vancouver · Vendor Network</div>
-        <h1>A system. A network. <span class="grad-text">For Greater Vancouver local businesses.</span></h1>
-        <p class="hero-sub">Built for Greater Vancouver vendors. Connect with real local demand and turn it into bookings.</p>
+        <h1>Get customers.<br><span class="grad-text">Let AI handle the rest.</span></h1>
+        <p class="hero-sub">BG8 connects you with real local demand. Set up your AI agent for free and start turning inquiries into bookings.</p>
         <div style="display:flex;gap:20px;flex-wrap:wrap;">
           <a href="#" class="btn-primary">Join the Vendor Network</a>
           <a href="#how" class="btn-ghost">See How It Works</a>
         </div>
       </div>
 
-      <!-- RIGHT: Converging Streamline + Phone Mockups -->
+      <!-- RIGHT: Phone Mockups + Converging Streamline -->
       <div class="streamline-wrap">
 
-        <!-- Phone Backdrop: two V5 screens behind the diagram -->
+        <!-- Phone Backdrop: two app screens behind the diagram -->
         <div class="phone-backdrop">
 
           <!-- Phone 1: Meet Max (AI Agent Setup) -->
@@ -428,7 +615,6 @@
             <text x="195" y="184" text-anchor="middle" font-size="27" font-weight="800" fill="#E8F5F2" letter-spacing="-1.5">How do you want</text>
             <text x="195" y="216" text-anchor="middle" font-size="27" font-weight="800" fill="url(#p2-g-green)" letter-spacing="-1.5">to get paid?</text>
             <text x="195" y="246" text-anchor="middle" font-size="14" fill="#7BB5A8">Funds hit your account in 1–2 business days</text>
-            <!-- Bank option (selected) -->
             <rect x="24" y="270" width="342" height="80" rx="18" fill="#4ADE5C" fill-opacity="0.05" stroke="#4ADE5C" stroke-width="2"/>
             <circle cx="54" cy="310" r="20" fill="#4ADE5C" fill-opacity="0.15"/>
             <text x="54" y="316" text-anchor="middle" font-size="18">🏦</text>
@@ -437,24 +623,21 @@
             <text x="88" y="338" font-size="11" fill="#4ADE5C">Recommended · Free</text>
             <circle cx="342" cy="278" r="12" fill="url(#p2-g-green)"/>
             <path d="M336,278 L340,282 L348,273" fill="none" stroke="#141C22" stroke-width="2" stroke-linecap="round"/>
-            <!-- Stripe option -->
             <rect x="24" y="362" width="342" height="80" rx="18" fill="#1C2730" stroke="#2A3A44" stroke-width="1.5"/>
             <circle cx="54" cy="402" r="20" fill="#2A3A44"/>
             <text x="54" y="408" text-anchor="middle" font-size="18">💳</text>
             <text x="88" y="392" font-size="16" font-weight="700" fill="#E8F5F2">Stripe Connect</text>
             <text x="88" y="412" font-size="12" fill="#7BB5A8">Instant payouts to debit card</text>
             <text x="88" y="430" font-size="11" fill="#7BB5A8">1.5% fee per transaction</text>
-            <!-- Bank details form -->
             <rect x="36" y="462" width="318" height="56" rx="12" fill="#1C2730" stroke="#4ADE5C" stroke-width="1.5" stroke-opacity="0.5"/>
             <text x="52" y="478" font-size="10" fill="#7BB5A8">Account Holder Name</text>
-            <text x="52" y="498" font-size="13" fill="#E8F5F2">Alex Moen</text>
+            <text x="52" y="498" font-size="13" fill="#E8F5F2">Jane Doe</text>
             <rect x="36" y="530" width="154" height="56" rx="12" fill="#1C2730" stroke="#2A3A44" stroke-width="1.5"/>
             <text x="52" y="546" font-size="10" fill="#7BB5A8">BSB Number</text>
             <text x="52" y="566" font-size="13" fill="#E8F5F2">062-001</text>
             <rect x="200" y="530" width="154" height="56" rx="12" fill="#1C2730" stroke="#2A3A44" stroke-width="1.5"/>
             <text x="216" y="546" font-size="10" fill="#7BB5A8">Account Number</text>
             <text x="216" y="566" font-size="13" fill="#E8F5F2">••••••••</text>
-            <!-- Security note -->
             <text x="195" y="612" text-anchor="middle" font-size="12" fill="#7BB5A8" font-style="italic">🔒 256-bit encrypted · Bank-level security</text>
             <rect x="36" y="634" width="318" height="52" rx="26" fill="url(#p2-g-green)"/>
             <text x="195" y="665" text-anchor="middle" font-size="17" font-weight="700" fill="#141C22">Finish Setup</text>
@@ -552,8 +735,8 @@
     <div class="local-grid">
       <div class="local-text">
         <div class="eyebrow">Your market</div>
-        <h2>Your Local Network<br><span class="grad-text">and System.</span></h2>
-        <p>Today's customers expect speed, clarity, and instant responses, but most service businesses are still managing inquiries manually. BG8 helps you build your own AI agent to structure the process, helping you find the right customers, managing responses, and turning requests into confirmed bookings automatically.</p>
+        <h2>Your customers are<br><span class="grad-text">already searching.</span></h2>
+        <p>Greater Vancouver has millions of residents looking for local services right now. BG8 routes qualified demand directly to vendors like you — no ads to run, no cold calls to make. Just bookings.</p>
       </div>
 
       <!-- Vancouver Map SVG -->
@@ -629,95 +812,30 @@
 <section class="problem-section">
   <div class="container">
     <div class="eyebrow">The problem</div>
-    <h2>Running a service business is complex.<br>It doesn't have to be.</h2>
-    <p class="lead">With the right system, demand becomes clear, structured, and easier to convert.</p>
+    <h2>Growing your business<br>shouldn't feel like a gamble.</h2>
+    <p class="lead">Word of mouth has limits. BG8 doesn't.</p>
 
     <div class="chaos-grid">
 
       <div class="chaos-card">
-        <div class="chaos-title">Leads that don't convert.</div>
-        <div class="chaos-desc">You spend hours following up on inquiries that go nowhere. Tire-kickers, price-shoppers, no-shows. Your time is worth more than this.</div>
+        <div class="chaos-icon">👻</div>
+        <div class="chaos-title">You reply, they disappear.</div>
+        <div class="chaos-desc">A customer messages you asking for a quote. You ask a few follow-up questions, wait for details, send a price, and then… nothing. No reply. No booking. Just another dead end.</div>
         <span class="chaos-tag">Lost revenue</span>
       </div>
 
       <div class="chaos-card">
-        <div class="chaos-title">No reliable booking channel.</div>
-        <div class="chaos-desc">You're managing DMs, voicemails, texts, and emails — all for the same job. There's no central system. Just chaos across five platforms.</div>
+        <div class="chaos-icon">🤯</div>
+        <div class="chaos-title">Everything is everywhere.</div>
+        <div class="chaos-desc">One customer texts you. Another calls and leaves a voicemail. Someone else DMs you on Instagram. You're switching between apps, trying to keep track, and still missing details, or losing the thread.</div>
         <span class="chaos-tag">Scattered workflow</span>
       </div>
 
       <div class="chaos-card">
-        <div class="chaos-title">The quiet season.</div>
-        <div class="chaos-desc">Work dries up in the slow months and floods in the busy ones. There's no lever to pull. You just wait and hope the phone rings.</div>
+        <div class="chaos-icon">💸</div>
+        <div class="chaos-title">You invest. But results aren't clear.</div>
+        <div class="chaos-desc">You spend time building a website. Maybe run ads. Try different platforms. Money goes in. Time goes in. But it's hard to tell what's actually working or when the next job will come from it.</div>
         <span class="chaos-tag">No demand visibility</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     COMPARISON
-═══════════════════════════════════════════════ -->
-<section class="compare-section">
-  <div class="container">
-    <div class="eyebrow">The difference</div>
-    <h2>How vendors grow <span class="grad-text">with BG8.</span></h2>
-
-    <div class="compare-grid">
-
-      <!-- Old way -->
-      <div class="compare-col old">
-        <div class="compare-label old-label">Without BG8</div>
-        <div class="compare-item">
-          <span class="icon">❌</span>
-          <span>Chasing leads that don't convert</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">❌</span>
-          <span>Messages scattered across platforms</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">❌</span>
-          <span>Quoting without full job details</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">❌</span>
-          <span>Competing on price, no way to stand out</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">❌</span>
-          <span>Slow seasons with no way to fill your calendar</span>
-        </div>
-      </div>
-
-      <div class="compare-divider">
-        <div class="vs-badge">VS</div>
-      </div>
-
-      <!-- BG8 way -->
-      <div class="compare-col new">
-        <div class="compare-label new-label">With BG8</div>
-        <div class="compare-item">
-          <span class="icon">✓</span>
-          <span>Receive matched requests ready to book</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">✓</span>
-          <span>All inquiries structured in one system</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">✓</span>
-          <span>Clear job details before you quote</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">✓</span>
-          <span>Build trust within a local network</span>
-        </div>
-        <div class="compare-item">
-          <span class="icon">✓</span>
-          <span>Steady demand that fills your calendar</span>
-        </div>
       </div>
 
     </div>
@@ -730,7 +848,7 @@
 <section class="how-section" id="how">
   <div class="container">
     <div class="eyebrow">How it works</div>
-    <h2>Three steps.<br><span class="grad-text">Start getting booked.</span></h2>
+    <h2>Four steps to<br><span class="grad-text">your first booking.</span></h2>
     <p class="lead">No complex setup. No ads to manage. Just list and go.</p>
 
     <div class="steps">
@@ -738,7 +856,7 @@
       <div class="step">
         <div class="step-num">01</div>
         <div>
-          <h3>Download the app and register for free</h3>
+          <h3>Download free, register</h3>
           <p>Create your vendor account in minutes. Available on iOS and Android.</p>
           <div class="store-badges">
             <a class="store-badge apple" href="#" aria-label="Download on the App Store">
@@ -753,23 +871,293 @@
         </div>
       </div>
 
-      <div class="step">
+      <div class="step has-mockup">
         <div class="step-num">02</div>
         <div>
           <h3>List your services</h3>
           <p>Tell BG8 what you do, where you work, and your availability. Takes minutes. No marketing degree required.</p>
         </div>
+        <div class="step-mockup">
+          <svg class="step-phone" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="s2-glow" cx="80%" cy="10%" r="55%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.20"/>
+                <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="s2-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <clipPath id="s2-clip"><rect width="390" height="844" rx="44" ry="44"/></clipPath>
+            </defs>
+            <!-- Phone shell -->
+            <rect width="390" height="844" rx="44" ry="44" fill="#141C22"/>
+            <rect x="1" y="1" width="388" height="842" rx="43" ry="43" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <!-- Notch -->
+            <rect x="140" y="14" width="110" height="28" rx="14" fill="#0D1419"/>
+            <!-- Glow -->
+            <rect width="390" height="844" rx="44" ry="44" fill="url(#s2-glow)" clip-path="url(#s2-clip)"/>
+            <!-- Status bar -->
+            <text x="32" y="52" font-size="14" font-weight="600" fill="#E8F5F2">9:41</text>
+            <rect x="310" y="42" width="22" height="11" rx="3" fill="none" stroke="#7BB5A8" stroke-width="1.2"/>
+            <rect x="312" y="44" width="16" height="7" rx="2" fill="#4ADE5C"/>
+            <rect x="333" y="44" width="2" height="6" rx="1" fill="#7BB5A8"/>
+            <!-- Header -->
+            <text x="195" y="108" font-size="20" font-weight="700" fill="#E8F5F2" text-anchor="middle">Your Services</text>
+            <line x1="32" y1="124" x2="358" y2="124" stroke="#2A3A48" stroke-width="1"/>
+            <!-- Profile row -->
+            <circle cx="64" cy="168" r="28" fill="#1A2530"/>
+            <circle cx="64" cy="168" r="28" fill="none" stroke="url(#s2-grad)" stroke-width="1.5"/>
+            <text x="64" y="173" font-size="18" fill="#7BB5A8" text-anchor="middle">👤</text>
+            <text x="108" y="163" font-size="16" font-weight="700" fill="#E8F5F2">Jane Doe Services</text>
+            <text x="108" y="181" font-size="13" fill="#7BB5A8">Greater Vancouver</text>
+            <!-- Section label -->
+            <text x="32" y="226" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">WHAT YOU OFFER</text>
+            <!-- Service chip pills -->
+            <rect x="32" y="238" width="120" height="34" rx="17" fill="none" stroke="url(#s2-grad)" stroke-width="1.2"/>
+            <text x="92" y="260" font-size="13" font-weight="600" fill="#00C2E0" text-anchor="middle">House Cleaning</text>
+            <rect x="164" y="238" width="90" height="34" rx="17" fill="none" stroke="#2A3A48" stroke-width="1.2"/>
+            <text x="209" y="260" font-size="13" fill="#7BB5A8" text-anchor="middle">Deep Clean</text>
+            <rect x="264" y="238" width="90" height="34" rx="17" fill="none" stroke="#2A3A48" stroke-width="1.2"/>
+            <text x="309" y="260" font-size="13" fill="#7BB5A8" text-anchor="middle">Move-out</text>
+            <!-- Availability row -->
+            <text x="32" y="310" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">AVAILABILITY</text>
+            <rect x="32" y="322" width="326" height="52" rx="12" fill="#1A2530"/>
+            <text x="56" y="353" font-size="15" fill="#E8F5F2">📅  Available this week</text>
+            <rect x="300" y="335" width="40" height="22" rx="11" fill="url(#s2-grad)"/>
+            <circle cx="328" cy="346" r="9" fill="#141C22"/>
+            <!-- Rate row -->
+            <text x="32" y="404" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">YOUR RATE</text>
+            <rect x="32" y="416" width="326" height="52" rx="12" fill="#1A2530"/>
+            <text x="56" y="447" font-size="15" fill="#E8F5F2">$</text>
+            <text x="72" y="447" font-size="15" fill="#E8F5F2">45 – 75</text>
+            <text x="200" y="447" font-size="13" fill="#7BB5A8">per hour</text>
+            <!-- CTA button -->
+            <rect x="32" y="492" width="326" height="52" rx="26" fill="url(#s2-grad)"/>
+            <text x="195" y="522" font-size="16" font-weight="700" fill="#141C22" text-anchor="middle">Save Profile</text>
+            <!-- Home indicator -->
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
+        </div>
       </div>
 
-      <div class="step">
+      <div class="step has-mockup">
         <div class="step-num">03</div>
         <div>
-          <h3>Receive matched requests, confirm, and get paid</h3>
+          <h3>Set up your AI agent for free</h3>
+          <p>We'll guide you step by step with a free tutorial. Customize how your AI responds from tone to style, so it matches how you talk to customers. In minutes, you'll have a personalized AI agent that represents your business and handles inquiries your way.</p>
+        </div>
+        <div class="step-mockup">
+          <svg class="step-phone" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="s3-glow-t" cx="50%" cy="30%" r="55%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.22"/>
+                <stop offset="100%" stop-color="#00C2E0" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="s3-avatar-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#00C2E0" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="s3-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <clipPath id="s3-clip"><rect width="390" height="844" rx="44" ry="44"/></clipPath>
+            </defs>
+            <!-- Phone shell -->
+            <rect width="390" height="844" rx="44" ry="44" fill="#141C22"/>
+            <rect x="1" y="1" width="388" height="842" rx="43" ry="43" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <rect x="140" y="14" width="110" height="28" rx="14" fill="#0D1419"/>
+            <rect width="390" height="844" rx="44" ry="44" fill="url(#s3-glow-t)" clip-path="url(#s3-clip)"/>
+            <!-- Status bar -->
+            <text x="32" y="52" font-size="14" font-weight="600" fill="#E8F5F2">9:41</text>
+            <rect x="310" y="42" width="22" height="11" rx="3" fill="none" stroke="#7BB5A8" stroke-width="1.2"/>
+            <rect x="312" y="44" width="16" height="7" rx="2" fill="#4ADE5C"/>
+            <rect x="333" y="44" width="2" height="6" rx="1" fill="#7BB5A8"/>
+            <!-- Header -->
+            <text x="195" y="108" font-size="20" font-weight="700" fill="#E8F5F2" text-anchor="middle">Your AI Agent</text>
+            <line x1="32" y1="124" x2="358" y2="124" stroke="#2A3A48" stroke-width="1"/>
+            <!-- Avatar with glow rings -->
+            <circle cx="195" cy="204" r="52" fill="url(#s3-avatar-glow)"/>
+            <circle cx="195" cy="204" r="40" fill="#1A2530"/>
+            <circle cx="195" cy="204" r="40" fill="none" stroke="url(#s3-grad)" stroke-width="2"/>
+            <text x="195" y="197" font-size="15" font-weight="800" fill="#00C2E0" text-anchor="middle">AI</text>
+            <text x="195" y="216" font-size="11" fill="#7BB5A8" text-anchor="middle">AGENT</text>
+            <!-- Active badge -->
+            <rect x="158" y="254" width="74" height="24" rx="12" fill="rgba(74,222,92,0.12)" stroke="#4ADE5C" stroke-width="1"/>
+            <circle cx="174" cy="266" r="4" fill="#4ADE5C"/>
+            <text x="191" y="270" font-size="12" font-weight="600" fill="#4ADE5C">Active</text>
+            <!-- Tone selector -->
+            <text x="32" y="308" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">TONE</text>
+            <rect x="32" y="318" width="326" height="48" rx="24" fill="#1A2530"/>
+            <rect x="34" y="320" width="104" height="44" rx="22" fill="url(#s3-grad)"/>
+            <text x="86" y="347" font-size="13" font-weight="700" fill="#141C22" text-anchor="middle">Friendly</text>
+            <text x="195" y="347" font-size="13" fill="#7BB5A8" text-anchor="middle">Professional</text>
+            <text x="304" y="347" font-size="13" fill="#7BB5A8" text-anchor="middle">Direct</text>
+            <!-- Preview bubble -->
+            <text x="32" y="394" font-size="12" font-weight="600" letter-spacing="2" fill="#7BB5A8">PREVIEW</text>
+            <rect x="32" y="406" width="280" height="72" rx="16" rx="16" fill="#1A2530" stroke="rgba(0,194,224,0.2)" stroke-width="1"/>
+            <text x="52" y="430" font-size="13" fill="#E8F5F2">"Hi! I'd be happy to help</text>
+            <text x="52" y="450" font-size="13" fill="#E8F5F2">you book. When works</text>
+            <text x="52" y="470" font-size="13" fill="#E8F5F2">best for you?"</text>
+            <circle cx="330" cy="442" r="14" fill="#1A2530" stroke="rgba(0,194,224,0.2)" stroke-width="1"/>
+            <text x="330" y="447" font-size="13" fill="#00C2E0" text-anchor="middle">AI</text>
+            <!-- Home indicator -->
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="step has-mockup">
+        <div class="step-num">04</div>
+        <div>
+          <h3>Receive matched requests, confirm, get paid</h3>
           <p>When a customer in your area needs what you offer, BG8 routes their request to you — with job details, location, and budget attached. Review, confirm, show up ready. Everything in writing. No chasing.</p>
+        </div>
+        <div class="step-mockup">
+          <svg class="step-phone" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" font-family="Outfit,-apple-system,sans-serif">
+            <defs>
+              <radialGradient id="s4-glow" cx="50%" cy="20%" r="60%">
+                <stop offset="0%" stop-color="#4ADE5C" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#4ADE5C" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="s4-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00C2E0"/>
+                <stop offset="100%" stop-color="#4ADE5C"/>
+              </linearGradient>
+              <clipPath id="s4-clip"><rect width="390" height="844" rx="44" ry="44"/></clipPath>
+            </defs>
+            <!-- Phone shell -->
+            <rect width="390" height="844" rx="44" ry="44" fill="#141C22"/>
+            <rect x="1" y="1" width="388" height="842" rx="43" ry="43" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <rect x="140" y="14" width="110" height="28" rx="14" fill="#0D1419"/>
+            <rect width="390" height="844" rx="44" ry="44" fill="url(#s4-glow)" clip-path="url(#s4-clip)"/>
+            <!-- Status bar -->
+            <text x="32" y="52" font-size="14" font-weight="600" fill="#E8F5F2">9:41</text>
+            <rect x="310" y="42" width="22" height="11" rx="3" fill="none" stroke="#7BB5A8" stroke-width="1.2"/>
+            <rect x="312" y="44" width="16" height="7" rx="2" fill="#4ADE5C"/>
+            <rect x="333" y="44" width="2" height="6" rx="1" fill="#7BB5A8"/>
+            <!-- Header -->
+            <text x="195" y="104" font-size="20" font-weight="700" fill="#E8F5F2" text-anchor="middle">Requests</text>
+            <line x1="32" y1="120" x2="358" y2="120" stroke="#2A3A48" stroke-width="1"/>
+            <!-- New match badge -->
+            <rect x="100" y="134" width="190" height="32" rx="16" fill="rgba(74,222,92,0.12)" stroke="#4ADE5C" stroke-width="1"/>
+            <circle cx="120" cy="150" r="5" fill="#4ADE5C"/>
+            <text x="195" y="155" font-size="13" font-weight="700" fill="#4ADE5C" text-anchor="middle">New Match!</text>
+            <!-- Request card -->
+            <rect x="24" y="178" width="342" height="196" rx="16" fill="#1A2530" stroke="url(#s4-grad)" stroke-width="1.5"/>
+            <!-- Service type -->
+            <rect x="40" y="196" width="100" height="24" rx="12" fill="rgba(0,194,224,0.12)"/>
+            <text x="90" y="212" font-size="12" font-weight="600" fill="#00C2E0" text-anchor="middle">House Cleaning</text>
+            <text x="40" y="246" font-size="17" font-weight="700" fill="#E8F5F2">Deep Clean · 3BR / 2BA</text>
+            <!-- Details row -->
+            <text x="40" y="276" font-size="13" fill="#7BB5A8">📍  2.4 km away · Kitsilano</text>
+            <text x="40" y="298" font-size="13" fill="#7BB5A8">📅  Sat Apr 26 · 2:00 PM</text>
+            <text x="40" y="320" font-size="13" fill="#7BB5A8">💰  Budget $120 – 150</text>
+            <!-- Rating -->
+            <text x="298" y="355" font-size="13" fill="#7BB5A8" text-anchor="end">⭐ 4.9</text>
+            <!-- Accept / Decline buttons -->
+            <rect x="24" y="388" width="220" height="52" rx="26" fill="url(#s4-grad)"/>
+            <text x="134" y="418" font-size="15" font-weight="700" fill="#141C22" text-anchor="middle">Accept Job</text>
+            <rect x="256" y="388" width="110" height="52" rx="26" fill="none" stroke="#2A3A48" stroke-width="1.5"/>
+            <text x="311" y="418" font-size="15" fill="#7BB5A8" text-anchor="middle">Decline</text>
+            <!-- Second (older) request card, partially visible -->
+            <rect x="24" y="456" width="342" height="80" rx="16" fill="#1A2530" stroke="#2A3A48" stroke-width="1"/>
+            <text x="40" y="480" font-size="14" font-weight="600" fill="#E8F5F2">Office Cleaning · 1 day ago</text>
+            <text x="40" y="500" font-size="13" fill="#7BB5A8">📍  Burnaby · $90 – 110</text>
+            <!-- Home indicator -->
+            <rect x="148" y="824" width="94" height="4" rx="2" fill="#E8F5F2" fill-opacity="0.2"/>
+          </svg>
         </div>
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     EARLY VENDORS PROGRAM
+═══════════════════════════════════════════════ -->
+<section class="early-vendors-section" id="early-vendors">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="eyebrow">Early Vendors Program</div>
+    <h2>Become an early vendor on BG8</h2>
+    <p class="section-sub">Get early access, priority exposure, and a system built to help you convert more bookings.</p>
+
+    <!-- Benefits Bar -->
+    <div class="benefits-bar">
+      <span class="benefit-pill"><span class="pill-emoji">🚀</span> No platform fee on first booking</span>
+      <span class="benefit-pill"><span class="pill-emoji">🏅</span> Founding Vendor Badge</span>
+      <span class="benefit-pill"><span class="pill-emoji">📍</span> Priority placement</span>
+      <span class="benefit-pill"><span class="pill-emoji">🤖</span> Early AI feature access</span>
+      <span class="benefit-pill"><span class="pill-emoji">💬</span> Direct team access</span>
+    </div>
+
+    <!-- Single registration card — two-column layout -->
+    <div class="ev-single-card">
+
+      <!-- Left: pitch content -->
+      <div class="ev-left">
+        <div class="workshop-date">&#128197; Workshop Date — Coming Soon</div>
+        <h3>Book your free onboarding session</h3>
+        <p class="card-sub">Join a live session with the BG8 team. We'll help you set up your AI agent, show you how the platform works, and answer your questions directly.</p>
+        <ul class="ev-checklist">
+          <li>See how BG8 matches you with real local customers</li>
+          <li>Set up your AI agent live, with guidance from our team</li>
+          <li>Customize your tone, services, and availability</li>
+          <li>Ask questions and get direct feedback</li>
+        </ul>
+        <div class="ev-meta-row">
+          <span class="ev-meta-item">⏱ 30 minutes</span>
+          <span class="ev-meta-item">📹 Video call</span>
+          <span class="ev-meta-item">✦ Free</span>
+        </div>
+      </div>
+
+      <!-- Right: Calendly mock -->
+      <div class="ev-right">
+      <!-- Calendly inline widget placeholder (replace with real embed when URL is ready) -->
+      <div class="calendly-mock">
+        <div class="calendly-mock-header">
+          <div class="calendly-mock-avatar">BG8</div>
+          <div>
+            <div class="calendly-mock-name">BG8 Team</div>
+            <div class="calendly-mock-event">Free Vendor Onboarding Session</div>
+            <div class="calendly-mock-meta">⏱ 30 min &nbsp;·&nbsp; 📹 Video call</div>
+          </div>
+        </div>
+        <div class="calendly-mock-divider"></div>
+        <div class="calendly-mock-cal-label">Select a date &amp; time</div>
+        <div class="calendly-mock-month">
+          <span class="cal-nav">&#8249;</span>
+          <span class="cal-month-name">May 2026</span>
+          <span class="cal-nav">&#8250;</span>
+        </div>
+        <div class="calendly-mock-grid">
+          <span class="cal-dow">Su</span><span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span>
+          <span class="cal-day cal-empty"></span><span class="cal-day cal-empty"></span><span class="cal-day cal-empty"></span><span class="cal-day cal-empty"></span><span class="cal-day cal-avail">1</span><span class="cal-day cal-avail">2</span><span class="cal-day cal-empty">3</span>
+          <span class="cal-day cal-empty">4</span><span class="cal-day cal-avail">5</span><span class="cal-day cal-avail">6</span><span class="cal-day cal-avail">7</span><span class="cal-day cal-avail">8</span><span class="cal-day cal-avail">9</span><span class="cal-day cal-empty">10</span>
+          <span class="cal-day cal-empty">11</span><span class="cal-day cal-avail">12</span><span class="cal-day cal-selected">13</span><span class="cal-day cal-avail">14</span><span class="cal-day cal-avail">15</span><span class="cal-day cal-avail">16</span><span class="cal-day cal-empty">17</span>
+          <span class="cal-day cal-empty">18</span><span class="cal-day cal-avail">19</span><span class="cal-day cal-avail">20</span><span class="cal-day cal-avail">21</span><span class="cal-day cal-avail">22</span><span class="cal-day cal-avail">23</span><span class="cal-day cal-empty">24</span>
+        </div>
+        <div class="calendly-mock-times-label">Tuesday, May 13</div>
+        <div class="calendly-mock-times">
+          <div class="cal-time-slot">9:00 AM</div>
+          <div class="cal-time-slot">10:00 AM</div>
+          <div class="cal-time-slot cal-time-selected">11:00 AM</div>
+          <div class="cal-time-slot">1:00 PM</div>
+          <div class="cal-time-slot">2:00 PM</div>
+        </div>
+        <div class="calendly-mock-footer">
+          <span class="calendly-mock-tz">🌐 Pacific Time — Vancouver</span>
+        </div>
+      </div>
+      </div><!-- /ev-right -->
+
+    </div><!-- /ev-single-card -->
+
+    <p class="ev-closing">We'll personally help you set up your AI agent, so it reflects your business and handles inquiries the right way.</p>
+
   </div>
 </section>
 
