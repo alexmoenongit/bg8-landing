@@ -49,12 +49,12 @@
     }
     nav {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 20px 40px; max-width: var(--max-w); margin: 0 auto;
+      padding: 12px 40px; max-width: var(--max-w); margin: 0 auto;
     }
     .logo { font-size: 26px; font-weight: 800; letter-spacing: 3px; }
     .nav-badge { font-size: 13px; color: var(--muted); }
-    .nav-brand { display: flex; flex-direction: column; gap: 1px; }
-    .nav-sub { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 0.5px; }
+    .nav-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+    .nav-sub { font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 0.3px; opacity: 0.6; }
     @media (max-width: 600px) {
       nav { padding: 18px 20px; }
       .nav-cross-link { font-size: 12px; font-weight: 500; opacity: 0.55; letter-spacing: 0; }
@@ -64,9 +64,9 @@
     /* HERO */
     .hero {
       position: relative; overflow: hidden;
-      min-height: calc(92svh - 82px);
+      min-height: calc(100vh - 130px);
       display: flex; align-items: center;
-      padding-block: 80px;
+      padding-block: 40px;
     }
     .hero > .container { width: 100%; }
     .hero-aurora {
@@ -113,7 +113,7 @@
     @media (max-width: 760px) {
       .hero-grid { grid-template-columns: 1fr; gap: 24px; }
       .streamline-wrap { order: -1; }
-      .hero { padding-top: 36px; padding-bottom: 60px; }
+      .hero { padding-block: 36px 60px; }
     }
 
     .btn-primary {
@@ -690,7 +690,7 @@
     <span class="logo grad-text">BG8.AI</span>
     <span class="nav-sub">by VLS Solutions</span>
   </div>
-  <a class="nav-cross-link" href="consumer.html" style="margin-left:auto;font-size:14px;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:0.3px;transition:color 0.2s;" onmouseover="this.style.color='#00C2E0'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">For Customers →</a>
+  <a class="nav-cross-link" href="landing-v11-consumer.html" style="margin-left:auto;font-size:14px;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:0.3px;transition:color 0.2s;" onmouseover="this.style.color='#00C2E0'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">For Customers →</a>
   <a class="nav-cta-btn" href="#early-vendors" style="margin-left:20px;font-size:15px;font-weight:600;color:#141C22;background:linear-gradient(135deg,#00C2E0,#4ADE5C);padding:10px 24px;border-radius:20px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Join as Vendor</a>
 </nav></div>
 
