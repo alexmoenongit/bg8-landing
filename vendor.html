@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BG8 — Grow your local business. Get booked.</title>
+  <title>BG8 for Business — Your AI runs the business</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -151,29 +151,40 @@
       font-size: 20px; color: var(--muted); margin-bottom: 64px; max-width: 560px;
     }
     .chaos-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
     }
     .chaos-card {
-      background: var(--bg-raised); border-radius: 16px;
-      padding: 32px; border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,194,224,0.03);
+      border: 1px solid rgba(0,194,224,0.12);
+      border-radius: 20px; padding: 32px 28px;
       position: relative; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .chaos-card:hover {
+      border-color: rgba(0,194,224,0.35);
+      transform: translateY(-4px);
     }
     .chaos-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: rgba(255,80,80,0.5);
+      background: var(--grad);
     }
     .chaos-icon { font-size: 32px; margin-bottom: 16px; }
+    .chaos-num {
+      font-size: 64px; font-weight: 800; letter-spacing: -3px; line-height: 1;
+      position: absolute; bottom: -8px; right: 16px;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; opacity: 0.07;
+    }
     .chaos-title {
-      font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text);
+      font-size: 18px; font-weight: 700; margin-bottom: 10px;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .chaos-desc { font-size: 15px; color: var(--muted); line-height: 1.5; }
-    .chaos-tag {
-      display: inline-block; margin-top: 16px;
-      background: rgba(255,80,80,0.15); color: #ff6b6b;
-      font-size: 12px; font-weight: 700; letter-spacing: 1px;
-      padding: 4px 12px; border-radius: 20px;
-    }
+    .chaos-desc { font-size: 15px; color: var(--muted); line-height: 1.55; }
+    .chaos-tag { display: none; }
 
     /* HOW IT WORKS */
     .how-section { background: var(--bg-base); }
@@ -476,14 +487,179 @@
       .ev-right { padding: 28px 28px 36px; }
       .benefits-bar { gap: 10px; }
     }
+
+    /* HERO STATS */
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 36px;
+    }
+    .hero-stat {
+      display: flex; flex-direction: column;
+    }
+    .hero-stat-val {
+      font-size: 28px; font-weight: 800; letter-spacing: -1px; line-height: 1;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat-label {
+      font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 500;
+    }
+
+    /* WHAT YOU GET */
+    .pillar-section { background: var(--bg-deep); border-top: 1px solid rgba(0,194,224,0.08); }
+    .pillar-section h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .pillar-section .lead { font-size: 20px; color: var(--muted); margin-bottom: 64px; }
+    .pillar-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .pillar-card {
+      background: rgba(0,194,224,0.03);
+      border: 1px solid rgba(0,194,224,0.12);
+      border-radius: 20px; padding: 36px 28px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .pillar-card:hover {
+      border-color: rgba(0,194,224,0.35);
+      transform: translateY(-4px);
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--grad);
+    }
+    .pillar-num {
+      font-size: 64px; font-weight: 800; letter-spacing: -3px; line-height: 1;
+      position: absolute; bottom: -8px; right: 16px;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; opacity: 0.07;
+    }
+    .pillar-title {
+      font-size: 22px; font-weight: 800; margin-bottom: 12px;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pillar-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 900px) { .pillar-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .pillar-grid { grid-template-columns: 1fr; } }
+
+    /* AI AGENT SECTION */
+    .agent-section { background: var(--bg-base); }
+    .agent-section h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .agent-section .lead { font-size: 20px; color: var(--muted); margin-bottom: 64px; max-width: 620px; }
+    .agent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .agent-caps { display: flex; flex-direction: column; gap: 20px; margin-bottom: 0; }
+    .agent-cap {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: rgba(0,194,224,0.03); border: 1px solid rgba(0,194,224,0.1);
+      border-radius: 14px; padding: 20px 24px;
+    }
+    .agent-cap-num {
+      font-size: 13px; font-weight: 800; letter-spacing: 1px;
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; flex-shrink: 0; padding-top: 2px;
+    }
+    .agent-cap-text { font-size: 16px; color: var(--text); line-height: 1.5; }
+
+    /* Chat demo */
+    .chat-demo {
+      background: var(--bg-raised); border: 1px solid rgba(0,194,224,0.15);
+      border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 0;
+    }
+    .chat-header {
+      display: flex; align-items: center; gap: 12px;
+      padding-bottom: 16px; margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .chat-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--grad); display: flex; align-items: center;
+      justify-content: center; font-size: 11px; font-weight: 800; color: #141C22;
+    }
+    .chat-meta { flex: 1; }
+    .chat-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .chat-status {
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      color: var(--green);
+    }
+    .chat-msgs { display: flex; flex-direction: column; gap: 12px; }
+    .chat-msg { max-width: 82%; }
+    .chat-msg.from-user { align-self: flex-end; }
+    .chat-msg.from-ai { align-self: flex-start; }
+    .chat-bubble {
+      border-radius: 16px; padding: 12px 16px;
+      font-size: 14px; line-height: 1.5; display: inline-block;
+    }
+    .chat-msg.from-user .chat-bubble {
+      background: rgba(255,255,255,0.08); color: var(--text);
+      border-radius: 16px 4px 16px 16px;
+    }
+    .chat-msg.from-ai .chat-bubble {
+      background: rgba(0,194,224,0.1); color: var(--text);
+      border: 1px solid rgba(0,194,224,0.2);
+      border-radius: 4px 16px 16px 16px;
+    }
+    .chat-time { font-size: 11px; color: var(--muted); margin-top: 4px; text-align: right; }
+    .chat-msg.from-ai .chat-time { text-align: left; }
+    @media (max-width: 900px) { .agent-grid { grid-template-columns: 1fr; } }
+
+    /* THE MATH */
+    .math-section { background: var(--bg-deep); border-top: 1px solid rgba(0,194,224,0.08); }
+    .math-section h2 {
+      font-size: clamp(36px, 4.5vw, 56px); font-weight: 800;
+      letter-spacing: -1.5px; margin-bottom: 16px;
+    }
+    .math-section .lead { font-size: 20px; color: var(--muted); margin-bottom: 16px; max-width: 560px; }
+    .math-section .lead2 { font-size: 16px; color: var(--muted); margin-bottom: 64px; max-width: 560px; }
+    .math-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .math-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 36px 28px;
+      transition: border-color 0.25s;
+    }
+    .math-card:hover { border-color: rgba(0,194,224,0.25); }
+    .math-card.highlight {
+      background: rgba(0,194,224,0.04); border-color: rgba(0,194,224,0.22);
+    }
+    .math-card-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    .math-card.highlight .math-card-label { color: var(--teal); }
+    .math-val {
+      font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;
+    }
+    .math-card.highlight .math-val {
+      background: var(--grad);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .math-desc { font-size: 15px; color: var(--muted); line-height: 1.5; }
+    @media (max-width: 900px) { .math-grid { grid-template-columns: 1fr; } }
+
+    /* 4-col chaos grid */
+    .chaos-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .chaos-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 580px) { .chaos-grid-4 { grid-template-columns: 1fr; } }
+
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <span class="logo grad-text">BG8.AI</span>
-  <span class="nav-badge">by VLS Solutions</span>
+  <span class="logo grad-text">BG8.AI</span><span style="font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0.5px;margin-left:10px;">by VLS Solutions</span>
+  <a href="landing-v6-consumer.html" style="margin-left:auto;font-size:14px;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;letter-spacing:0.3px;transition:color 0.2s;" onmouseover="this.style.color='#00C2E0'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">For Customers →</a>
+  <a href="#" style="margin-left:20px;font-size:15px;font-weight:600;color:#141C22;background:linear-gradient(135deg,#00C2E0,#4ADE5C);padding:10px 24px;border-radius:20px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Join as Vendor</a>
 </nav>
 
 <!-- ═══════════════════════════════════════════════
@@ -500,12 +676,18 @@
 
       <!-- LEFT: Text + CTA -->
       <div>
-        <div class="eyebrow">Greater Vancouver · Vendor Network</div>
-        <h1>Get customers.<br><span class="grad-text">Let AI handle the rest.</span></h1>
-        <p class="hero-sub">BG8 connects you with real local demand. Set up your AI agent for free and start turning inquiries into bookings.</p>
+        <div class="eyebrow">FREE TO START · NO WEBSITE NEEDED · LIVE TODAY</div>
+        <h1>Your AI runs<br><span class="grad-text">the business.</span></h1>
+        <p class="hero-sub">Every BG8 vendor gets a 24/7 AI agent the moment they sign up. It answers questions, qualifies leads, sends quotes, books appointments, and follows up — automatically. No website. No marketing team. No technical skills.</p>
         <div style="display:flex;gap:20px;flex-wrap:wrap;">
-          <a href="#" class="btn-primary">Join the Vendor Network</a>
-          <a href="#how" class="btn-ghost">See How It Works</a>
+          <a href="#how-it-works" class="btn-primary">List my business — free</a>
+          <a href="#how-it-works" class="btn-ghost">See how it works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="hero-stat-val">20×</span><span class="hero-stat-label">Cheaper than online ads</span></div>
+          <div class="hero-stat"><span class="hero-stat-val">24/7</span><span class="hero-stat-label">AI never sleeps, never misses</span></div>
+          <div class="hero-stat"><span class="hero-stat-val">$0</span><span class="hero-stat-label">Upfront. Pay per booking.</span></div>
+          <div class="hero-stat"><span class="hero-stat-val">~5min</span><span class="hero-stat-label">From signup to first lead</span></div>
         </div>
       </div>
 
@@ -812,32 +994,138 @@
 <section class="problem-section">
   <div class="container">
     <div class="eyebrow">The problem</div>
-    <h2>Growing your business<br>shouldn't feel like a gamble.</h2>
-    <p class="lead">Word of mouth has limits. BG8 doesn't.</p>
+    <h2>Local marketing is broken.<br><span class="grad-text">You're paying for it.</span></h2>
+    <p class="lead">You went into business to do the work — not to be a marketer, web designer, and customer service rep all at once.</p>
 
-    <div class="chaos-grid">
-
-      <div class="chaos-card">
-        <div class="chaos-icon">👻</div>
-        <div class="chaos-title">You reply, they disappear.</div>
-        <div class="chaos-desc">A customer messages you asking for a quote. You ask a few follow-up questions, wait for details, send a price, and then… nothing. No reply. No booking. Just another dead end.</div>
-        <span class="chaos-tag">Lost revenue</span>
-      </div>
+    <div class="chaos-grid chaos-grid-4">
 
       <div class="chaos-card">
-        <div class="chaos-icon">🤯</div>
-        <div class="chaos-title">Everything is everywhere.</div>
-        <div class="chaos-desc">One customer texts you. Another calls and leaves a voicemail. Someone else DMs you on Instagram. You're switching between apps, trying to keep track, and still missing details, or losing the thread.</div>
-        <span class="chaos-tag">Scattered workflow</span>
-      </div>
-
-      <div class="chaos-card">
+        <div class="chaos-num">01</div>
         <div class="chaos-icon">💸</div>
-        <div class="chaos-title">You invest. But results aren't clear.</div>
-        <div class="chaos-desc">You spend time building a website. Maybe run ads. Try different platforms. Money goes in. Time goes in. But it's hard to tell what's actually working or when the next job will come from it.</div>
-        <span class="chaos-tag">No demand visibility</span>
+        <div class="chaos-title">$30+ per click. 2% convert.</div>
+        <div class="chaos-desc">You burn budget on ads before you've said hello to a real customer. Most clicks are tire-kickers. You pay for attention, not outcomes.</div>
+        <span class="chaos-tag">Lost budget</span>
       </div>
 
+      <div class="chaos-card">
+        <div class="chaos-num">02</div>
+        <div class="chaos-icon">📵</div>
+        <div class="chaos-title">Missed calls = lost jobs.</div>
+        <div class="chaos-desc">You can't pick up at 3 AM, on a job site, on Sundays. Customers don't wait — they call the next number on the list. That job is gone.</div>
+        <span class="chaos-tag">Missed revenue</span>
+      </div>
+
+      <div class="chaos-card">
+        <div class="chaos-num">03</div>
+        <div class="chaos-icon">😓</div>
+        <div class="chaos-title">Build a website. Run ads. Hire help.</div>
+        <div class="chaos-desc">You went into business to do the work — not to be a marketer, web designer, and customer service rep all at once. It never ends.</div>
+        <span class="chaos-tag">No time</span>
+      </div>
+
+      <div class="chaos-card">
+        <div class="chaos-num">04</div>
+        <div class="chaos-icon">🔁</div>
+        <div class="chaos-title">Same questions. Forever.</div>
+        <div class="chaos-desc">"How much?" "Are you available?" "Do you do X?" — answered for the thousandth time, while paid jobs sit waiting on hold.</div>
+        <span class="chaos-tag">Wasted time</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     WHAT YOU GET
+═══════════════════════════════════════════════ -->
+<section class="pillar-section">
+  <div class="container">
+    <div class="eyebrow">What you get</div>
+    <h2>Faster. Easier.<br><span class="grad-text">Cheaper. Better.</span></h2>
+    <p class="lead">One sign-up. One AI agent. Zero ongoing work required.</p>
+
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Faster</div>
+        <p class="pillar-desc">Instant onboarding. No app to build, no website to maintain. You're live and receiving leads the same day you sign up.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Easier</div>
+        <p class="pillar-desc">Set it up once. Your AI handles inbound, qualifies, quotes, schedules, and follows up. You focus on the actual work.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Cheaper</div>
+        <p class="pillar-desc">Up to 20× cheaper than traditional online advertising. Pay per confirmed booking — never per click, never upfront.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">04</div>
+        <div class="pillar-title">Better</div>
+        <p class="pillar-desc">24/7 AI support. Never miss an opportunity at 2 AM, on a Sunday, or while you're already on a job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     AI AGENT
+═══════════════════════════════════════════════ -->
+<section class="agent-section">
+  <div class="container">
+    <div class="eyebrow">What your AI agent does</div>
+    <h2>A teammate that<br><span class="grad-text">never clocks out.</span></h2>
+    <p class="lead">Your BG8 AI agent handles the boring, repetitive parts of running a service business — so leads convert and your evenings stay yours.</p>
+
+    <div class="agent-grid">
+      <div class="agent-caps">
+        <div class="agent-cap">
+          <span class="agent-cap-num">01</span>
+          <span class="agent-cap-text">Replies instantly, in your tone, in any language</span>
+        </div>
+        <div class="agent-cap">
+          <span class="agent-cap-num">02</span>
+          <span class="agent-cap-text">Qualifies the lead before it ever hits your phone</span>
+        </div>
+        <div class="agent-cap">
+          <span class="agent-cap-num">03</span>
+          <span class="agent-cap-text">Generates quotes from your own pricing rules</span>
+        </div>
+        <div class="agent-cap">
+          <span class="agent-cap-num">04</span>
+          <span class="agent-cap-text">Surfaces insights — busiest hours, top services, missed opportunities</span>
+        </div>
+      </div>
+
+      <div class="chat-demo">
+        <div class="chat-header">
+          <div class="chat-avatar">AI</div>
+          <div class="chat-meta">
+            <div class="chat-name">Northside Plumbing — Vendor AI</div>
+            <div class="chat-status">● LIVE</div>
+          </div>
+        </div>
+        <div class="chat-msgs">
+          <div class="chat-msg from-user">
+            <div class="chat-bubble">Kitchen sink is leaking badly. Can someone come now?</div>
+            <div class="chat-time">3:14 AM</div>
+          </div>
+          <div class="chat-msg from-ai">
+            <div class="chat-bubble">On-call plumber available 4–5 AM. $180 emergency callout + parts. Want me to dispatch?</div>
+            <div class="chat-time">3:14 AM · responded in 4s</div>
+          </div>
+          <div class="chat-msg from-user">
+            <div class="chat-bubble">Yes please. Address is 1421 Cedar.</div>
+            <div class="chat-time">3:15 AM</div>
+          </div>
+          <div class="chat-msg from-ai">
+            <div class="chat-bubble">Booked. Tech ETA 4:08 AM. Receipt sent. Anything else?</div>
+            <div class="chat-time">3:15 AM · 0 calls made</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -845,7 +1133,7 @@
 <!-- ═══════════════════════════════════════════════
      HOW IT WORKS
 ═══════════════════════════════════════════════ -->
-<section class="how-section" id="how">
+<section class="how-section" id="how-it-works">
   <div class="container">
     <div class="eyebrow">How it works</div>
     <h2>Four steps to<br><span class="grad-text">your first booking.</span></h2>
@@ -1075,6 +1363,37 @@
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════════
+     THE MATH
+═══════════════════════════════════════════════ -->
+<section class="math-section">
+  <div class="container">
+    <div class="eyebrow">The math</div>
+    <h2>Stop paying for clicks<br><span class="grad-text">that never call.</span></h2>
+    <p class="lead">The traditional ad model bills you for attention — not outcomes. BG8 flips it: you pay only when a real customer books a real job.</p>
+    <p class="lead2">That's why our vendors describe BG8 as up to 20× cheaper than running Google or Meta ads.</p>
+
+    <div class="math-grid">
+      <div class="math-card">
+        <div class="math-card-label">Traditional Online Advertising</div>
+        <div class="math-val">$10–30</div>
+        <div class="math-desc">Per click. Pay before you even speak to a real customer. Most clicks are browsing, not buying.</div>
+      </div>
+      <div class="math-card">
+        <div class="math-card-label">Industry conversion rate</div>
+        <div class="math-val">~2%</div>
+        <div class="math-desc">Of those clicks, very few become bookings. You're funding a broad audience to reach a tiny fraction.</div>
+      </div>
+      <div class="math-card highlight">
+        <div class="math-card-label">BG8 — pay per booking</div>
+        <div class="math-val">5–8%</div>
+        <div class="math-desc">You pay only when a job is confirmed. No clicks, no guesswork. Every dollar tied to a real outcome.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════════════
      EARLY VENDORS PROGRAM
 ═══════════════════════════════════════════════ -->
@@ -1170,8 +1489,8 @@
     <h2>Start for free.<br><span class="grad-text">Pay only when<br>you get booked.</span></h2>
 
     <div style="margin-top:48px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
-      <a href="#" class="btn-primary" style="font-size:18px;padding:18px 52px;">Join the Vendor Network</a>
-      <a href="#how" class="btn-ghost" style="font-size:18px;padding:17px 52px;">See How It Works</a>
+      <a href="#how-it-works" class="btn-primary" style="font-size:18px;padding:18px 52px;">Join the Vendor Network</a>
+      <a href="#how-it-works" class="btn-ghost" style="font-size:18px;padding:17px 52px;">See How It Works</a>
     </div>
 
     <div class="cta-trust">
